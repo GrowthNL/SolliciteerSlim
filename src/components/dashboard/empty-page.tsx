@@ -1,0 +1,6 @@
+import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
+import { Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+export function EmptyPage({ title, description, emptyTitle, emptyText, action, href, icon: Icon }: { title: string; description: string; emptyTitle: string; emptyText: string; action: string; href: string; icon: LucideIcon }) { return <div className="mx-auto max-w-6xl"><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><h1 className="font-display text-3xl font-bold text-slate-950">{title}</h1><p className="mt-2 text-slate-600">{description}</p></div><Button asChild><Link href={href}><Plus className="size-4" />{action}</Link></Button></div><Card className="mt-8 grid min-h-[420px] place-items-center border-dashed p-8 text-center"><div className="max-w-sm"><span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700"><Icon className="size-6" /></span><h2 className="font-display mt-5 text-xl font-bold text-slate-950">{emptyTitle}</h2><p className="mt-2 text-sm leading-6 text-slate-600">{emptyText}</p><Button asChild className="mt-6"><Link href={href}>{action}</Link></Button></div></Card></div>; }
