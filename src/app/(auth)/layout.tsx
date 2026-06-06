@@ -1,0 +1,1 @@
+export default function AuthLayout({ children }: { children: React.ReactNode }) { return <main className="grid min-h-screen place-items-center bg-[radial-gradient(circle_at_top_right,#dcfce7,transparent_38%),#f8faf9] px-4 py-12">{children}</main>; }
