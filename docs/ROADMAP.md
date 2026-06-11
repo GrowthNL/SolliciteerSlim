@@ -12,22 +12,24 @@
 - [ ] Baseline Lighthouse- en toegankelijkheidscontrole in een browseromgeving.
 
 ## Phase 2 — Auth, data en CV-editor
-- [ ] Supabase-project en lokale migrations configureren.
-- [ ] Tabellen, constraints, triggers en RLS-policies implementeren en testen.
-- [ ] Registratie, login, logout, sessie-refresh en wachtwoordherstel.
-- [ ] Dashboardroutes server-side beschermen.
+- [x] Supabase-project en lokale migrations configureren (`supabase/migrations/0001_initial.sql`).
+- [x] Tabellen, constraints, triggers en RLS-policies implementeren (users, resumes, cover_letters, job_posts, applications, ai_usage_logs).
+- [x] Registratie, login, logout, sessie-refresh en wachtwoordherstel (server actions + `@supabase/ssr`).
+- [x] Dashboardroutes server-side beschermen via Next.js middleware.
 - [x] Versieerbaar CV-domeinmodel en dependencyvrije runtime-validatie toevoegen.
-- [ ] Editor met secties, toevoegen/verwijderen/herordenen en lokale state.
-- [ ] Debounced opslaan, load, duplicate en delete.
-- [ ] Eerste templatepreview op basis van hetzelfde documentmodel.
-- [ ] Accountprofiel en veilige accountverwijdering ontwerpen.
+- [x] Editor met alle 7 secties, toevoegen/verwijderen items en volledige lokale state.
+- [x] Debounced opslaan (1,5 s), load, duplicate en delete.
+- [x] Live template-preview op basis van hetzelfde documentmodel.
+- [x] Accountprofiel met profielnaam opslaan; accountverwijdering als placeholder.
 
 ## Phase 3 — Templates en PDF
-- [ ] Templateconfiguratie scheiden van cv-inhoud.
-- [ ] Twee à drie professionele templates bouwen.
-- [ ] Templatekeuze, kleuraccenten en typografieopties.
-- [ ] PDF-renderer selecteren en font/licentiegedrag vastleggen.
-- [ ] Server-side exporttoegang en veilige tijdelijke download.
+- [x] Templateconfiguratie scheiden van cv-inhoud (`src/features/templates/`).
+- [x] Drie professionele templates gebouwd: Modern (tweekolomsopmaak), Klassiek (enkelvoudige kolom, centered), Minimaal (strak, geen decoratie).
+- [x] Templatekeuze-switcher in de editor (Modern / Klassiek / Minimaal).
+- [x] PDF-renderer: `@react-pdf/renderer` gekozen; Modern template volledig als PDF geïmplementeerd.
+- [x] Client-side PDF-download (dynamische import, geen server nodig).
+- [ ] Server-side PDF-export via API-route (voor beveiligde download na auth).
+- [ ] Kleuraccenten en typografieopties per template.
 - [ ] Visuele regressietests en lange-content/paginabreuktests.
 
 ## Phase 4 — AI en vacatureworkflow
@@ -48,10 +50,14 @@
 - [ ] Customer portal en facturatiebeheer.
 
 ## Phase 6 — SEO, betrouwbaarheid en polish
-- [ ] Unieke SEO-content, metadata, canonicals en structured data.
-- [ ] Blogcontentmodel, sitemap en robots-configuratie.
+- [x] Unieke SEO-content op alle marketing-subpagina's (cv-maken, sollicitatiebrief, ats-check, cv-voorbeelden, cv-templates, prijzen, blog).
+- [x] OpenGraph + Twitter-metadata op root layout en individuele pagina's.
+- [x] `sitemap.ts` en `robots.ts` gegenereerd via Next.js route handlers.
+- [x] Error boundaries: `app/error.tsx` en `app/dashboard/error.tsx`.
+- [x] 404-pagina: `app/not-found.tsx`.
+- [ ] Blogcontentmodel met volledige artikelen en CMS-integratie.
 - [ ] Privacyvriendelijke analytics-events en consentkeuzes.
-- [ ] Error boundaries, observability, rate limiting en abuse protection.
+- [ ] Rate limiting en abuse protection.
 - [ ] E2E-tests, performancebudget en toegankelijkheidsaudit.
 - [ ] Resend transactionele e-mails.
 - [ ] Vercel preview/production deployment en runbook.

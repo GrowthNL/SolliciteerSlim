@@ -6,6 +6,7 @@ export const marketingNavigation: NavigationItem[] = [
   { label: "ATS-check", href: "/ats-check" },
   { label: "Templates", href: "/cv-templates" },
   { label: "Prijzen", href: "/prijzen" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export const dashboardNavigation: NavigationItem[] = [
