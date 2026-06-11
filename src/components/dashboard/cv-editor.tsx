@@ -7,7 +7,6 @@ import {
   Check,
   ChevronRight,
   Plus,
-  Save,
   Sparkles,
   Trash2,
   X,
@@ -19,6 +18,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CvTemplatePreview } from "@/components/dashboard/cv-template-preview";
+import { KlassiekPreview } from "@/features/templates/klassiek-preview";
+import { MinimaalPreview } from "@/features/templates/minimaal-preview";
+import { PdfDownloadButton } from "@/components/dashboard/pdf-download-button";
+import { TEMPLATES, type TemplateId } from "@/features/templates/index";
 import { saveResume } from "@/app/actions/resumes";
 import {
   createEmptyResumeDocument,
@@ -733,6 +736,7 @@ export function CvEditor({ initialId, initialDoc }: CvEditorProps) {
   const [activeSection, setActiveSection] = useState<SectionKey>("personal");
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [isDirty, setIsDirty] = useState(false);
+  const [templateId, setTemplateId] = useState<TemplateId>("modern");
   const [, startTransition] = useTransition();
   const router = useRouter();
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -792,16 +796,10 @@ export function CvEditor({ initialId, initialDoc }: CvEditorProps) {
         </div>
         <div className="flex items-center gap-3">
           <SaveStatus status={saveStatus} />
-          <Button
-            variant="secondary"
-            onClick={() => {
-              const el = document.getElementById("cv-preview-panel");
-              el?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-          >
-            <Save className="size-4" />
-            Voorbeeld
-          </Button>
+          <PdfDownloadButton
+            doc={doc}
+            filename={`${title.replace(/\s+/g, "-").toLowerCase()}.pdf`}
+          />
         </div>
       </div>
 
@@ -896,11 +894,28 @@ export function CvEditor({ initialId, initialDoc }: CvEditorProps) {
 
         {/* Preview panel */}
         <div id="cv-preview-panel" className="hidden xl:block">
-          <div className="mb-3 flex items-center justify-between">
-            <p className="text-sm font-semibold text-slate-700">Live voorbeeld</p>
-            <span className="text-xs text-slate-400">Modern</span>
+          <div className="mb-3">
+            <p className="mb-2 text-sm font-semibold text-slate-700">Live voorbeeld</p>
+            <div className="flex gap-1.5">
+              {TEMPLATES.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setTemplateId(t.id)}
+                  className={`rounded-full px-2.5 py-0.5 text-xs font-medium transition ${
+                    templateId === t.id
+                      ? "bg-emerald-700 text-white"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
-          <CvTemplatePreview doc={doc} />
+          {templateId === "modern" && <CvTemplatePreview doc={doc} />}
+          {templateId === "klassiek" && <KlassiekPreview doc={doc} />}
+          {templateId === "minimaal" && <MinimaalPreview doc={doc} />}
           <div className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 p-3 text-xs leading-5 text-emerald-900/70">
             <Sparkles className="mr-1 inline size-3.5" />
             AI-verbeteringen worden in Phase 4 toegevoegd.
