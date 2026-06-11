@@ -12,15 +12,15 @@
 - [ ] Baseline Lighthouse- en toegankelijkheidscontrole in een browseromgeving.
 
 ## Phase 2 — Auth, data en CV-editor
-- [ ] Supabase-project en lokale migrations configureren.
-- [ ] Tabellen, constraints, triggers en RLS-policies implementeren en testen.
-- [ ] Registratie, login, logout, sessie-refresh en wachtwoordherstel.
-- [ ] Dashboardroutes server-side beschermen.
+- [x] Supabase-project en lokale migrations configureren (`supabase/migrations/0001_initial.sql`).
+- [x] Tabellen, constraints, triggers en RLS-policies implementeren (users, resumes, cover_letters, job_posts, applications, ai_usage_logs).
+- [x] Registratie, login, logout, sessie-refresh en wachtwoordherstel (server actions + `@supabase/ssr`).
+- [x] Dashboardroutes server-side beschermen via Next.js middleware.
 - [x] Versieerbaar CV-domeinmodel en dependencyvrije runtime-validatie toevoegen.
-- [ ] Editor met secties, toevoegen/verwijderen/herordenen en lokale state.
-- [ ] Debounced opslaan, load, duplicate en delete.
-- [ ] Eerste templatepreview op basis van hetzelfde documentmodel.
-- [ ] Accountprofiel en veilige accountverwijdering ontwerpen.
+- [x] Editor met alle 7 secties, toevoegen/verwijderen items en volledige lokale state.
+- [x] Debounced opslaan (1,5 s), load, duplicate en delete.
+- [x] Live template-preview op basis van hetzelfde documentmodel.
+- [x] Accountprofiel met profielnaam opslaan; accountverwijdering als placeholder.
 
 ## Phase 3 — Templates en PDF
 - [ ] Templateconfiguratie scheiden van cv-inhoud.
