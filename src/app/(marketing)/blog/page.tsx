@@ -276,9 +276,9 @@ export default function BlogPage() {
               Maximaal twee e-mails per maand. Geen spam, geen reclame — alleen praktische tips voor
               je sollicitatie. Je kunt op elk moment uitschrijven.
             </p>
-            {/* Static form — not functional */}
+            {/* Static form — not functional yet */}
             <form
-              onSubmit={(e) => e.preventDefault()}
+              action="#"
               className="mt-7 flex flex-col gap-3 sm:flex-row"
             >
               <input
