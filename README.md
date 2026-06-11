@@ -4,7 +4,7 @@ SolliciteerSlim is een AI-first Nederlandse CV- en sollicitatieassistent. De ker
 
 > Maak in enkele minuten een professioneel cv en sollicitatiebrief die aansluiten op jouw vacature.
 
-Deze repository bevat momenteel **Phase 1**: de technische basis, documentatie, responsive marketingwebsite, auth-placeholders, dashboard-shell en CV-editor-shell. Supabase, OpenAI, Stripe, Resend en PDF-export zijn bewust nog niet aangesloten.
+Deze repository bevat een afgeronde technische **Phase 1-basis** en de eerste bouwsteen van **Phase 2**: een versieerbaar CV-domeinmodel met runtime-validatie en tests. De marketingwebsite, auth-placeholders, dashboard-shell en CV-editor-shell zijn aanwezig. Supabase, OpenAI, Stripe, Resend en PDF-export zijn nog niet aangesloten.
 
 ## Stack
 - Next.js App Router
@@ -31,6 +31,7 @@ In Phase 1 zijn nog geen echte providerwaarden nodig. Laat server-only variabele
 npm run dev        # lokale ontwikkelserver
 npm run lint       # ESLint
 npm run typecheck  # TypeScript zonder output
+npm test           # CV-model en runtime-validatie
 npm run build      # productiebuild
 npm run start      # gebouwde app starten
 ```
@@ -68,5 +69,5 @@ Zie `.env.example`. Variabelen zonder `NEXT_PUBLIC_` zijn uitsluitend voor serve
 - [Roadmap en TODO](docs/ROADMAP.md)
 - [Security en privacy](docs/SECURITY_PRIVACY.md)
 
-## Volgende fase
-Phase 2 richt zich op Supabase Auth, RLS, persistente CV’s en een werkende editor met lokale form state en autosave. Zie [ROADMAP.md](docs/ROADMAP.md) voor de volledige checklist.
+## Huidige vervolgstap
+Het CV-documentmodel staat in `src/features/resumes/model.ts` en vormt straks het gedeelde contract voor editor, opslag, preview en PDF. De volgende stap is Supabase configureren, de eerste migrations en RLS-policies toevoegen en daarna authenticatie en persistente CV-opslag aansluiten. Zie [ROADMAP.md](docs/ROADMAP.md) voor de volledige checklist.
