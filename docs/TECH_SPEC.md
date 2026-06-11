@@ -33,6 +33,7 @@ src/
     shared/             gedeelde merk- en authcomponenten
   lib/                  framework-onafhankelijke helpers en navigatie
   types/                gedeelde domeintypes
+  features/resumes/     versieerbaar CV-model, runtime-validatie en tests
 docs/                   product-, techniek- en governance-documentatie
 ```
 
@@ -61,6 +62,7 @@ supabase/
 - Marketingpagina’s zijn statisch of periodiek gerevalideerd.
 - Dashboarddata wordt server-side opgehaald na authenticatie.
 - De CV-editor gebruikt lokale form state met gecontroleerde autosave/debounce.
+- `src/features/resumes/model.ts` is het gedeelde, versieerbare contract voor editor, opslag, preview en later PDF-rendering.
 - Persistente updates lopen via server actions of route handlers met schema-validatie.
 - Preview gebruikt hetzelfde genormaliseerde CV-model als de PDF-renderer om verschillen te beperken.
 
@@ -85,7 +87,7 @@ De PDF-laag ontvangt een gevalideerd, presentatieneutraal CV-model en templateco
 
 ## Kwaliteitsstrategie
 - `npm run lint`, `npm run typecheck` en `npm run build` in CI.
-- Unit tests voor normalisatie, entitlements, AI-schema’s en PDF-mapping.
+- Unit tests voor het CV-model en de runtime-validator; later ook voor normalisatie, entitlements, AI-schema’s en PDF-mapping.
 - Integratietests voor RLS, auth-mutaties en Stripe-webhooks.
 - End-to-end tests voor registratie → cv → preview → export/paywall.
 - Visuele regressiecontrole voor templates en PDF’s.

@@ -8,7 +8,7 @@
 - [x] Dashboardnavigatie, lege statussen en CV-editor-preview.
 - [x] Product-, techniek-, database-, AI-, roadmap- en privacydocumentatie.
 - [x] README en `.env.example` zonder geheimen.
-- [ ] Dependencies installeren zodra package registry bereikbaar is.
+- [x] Dependencies installeren en vastleggen in `package-lock.json`.
 - [ ] Baseline Lighthouse- en toegankelijkheidscontrole in een browseromgeving.
 
 ## Phase 2 — Auth, data en CV-editor
@@ -16,7 +16,7 @@
 - [ ] Tabellen, constraints, triggers en RLS-policies implementeren en testen.
 - [ ] Registratie, login, logout, sessie-refresh en wachtwoordherstel.
 - [ ] Dashboardroutes server-side beschermen.
-- [ ] CV-schema en runtime-validatie toevoegen.
+- [x] Versieerbaar CV-domeinmodel en dependencyvrije runtime-validatie toevoegen.
 - [ ] Editor met secties, toevoegen/verwijderen/herordenen en lokale state.
 - [ ] Debounced opslaan, load, duplicate en delete.
 - [ ] Eerste templatepreview op basis van hetzelfde documentmodel.
@@ -57,4 +57,4 @@
 - [ ] Vercel preview/production deployment en runbook.
 
 ## Definitie van klaar voor de volgende fase
-Phase 2 start pas nadat Phase 1 lokaal lint, typecheck en build doorloopt, de route-shell visueel gecontroleerd is en architectuurkeuzes in de docs zijn bijgewerkt.
+Phase 2 start pas nadat Phase 1 lokaal lint, typecheck en build doorloopt, de route-shell visueel gecontroleerd is en architectuurkeuzes in de docs zijn bijgewerkt. Lint, typecheck, tests en build zijn lokaal groen; de visuele browsercontrole en Lighthouse-meting staan nog open.
