@@ -63,7 +63,8 @@ export async function signUp(_: AuthState, formData: FormData): Promise<AuthStat
     redirect("/dashboard");
   } catch (e) {
     if (isRedirect(e)) throw e;
-    return { error: "Er is een onverwachte fout opgetreden. Probeer het opnieuw." };
+    const msg = e instanceof Error ? e.message : String(e);
+    return { error: `Fout: ${msg}` };
   }
 }
 
