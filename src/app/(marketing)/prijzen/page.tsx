@@ -8,7 +8,7 @@ import { CheckoutButton, FreeButton } from "./checkout-buttons";
 import type { PriceKey } from "@/app/actions/stripe";
 
 export const metadata: Metadata = {
-  title: "Prijzen | SolliciteerSlim",
+  title: "Prijzen | CVmaken.nu",
   description: "Betaal alleen voor wat je gebruikt. Begin gratis en kies pas later een abonnement dat bij jouw situatie past.",
 };
 
@@ -68,10 +68,10 @@ const faqs = [
   },
   {
     question: "Is mijn cv-data veilig?",
-    answer: "Ja. SolliciteerSlim is AVG-conform en je gegevens worden alleen verwerkt voor de diensten die je uitdrukkelijk gebruikt. We delen nooit persoonsgegevens met derden zonder jouw toestemming. Je kunt je data op elk moment exporteren of verwijderen.",
+    answer: "Ja. CVmaken.nu is AVG-conform en je gegevens worden alleen verwerkt voor de diensten die je uitdrukkelijk gebruikt. We delen nooit persoonsgegevens met derden zonder jouw toestemming. Je kunt je data op elk moment exporteren of verwijderen.",
   },
   {
-    question: "Kan ik SolliciteerSlim gratis blijven gebruiken?",
+    question: "Kan ik CVmaken.nu gratis blijven gebruiken?",
     answer: "Absoluut. Het gratis abonnement heeft geen tijdslimiet. Je kunt één cv aanmaken, bewerken en bekijken zolang je wilt. Betaalde functies zoals PDF-export en AI-verbeteringen zijn optioneel en worden pas relevant als je meer wilt doen.",
   },
   {
@@ -194,8 +194,8 @@ export default function PrijzenPage() {
             </h2>
             <p className="mt-4 leading-7 text-slate-600">
               Staat je vraag er niet bij? Stuur ons een e-mail op{" "}
-              <a href="mailto:hallo@solliciteerslim.nl" className="text-emerald-700 underline underline-offset-2">
-                hallo@solliciteerslim.nl
+              <a href="mailto:hallo@cvmaken.nu" className="text-emerald-700 underline underline-offset-2">
+                hallo@cvmaken.nu
               </a>
             </p>
           </div>

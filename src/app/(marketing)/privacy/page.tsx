@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacybeleid | SolliciteerSlim",
-  description: "Lees hoe SolliciteerSlim jouw persoonsgegevens verwerkt, bewaart en beschermt conform de AVG.",
+  title: "Privacybeleid | CVmaken.nu",
+  description: "Lees hoe CVmaken.nu jouw persoonsgegevens verwerkt, bewaart en beschermt conform de AVG.",
 };
 
 export default function PrivacyPage() {
@@ -15,13 +15,13 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-3">1. Welke gegevens verzamelen we</h2>
           <p className="text-slate-600 leading-7">
-            SolliciteerSlim verwerkt de volgende persoonsgegevens wanneer je gebruik maakt van onze dienst:
+            CVmaken.nu verwerkt de volgende persoonsgegevens wanneer je gebruik maakt van onze dienst:
           </p>
           <ul className="list-disc list-inside space-y-1 text-slate-600 mt-3">
             <li>E-mailadres en naam (bij aanmaken van een account)</li>
             <li>CV-inhoud die je invoert of uploadt (tekst, werkervaring, opleidingen, vaardigheden)</li>
             <li>Gebruiksgegevens met betrekking tot AI-functies (bijv. welke AI-verbeteringen je opvraagt)</li>
-            <li>Betalingsgegevens verwerkt via Stripe (SolliciteerSlim slaat zelf geen betaalkaartgegevens op)</li>
+            <li>Betalingsgegevens verwerkt via Stripe (CVmaken.nu slaat zelf geen betaalkaartgegevens op)</li>
           </ul>
         </section>
 
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
             We verwerken je gegevens uitsluitend voor de volgende doeleinden:
           </p>
           <ul className="list-disc list-inside space-y-1 text-slate-600 mt-3">
-            <li>Het leveren en verbeteren van de SolliciteerSlim-dienst</li>
+            <li>Het leveren en verbeteren van de CVmaken.nu-dienst</li>
             <li>Het verwerken van je cv-inhoud met behulp van AI om suggesties te genereren</li>
             <li>Het versturen van transactionele e-mails (bevestigingen, herstellinks)</li>
             <li>Het beheren van je abonnement en betalingen</li>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-3">4. Delen we je gegevens</h2>
           <p className="text-slate-600 leading-7">
-            SolliciteerSlim verkoopt jouw gegevens nooit aan derden. We maken gebruik van de volgende verwerkers:
+            CVmaken.nu verkoopt jouw gegevens nooit aan derden. We maken gebruik van de volgende verwerkers:
           </p>
           <ul className="list-disc list-inside space-y-1 text-slate-600 mt-3">
             <li><strong>Supabase</strong> — databasehosting binnen de EU (opslag van accountgegevens en cv-data)</li>
@@ -82,8 +82,8 @@ export default function PrivacyPage() {
           </ul>
           <p className="text-slate-600 leading-7 mt-3">
             Om een verzoek in te dienen, stuur een e-mail naar{" "}
-            <a href="mailto:info@solliciteerslim.nl" className="text-emerald-700 underline underline-offset-2">
-              info@solliciteerslim.nl
+            <a href="mailto:info@cvmaken.nu" className="text-emerald-700 underline underline-offset-2">
+              info@cvmaken.nu
             </a>
             . We reageren binnen 30 dagen. Je hebt ook het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens.
           </p>
@@ -92,7 +92,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-3">6. Cookies</h2>
           <p className="text-slate-600 leading-7">
-            SolliciteerSlim gebruikt uitsluitend functionele cookies die noodzakelijk zijn voor het functioneren van de dienst, zoals het bijhouden van je inlogsessie. We plaatsen geen tracking-cookies of advertentiecookies. Er is dan ook geen cookiebanner nodig.
+            CVmaken.nu gebruikt uitsluitend functionele cookies die noodzakelijk zijn voor het functioneren van de dienst, zoals het bijhouden van je inlogsessie. We plaatsen geen tracking-cookies of advertentiecookies. Er is dan ook geen cookiebanner nodig.
           </p>
         </section>
 
@@ -106,9 +106,9 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-3">8. Contact</h2>
           <p className="text-slate-600 leading-7">
-            Voor vragen over je privacy of dit beleid kun je contact opnemen met SolliciteerSlim via:{" "}
-            <a href="mailto:info@solliciteerslim.nl" className="text-emerald-700 underline underline-offset-2">
-              info@solliciteerslim.nl
+            Voor vragen over je privacy of dit beleid kun je contact opnemen met CVmaken.nu via:{" "}
+            <a href="mailto:info@cvmaken.nu" className="text-emerald-700 underline underline-offset-2">
+              info@cvmaken.nu
             </a>
           </p>
         </section>

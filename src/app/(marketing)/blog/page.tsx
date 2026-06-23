@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Blog | SolliciteerSlim — Tips voor je sollicitatie",
+  title: "Blog | CVmaken.nu — Tips voor je sollicitatie",
   description:
     "Praktische tips over cv's schrijven, ATS-systemen, sollicitatiegesprekken en AI in je sollicitatie. Voor Nederlandse werkzoekenden.",
 };
@@ -26,7 +26,7 @@ const featuredArticle: Article = {
   title: "De 7 meest gemaakte fouten op een cv (en hoe je ze voorkomt)",
   excerpt:
     "Van een generiek profiel tot ontbrekende contactgegevens: de meeste cv-fouten zijn eenvoudig te vermijden als je weet waar je op moet letten. In dit artikel zetten we de zeven meest voorkomende fouten op een rij, inclusief concrete voorbeelden van hoe je het wél schrijft.",
-  author: "SolliciteerSlim Team",
+  author: "CVmaken.nu Team",
   date: "3 juni 2025",
   readTime: "5 min",
   categories: ["CV Tips", "ATS"],
@@ -38,7 +38,7 @@ const articles: Article[] = [
     title: "Hoe schrijf je een profiel dat recruiters bijblijft?",
     excerpt:
       "Het profileringsvak bovenaan je cv is de enige plek waar je volledig in de ik-vorm mag spreken — en veel mensen verspillen die kans met clichés als 'resultaatgericht' en 'teamspeler'. Wij laten je zien hoe je in drie zinnen vertelt wie je bent, wat je kunt en waarom juist jij past bij de functie.",
-    author: "SolliciteerSlim Team",
+    author: "CVmaken.nu Team",
     date: "20 mei 2025",
     readTime: "4 min",
     categories: ["Profiel schrijven"],
@@ -48,7 +48,7 @@ const articles: Article[] = [
     title: "ATS uitgelegd: zo werkt automatische cv-filtering",
     excerpt:
       "Meer dan 70 procent van de grote werkgevers in Nederland filtert sollicitaties eerst via een Applicant Tracking System voordat een recruiter ernaar kijkt. Begrijpen hoe zo'n systeem werkt, is tegenwoordig net zo belangrijk als het schrijven van een goed cv.",
-    author: "SolliciteerSlim Team",
+    author: "CVmaken.nu Team",
     date: "12 mei 2025",
     readTime: "6 min",
     categories: ["ATS"],
@@ -58,7 +58,7 @@ const articles: Article[] = [
     title: "Van stage naar eerste baan: een cv zonder werkervaring",
     excerpt:
       "Geen werkervaring hebben betekent niet dat je niets te vertellen hebt. Bijbanen, studieopdrachten, vrijwilligerswerk en extracurriculaire activiteiten zijn allemaal bewijs van vaardigheden en inzet — je hoeft ze alleen op de juiste manier te presenteren.",
-    author: "SolliciteerSlim Team",
+    author: "CVmaken.nu Team",
     date: "5 mei 2025",
     readTime: "5 min",
     categories: ["Starters"],
@@ -68,7 +68,7 @@ const articles: Article[] = [
     title: "Sollicitatiegesprek: 10 vragen die je moet voorbereiden",
     excerpt:
       "De meeste sollicitatiegesprekken draaien om een handvol terugkerende vragen — maar toch komen kandidaten keer op keer onvoorbereid aan. Met deze tien vragen, inclusief uitleg over wat de interviewer écht wil weten, stap je een stuk zelfverzekerder de kamer in.",
-    author: "SolliciteerSlim Team",
+    author: "CVmaken.nu Team",
     date: "28 april 2025",
     readTime: "8 min",
     categories: ["Interview"],
@@ -78,7 +78,7 @@ const articles: Article[] = [
     title: "LinkedIn vs cv: wat schrijf je waar?",
     excerpt:
       "Veel sollicitanten kopiëren hun cv één-op-één naar LinkedIn — een gemiste kans. Je LinkedIn-profiel en je cv hebben elk een andere lezer en een ander doel, en de inhoud moet daarop worden afgestemd. We laten zien hoe je beide optimaal benut zonder jezelf te herhalen.",
-    author: "SolliciteerSlim Team",
+    author: "CVmaken.nu Team",
     date: "18 april 2025",
     readTime: "4 min",
     categories: ["LinkedIn"],

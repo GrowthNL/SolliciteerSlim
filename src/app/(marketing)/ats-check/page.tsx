@@ -19,9 +19,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "ATS-check: zorg dat jouw cv wordt gelezen | SolliciteerSlim",
+  title: "ATS-check: zorg dat jouw cv wordt gelezen | CVmaken.nu",
   description:
-    "Leer hoe ATS-systemen werken, waarom 75% van de cv's nooit een recruiter bereikt, en hoe je jouw cv ATS-proof maakt met SolliciteerSlim.",
+    "Leer hoe ATS-systemen werken, waarom 75% van de cv's nooit een recruiter bereikt, en hoe je jouw cv ATS-proof maakt met CVmaken.nu.",
 };
 
 const atsReasons = [
@@ -106,7 +106,7 @@ export default function AtsCheckPage() {
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
               De meeste grote bedrijven gebruiken software die cv&apos;s automatisch doorzoekt en filtert
-              vóórdat een mens ernaar kijkt. SolliciteerSlim helpt je om die filters te passeren.
+              vóórdat een mens ernaar kijkt. CVmaken.nu helpt je om die filters te passeren.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -283,18 +283,18 @@ export default function AtsCheckPage() {
         </div>
       </section>
 
-      {/* SolliciteerSlim ATS check */}
+      {/* CVmaken.nu ATS check */}
       <section className="bg-slate-950 py-20 text-white sm:py-24">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
             <Badge className="border-white/10 bg-white/10 text-emerald-200">
-              SolliciteerSlim ATS-check
+              CVmaken.nu ATS-check
             </Badge>
             <h2 className="font-display mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              Wat doet de ATS-check van SolliciteerSlim?
+              Wat doet de ATS-check van CVmaken.nu?
             </h2>
             <p className="mt-5 leading-7 text-slate-300">
-              SolliciteerSlim analyseert je cv op de meest voorkomende ATS-knelpunten en vergelijkt
+              CVmaken.nu analyseert je cv op de meest voorkomende ATS-knelpunten en vergelijkt
               het direct met een vacature van jouw keuze.
             </p>
             <ul className="mt-6 space-y-4">

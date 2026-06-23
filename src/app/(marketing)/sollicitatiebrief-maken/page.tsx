@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Sollicitatiebrief maken die uitnodigt | SolliciteerSlim",
+  title: "Sollicitatiebrief maken die uitnodigt | CVmaken.nu",
   description:
     "Schrijf een sollicitatiebrief die recruiters overtuigt en jou een uitnodiging oplevert. Leer de structuur, voorbeeldzinnen en veelgemaakte fouten — en gebruik AI-hulp voor een persoonlijke brief.",
 };
@@ -138,7 +138,7 @@ export default function SollicitatiebriefMakenPage() {
 
           <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-7 sm:p-9">
             <p className="text-sm font-semibold uppercase tracking-[.14em] text-emerald-800">
-              Wat SolliciteerSlim doet
+              Wat CVmaken.nu doet
             </p>
             <ul className="mt-6 space-y-5">
               {[
@@ -269,10 +269,10 @@ export default function SollicitatiebriefMakenPage() {
           <div>
             <Badge>AI-hulp</Badge>
             <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              Laat SolliciteerSlim je brief voor je schrijven
+              Laat CVmaken.nu je brief voor je schrijven
             </h2>
             <p className="mt-5 max-w-xl leading-7 text-slate-600">
-              Upload je cv en plak de vacaturetekst. SolliciteerSlim analyseert beide en genereert
+              Upload je cv en plak de vacaturetekst. CVmaken.nu analyseert beide en genereert
               een persoonlijke sollicitatiebrief die aansluit op jouw profiel én de specifieke eisen
               van de functie.
             </p>
@@ -317,7 +317,7 @@ export default function SollicitatiebriefMakenPage() {
               {[
                 ["1", "Plak of upload je bestaande cv"],
                 ["2", "Kopieer de vacaturetekst"],
-                ["3", "SolliciteerSlim genereert je brief"],
+                ["3", "CVmaken.nu genereert je brief"],
                 ["4", "Pas aan, kopieer en verstuur"],
               ].map(([num, step]) => (
                 <li key={step} className="flex items-center gap-4">
@@ -329,7 +329,7 @@ export default function SollicitatiebriefMakenPage() {
               ))}
             </ol>
             <div className="mt-7 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-xs leading-5 text-emerald-900">
-              <strong>Let op:</strong> SolliciteerSlim verzint geen ervaring. De AI verbetert je
+              <strong>Let op:</strong> CVmaken.nu verzint geen ervaring. De AI verbetert je
               formuleringen op basis van wat jij hebt ingevuld — jij controleert altijd het
               eindresultaat.
             </div>

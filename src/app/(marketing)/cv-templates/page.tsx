@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "CV Templates | SolliciteerSlim — Professioneel en ATS-proof",
+  title: "CV Templates | CVmaken.nu — Professioneel en ATS-proof",
   description:
     "Drie professionele cv-templates die ATS-systemen passeren én recruiters aanspreken. Kies de opmaak die bij jouw sector past.",
 };
@@ -325,7 +325,7 @@ export default function CvTemplatesPage() {
               Kleur &amp; typografie aanpassen
             </h2>
             <p className="mt-4 leading-7 text-slate-600">
-              In fase 3 van SolliciteerSlim kun je per template de accentkleur en het lettertype
+              In fase 3 van CVmaken.nu kun je per template de accentkleur en het lettertype
               aanpassen. Zo houd je de ATS-veilige structuur, maar voeg je een persoonlijk tintje toe
               dat past bij jouw branche of stijl.
             </p>

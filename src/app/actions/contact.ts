@@ -43,7 +43,7 @@ export async function sendContactMessage(
 
   if (notifyResult.error) {
     console.error("[contact] Resend notification error:", JSON.stringify(notifyResult.error));
-    return { error: `Verzenden mislukt (${notifyResult.error.message}). Stuur je bericht direct naar info@solliciteerslim.nl.` };
+    return { error: `Verzenden mislukt (${notifyResult.error.message}). Stuur je bericht direct naar info@cvmaken.nu.` };
   }
 
   // Confirmation to sender — fire-and-forget, don't fail the action if this bounces
@@ -60,7 +60,7 @@ export async function sendContactMessage(
           <tr><td align="center">
             <table width="100%" style="max-width:560px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);">
               <tr><td style="background:#064e3b;padding:28px 40px;">
-                <span style="font-size:20px;font-weight:700;color:#fff;">SolliciteerSlim</span>
+                <span style="font-size:20px;font-weight:700;color:#fff;">CVmaken.nu</span>
               </td></tr>
               <tr><td style="padding:36px 40px 32px;">
                 <h1 style="margin:0 0 12px;font-size:22px;font-weight:700;color:#0f172a;">Bedankt, ${name}!</h1>
@@ -74,7 +74,7 @@ export async function sendContactMessage(
               </td></tr>
               <tr><td style="padding:20px 40px 28px;border-top:1px solid #f1f5f9;">
                 <p style="margin:0;font-size:12px;color:#94a3b8;">
-                  <a href="${SITE_URL}" style="color:#059669;text-decoration:none;">solliciteerslim.nl</a>
+                  <a href="${SITE_URL}" style="color:#059669;text-decoration:none;">cvmaken.nu</a>
                 </p>
               </td></tr>
             </table>

@@ -18,7 +18,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export const metadata: Metadata = {
   title: "CV-voorbeelden per beroep",
   description:
-    "Bekijk cv-voorbeelden voor tientallen beroepen: van software engineer tot verpleegkundige. Gebruik ze als inspiratie en maak jouw eigen cv in SolliciteerSlim.",
+    "Bekijk cv-voorbeelden voor tientallen beroepen: van software engineer tot verpleegkundige. Gebruik ze als inspiratie en maak jouw eigen cv in CVmaken.nu.",
 };
 
 const professions = [

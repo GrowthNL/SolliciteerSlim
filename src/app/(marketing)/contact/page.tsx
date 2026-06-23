@@ -82,8 +82,8 @@ export default function ContactPage() {
 
         <p className="mt-6 text-center text-sm text-slate-500">
           Of stuur direct een e-mail naar{" "}
-          <a href="mailto:info@solliciteerslim.nl" className="text-emerald-700 underline underline-offset-2">
-            info@solliciteerslim.nl
+          <a href="mailto:info@cvmaken.nu" className="text-emerald-700 underline underline-offset-2">
+            info@cvmaken.nu
           </a>
         </p>
       </div>

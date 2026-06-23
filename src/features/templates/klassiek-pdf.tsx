@@ -38,7 +38,7 @@ export function KlassiekPdf({ doc }: { doc: ResumeDocument }) {
   const contacts = [p.email, p.phone, p.city, p.linkedinUrl, p.websiteUrl].filter(Boolean);
 
   return (
-    <Document title={fullName} author="SolliciteerSlim">
+    <Document title={fullName} author="CVmaken.nu">
       <Page size="A4" style={s.page}>
         {/* Header */}
         <View style={s.header}>

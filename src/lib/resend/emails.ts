@@ -17,7 +17,7 @@ function baseTemplate(content: string): string {
         <!-- header -->
         <tr>
           <td style="background:#064e3b;padding:28px 40px;">
-            <span style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-.3px;">SolliciteerSlim</span>
+            <span style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-.3px;">CVmaken.nu</span>
           </td>
         </tr>
         <!-- body -->
@@ -28,8 +28,8 @@ function baseTemplate(content: string): string {
         <tr>
           <td style="padding:20px 40px 28px;border-top:1px solid #f1f5f9;">
             <p style="margin:0;font-size:12px;color:#94a3b8;line-height:1.6;">
-              Je ontvangt deze e-mail omdat je een account hebt bij SolliciteerSlim.<br />
-              <a href="${SITE_URL}" style="color:#059669;text-decoration:none;">solliciteerslim.nl</a>
+              Je ontvangt deze e-mail omdat je een account hebt bij CVmaken.nu.<br />
+              <a href="${SITE_URL}" style="color:#059669;text-decoration:none;">cvmaken.nu</a>
             </p>
           </td>
         </tr>
@@ -64,14 +64,14 @@ export async function sendWelcomeEmail(email: string, name?: string) {
     </a>
     <p style="margin:28px 0 0;font-size:14px;color:#64748b;line-height:1.7;">
       Heb je vragen? Stuur een e-mail naar
-      <a href="mailto:info@solliciteerslim.nl" style="color:#059669;text-decoration:none;">info@solliciteerslim.nl</a>.
+      <a href="mailto:info@cvmaken.nu" style="color:#059669;text-decoration:none;">info@cvmaken.nu</a>.
     </p>
   `);
 
   return getResend().emails.send({
     from: FROM_EMAIL,
     to: email,
-    subject: "Welkom bij SolliciteerSlim 👋",
+    subject: "Welkom bij CVmaken.nu 👋",
     html,
   });
 }

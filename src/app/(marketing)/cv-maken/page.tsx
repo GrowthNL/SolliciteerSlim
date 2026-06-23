@@ -17,9 +17,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "CV maken in 5 minuten | SolliciteerSlim",
+  title: "CV maken in 5 minuten | CVmaken.nu",
   description:
-    "Maak in 5 minuten een professioneel, ATS-vriendelijk cv met AI-hulp. SolliciteerSlim begeleidt je stap voor stap naar een cv dat opvalt bij recruiters.",
+    "Maak in 5 minuten een professioneel, ATS-vriendelijk cv met AI-hulp. CVmaken.nu begeleidt je stap voor stap naar een cv dat opvalt bij recruiters.",
 };
 
 const stats = [
@@ -106,16 +106,16 @@ const tips = [
 
 const faqs: [string, string][] = [
   [
-    "Hoe lang duurt het om een cv te maken met SolliciteerSlim?",
+    "Hoe lang duurt het om een cv te maken met CVmaken.nu?",
     "De meeste gebruikers hebben binnen 15 tot 30 minuten een compleet, verzorgd cv klaarstaan. Als je al een oud cv hebt om op te baseren, kan dat nog sneller. De AI-suggesties helpen je bovendien om tijd te besparen op nadenken over de juiste bewoording.",
   ],
   [
     "Moet ik een foto op mijn cv zetten?",
-    "In Nederland is een professionele pasfoto op het cv gebruikelijk, maar geen verplichting. Bij veel grote bedrijven en internationale organisaties wordt een foto juist afgeraden om onbewuste vooroordelen te voorkomen. SolliciteerSlim laat je kiezen.",
+    "In Nederland is een professionele pasfoto op het cv gebruikelijk, maar geen verplichting. Bij veel grote bedrijven en internationale organisaties wordt een foto juist afgeraden om onbewuste vooroordelen te voorkomen. CVmaken.nu laat je kiezen.",
   ],
   [
     "Welk bestandsformaat moet ik gebruiken voor mijn cv?",
-    "Stuur je cv altijd als PDF, tenzij de vacature specifiek om een Word-bestand vraagt. Een PDF ziet er op elk apparaat hetzelfde uit en is beter leesbaar voor de meeste ATS-systemen. SolliciteerSlim exporteert standaard als PDF.",
+    "Stuur je cv altijd als PDF, tenzij de vacature specifiek om een Word-bestand vraagt. Een PDF ziet er op elk apparaat hetzelfde uit en is beter leesbaar voor de meeste ATS-systemen. CVmaken.nu exporteert standaard als PDF.",
   ],
 ];
 
@@ -132,7 +132,7 @@ export default function CvMakenPage() {
               <span className="text-emerald-700">5 minuten</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
-              SolliciteerSlim begeleidt je stap voor stap. Vul je gegevens in, laat de AI je
+              CVmaken.nu begeleidt je stap voor stap. Vul je gegevens in, laat de AI je
               teksten aanscherpen en download een ATS-vriendelijk cv dat opvalt.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -218,7 +218,7 @@ export default function CvMakenPage() {
               In 5 stappen naar een professioneel cv
             </h2>
             <p className="mt-4 text-slate-600">
-              SolliciteerSlim neemt je mee door elk onderdeel. Je hoeft niet te weten wat je moet
+              CVmaken.nu neemt je mee door elk onderdeel. Je hoeft niet te weten wat je moet
               schrijven — de app helpt je op weg.
             </p>
           </div>

@@ -13,4 +13,4 @@ export function getResend(): Resend {
 // Use a verified domain via FROM_EMAIL env var in production.
 // Falls back to Resend's shared sender (works without domain verification).
 export const FROM_EMAIL =
-  process.env.FROM_EMAIL || "SolliciteerSlim <onboarding@resend.dev>";
+  process.env.FROM_EMAIL || "CVmaken.nu <onboarding@resend.dev>";
