@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { ModernPreview } from "@/features/templates/modern-preview";
 import { KlassiekPreview } from "@/features/templates/klassiek-preview";
 import { MinimaalPreview } from "@/features/templates/minimaal-preview";
+import { Reveal } from "@/components/magic/reveal";
+import { NumberTicker } from "@/components/magic/number-ticker";
+import { TrustBar } from "@/components/magic/trust-bar";
+import { Testimonials } from "@/components/magic/testimonials";
 
 const steps = [
   "Vul je gegevens in of plak je bestaande cv",
@@ -26,12 +30,6 @@ const faqs = [
   ["Kan ik CVmaken.nu gratis proberen?", "Ja. Je kunt gratis een account en cv maken, bewerken en bekijken. Betaalde opties worden pas relevant bij uitgebreid AI-gebruik en PDF-export."],
   ["Is mijn cv veilig?", "Privacy is een uitgangspunt in de architectuur. Persoonlijke gegevens worden alleen verwerkt waar nodig en zijn met toegangsregels per gebruiker afgeschermd."],
   ["Is dit geschikt voor elke branche?", "De basis is breed inzetbaar. Door een vacature toe te voegen houdt de AI rekening met de rol, branche en gevraagde vaardigheden."],
-];
-
-const stats = [
-  { value: "3 min", label: "gemiddelde bouwtijd" },
-  { value: "3×", label: "templates beschikbaar" },
-  { value: "AI", label: "powered by GPT-4o" },
 ];
 
 function ResumePreview() {
@@ -157,18 +155,31 @@ export function Homepage() {
 
             {/* Stats */}
             <div className="mt-10 flex gap-8 border-t border-[#E5E3DA] pt-8">
-              {stats.map(({ value, label }) => (
-                <div key={label}>
-                  <div className="text-2xl font-black tracking-tight text-[#111113]">{value}</div>
-                  <div className="mt-0.5 text-xs text-[#9A9A92]">{label}</div>
+              <div>
+                <div className="text-2xl font-black tracking-tight text-[#111113]">
+                  <NumberTicker value={3} suffix=" min" />
                 </div>
-              ))}
+                <div className="mt-0.5 text-xs text-[#9A9A92]">gemiddelde bouwtijd</div>
+              </div>
+              <div>
+                <div className="text-2xl font-black tracking-tight text-[#111113]">
+                  <NumberTicker value={3} suffix="×" />
+                </div>
+                <div className="mt-0.5 text-xs text-[#9A9A92]">templates beschikbaar</div>
+              </div>
+              <div>
+                <div className="text-2xl font-black tracking-tight text-[#111113]">GPT-4o</div>
+                <div className="mt-0.5 text-xs text-[#9A9A92]">AI onder de motorkap</div>
+              </div>
             </div>
           </div>
 
           <ResumePreview />
         </div>
       </section>
+
+      {/* ── Trust bar ──────────────────────────────────────────────────────── */}
+      <TrustBar />
 
       {/* ── How it works ───────────────────────────────────────────────────── */}
       <section className="py-20 sm:py-24">
@@ -185,15 +196,17 @@ export function Homepage() {
 
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
-              <div key={step} className="group relative rounded-2xl border border-[#E5E3DA] bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#111113]/5">
-                <span className="flex size-10 items-center justify-center rounded-full bg-[#FB5B36] text-sm font-black text-white">
-                  {i + 1}
-                </span>
-                <p className="mt-5 font-semibold leading-6 text-[#111113]">{step}</p>
-                {i < 3 && (
-                  <ArrowRight className="absolute -right-3 top-9 z-10 hidden size-5 rounded-full bg-white text-[#DDDBD1] lg:block" />
-                )}
-              </div>
+              <Reveal key={step} delay={i * 90}>
+                <div className="group relative h-full rounded-2xl border border-[#E5E3DA] bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#111113]/5">
+                  <span className="flex size-10 items-center justify-center rounded-full bg-[#FB5B36] text-sm font-black text-white">
+                    {i + 1}
+                  </span>
+                  <p className="mt-5 font-semibold leading-6 text-[#111113]">{step}</p>
+                  {i < 3 && (
+                    <ArrowRight className="absolute -right-3 top-9 z-10 hidden size-5 rounded-full bg-white text-[#DDDBD1] lg:block" />
+                  )}
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -216,16 +229,15 @@ export function Homepage() {
 
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {features.map(({ icon: Icon, title, text }, i) => (
-              <div
-                key={title}
-                className="group rounded-2xl border border-white/10 bg-white/[.04] p-6 transition-all duration-200 hover:bg-white/[.07] hover:border-white/20"
-              >
-                <span className={`mb-4 flex size-10 items-center justify-center rounded-xl ${i % 3 === 2 ? "bg-[#FFE3DA]/20 text-[#FB5B36]" : "bg-[#C6F24E]/15 text-[#C6F24E]"}`}>
-                  <Icon className="size-5" />
-                </span>
-                <div className="font-bold text-[#F2F1EC]">{title}</div>
-                <p className="mt-1.5 text-sm leading-6 text-[#9A9A92]">{text}</p>
-              </div>
+              <Reveal key={title} delay={(i % 3) * 100}>
+                <div className="group h-full rounded-2xl border border-white/10 bg-white/[.04] p-6 transition-all duration-200 hover:bg-white/[.07] hover:border-white/20">
+                  <span className={`mb-4 flex size-10 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110 ${i % 3 === 2 ? "bg-[#FFE3DA]/20 text-[#FB5B36]" : "bg-[#C6F24E]/15 text-[#C6F24E]"}`}>
+                    <Icon className="size-5" />
+                  </span>
+                  <div className="font-bold text-[#F2F1EC]">{title}</div>
+                  <p className="mt-1.5 text-sm leading-6 text-[#9A9A92]">{text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -314,6 +326,9 @@ export function Homepage() {
           </div>
         </div>
       </section>
+
+      {/* ── Testimonials ───────────────────────────────────────────────────── */}
+      <Testimonials />
 
       {/* ── Trust ──────────────────────────────────────────────────────────── */}
       <section className="py-20 sm:py-24">
