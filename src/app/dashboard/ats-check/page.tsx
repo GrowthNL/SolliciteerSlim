@@ -55,7 +55,6 @@ export default function AtsCheckPage() {
       setResumes(r as { id: string; title: string; data_json: ResumeDocument }[]);
       setJobPosts(j);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCheck = () => {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import Link from "next/link";
 import { MessageSquare, CheckCircle, ArrowRight, Clock, ShieldCheck } from "lucide-react";
 import { sendContactMessage, type ContactState } from "@/app/actions/contact";
 
@@ -120,12 +121,12 @@ export default function ContactPage() {
               <p className="mt-2 text-sm leading-6 text-[#9A9A92]">
                 Misschien staat jouw vraag al in onze FAQ op de homepage.
               </p>
-              <a
+              <Link
                 href="/#faq"
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#C6F24E] transition-opacity hover:opacity-80"
               >
                 Bekijk FAQ <ArrowRight className="size-3.5" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
