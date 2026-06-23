@@ -25,6 +25,7 @@ import { PdfDownloadButton } from "@/components/dashboard/pdf-download-button";
 import { TEMPLATES, type TemplateId } from "@/features/templates/index";
 import { saveResume } from "@/app/actions/resumes";
 import { improveText, type ImproveTextResult } from "@/app/actions/ai";
+import { type Plan } from "@/lib/entitlements";
 import {
   createEmptyResumeDocument,
   type Education,
@@ -835,9 +836,10 @@ function SaveStatus({ status }: { status: "idle" | "saving" | "saved" | "error" 
 interface CvEditorProps {
   initialId?: string;
   initialDoc?: ResumeDocument;
+  plan?: Plan;
 }
 
-export function CvEditor({ initialId, initialDoc }: CvEditorProps) {
+export function CvEditor({ initialId, initialDoc, plan = "free" }: CvEditorProps) {
   const [resumeId, setResumeId] = useState<string | null>(initialId ?? null);
   const [doc, setDoc] = useState<ResumeDocument>(initialDoc ?? createEmptyResumeDocument());
   const [activeSection, setActiveSection] = useState<SectionKey>("personal");
@@ -905,6 +907,7 @@ export function CvEditor({ initialId, initialDoc }: CvEditorProps) {
           <SaveStatus status={saveStatus} />
           <PdfDownloadButton
             doc={doc}
+            plan={plan}
             filename={`${title.replace(/\s+/g, "-").toLowerCase()}.pdf`}
           />
         </div>

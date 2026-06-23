@@ -1,68 +1,83 @@
-"use client";
-
-import { useActionState } from "react";
-import { LockKeyhole, Trash2, UserRound } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CreditCard, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { updateProfile, type AuthState } from "@/app/actions/auth";
+import { createClient } from "@/lib/supabase/server";
+import { getPlanLabel, getPlanColor, type Plan } from "@/lib/entitlements";
+import { createPortalSession } from "@/app/actions/stripe";
+import { ProfileForm } from "./profile-form";
+import { PortalButton } from "./portal-button";
 
-export default function Page() {
-  const [state, formAction, pending] = useActionState<AuthState, FormData>(updateProfile, null);
+export default async function Page({ searchParams }: { searchParams: Promise<{ upgraded?: string }> }) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  const { data: profile } = await supabase
+    .from("users")
+    .select("full_name, plan, stripe_customer_id")
+    .eq("id", user!.id)
+    .single();
+
+  const plan = (profile?.plan ?? "free") as Plan;
+  const hasSubscription = !!profile?.stripe_customer_id;
+  const params = await searchParams;
+  const justUpgraded = params.upgraded === "1";
 
   return (
     <div className="mx-auto max-w-3xl">
       <h1 className="font-display text-3xl font-bold text-slate-950">Account</h1>
       <p className="mt-2 text-slate-600">Beheer je profiel, abonnement en privacykeuzes.</p>
 
-      <form action={formAction}>
-        <Card className="mt-8">
-          <CardHeader>
-            <UserRound className="size-5 text-emerald-700" />
-            <CardTitle className="mt-2">Profielgegevens</CardTitle>
-          </CardHeader>
-          <CardContent className="grid gap-5 sm:grid-cols-2">
-            <label className="sm:col-span-2">
-              <span className="mb-2 block text-sm font-semibold">Volledige naam</span>
-              <Input name="full_name" placeholder="Sophie de Vries" autoComplete="name" />
-            </label>
+      {justUpgraded && (
+        <div className="mt-6 rounded-xl bg-emerald-50 border border-emerald-200 px-5 py-4 flex items-center gap-3">
+          <Sparkles className="size-5 shrink-0 text-emerald-600" />
+          <p className="text-sm font-semibold text-emerald-800">Welkom bij {getPlanLabel(plan)}! Je account is bijgewerkt.</p>
+        </div>
+      )}
 
-            {state && "error" in state && (
-              <p className="sm:col-span-2 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
-                {state.error}
-              </p>
-            )}
-            {state && "success" in state && (
-              <p className="sm:col-span-2 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-                {state.success}
-              </p>
-            )}
-
-            <div className="sm:col-span-2">
-              <Button type="submit" disabled={pending}>
-                {pending ? "Opslaan…" : "Wijzigingen opslaan"}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </form>
-
-      <Card className="mt-5">
+      {/* Plan card */}
+      <Card className="mt-8">
         <CardHeader>
-          <LockKeyhole className="size-5 text-emerald-700" />
-          <CardTitle className="mt-2">Privacy en gegevens</CardTitle>
+          <CreditCard className="size-5 text-emerald-700" />
+          <CardTitle className="mt-2">Abonnement</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm leading-6 text-slate-600">
-            Je kunt hier binnenkort je gegevens exporteren en je account verwijderen. Deze acties
-            vereisen altijd een extra bevestiging.
-          </p>
-          <Button variant="ghost" disabled className="gap-2 text-red-500 hover:bg-red-50 hover:text-red-600">
-            <Trash2 className="size-4" />
-            Account verwijderen (binnenkort beschikbaar)
-          </Button>
+          <div className="flex items-center gap-3">
+            <span className={`rounded-full px-3 py-1 text-sm font-semibold ${getPlanColor(plan)}`}>
+              {getPlanLabel(plan)}
+            </span>
+            {plan === "free" && (
+              <span className="text-sm text-slate-500">Gratis plan — beperkte functies</span>
+            )}
+          </div>
+
+          {plan === "free" && (
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <p className="text-sm font-semibold text-slate-800">Upgrade voor meer mogelijkheden</p>
+              <ul className="mt-2 space-y-1 text-sm text-slate-600">
+                <li>✓ PDF download (Starter & Pro)</li>
+                <li>✓ AI-verbeteringen & sollicitatiebrieven (Pro)</li>
+                <li>✓ Meerdere cv&apos;s opslaan</li>
+              </ul>
+              <Button asChild className="mt-4" size="sm">
+                <Link href="/prijzen">Bekijk plannen <ArrowRight className="size-3.5" /></Link>
+              </Button>
+            </div>
+          )}
+
+          {plan !== "free" && hasSubscription && (
+            <PortalButton />
+          )}
+
+          {plan !== "free" && !hasSubscription && (
+            <p className="text-sm text-slate-500">
+              Je plan is handmatig ingesteld. Neem contact op voor wijzigingen.
+            </p>
+          )}
         </CardContent>
       </Card>
+
+      <ProfileForm defaultName={profile?.full_name ?? ""} />
     </div>
   );
 }

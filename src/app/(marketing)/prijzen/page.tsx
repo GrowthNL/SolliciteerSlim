@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, X, ArrowRight, Shield, RefreshCw, CreditCard } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { CheckoutButton, FreeButton } from "./checkout-buttons";
+import type { PriceKey } from "@/app/actions/stripe";
 
 export const metadata: Metadata = {
   title: "Prijzen | SolliciteerSlim",
   description: "Betaal alleen voor wat je gebruikt. Begin gratis en kies pas later een abonnement dat bij jouw situatie past.",
 };
 
-const tiers = [
+const tiers: {
+  name: string; price: string; priceMonthly: string; period: string;
+  description: string; cta: string; priceKey: PriceKey | null;
+  featured: boolean; badge: string | null; features: { text: string; included: boolean }[];
+}[] = [
   {
-    name: "Gratis",
-    price: "€0",
-    priceMonthly: "€0",
-    period: "/maand",
+    name: "Gratis", price: "€0", priceMonthly: "€0", period: "/maand",
     description: "Alles wat je nodig hebt om je cv op te bouwen en te beoordelen, zonder ook maar een cent te betalen.",
-    cta: "Gratis starten",
-    href: "/registreren",
-    featured: false,
-    badge: null,
+    cta: "Gratis starten", priceKey: null, featured: false, badge: null,
     features: [
       { text: "1 cv maken & bewerken", included: true },
       { text: "Alle 3 templates (bekijk)", included: true },
@@ -32,15 +32,9 @@ const tiers = [
     ],
   },
   {
-    name: "Starter",
-    price: "€7",
-    priceMonthly: "€9",
-    period: "/maand",
+    name: "Starter", price: "€7", priceMonthly: "€9", period: "/maand",
     description: "Voor iedereen die actief solliciteert en een verzorgde PDF wil kunnen versturen.",
-    cta: "Start Starter",
-    href: "/registreren?plan=starter",
-    featured: true,
-    badge: "Meest gekozen",
+    cta: "Start Starter", priceKey: "starter_monthly", featured: true, badge: "Meest gekozen",
     features: [
       { text: "Alles van Gratis", included: true },
       { text: "3 cv's opslaan", included: true },
@@ -52,15 +46,9 @@ const tiers = [
     ],
   },
   {
-    name: "Pro",
-    price: "€15",
-    priceMonthly: "€19",
-    period: "/maand",
+    name: "Pro", price: "€15", priceMonthly: "€19", period: "/maand",
     description: "Voor de serieuze sollicitant die alles uit zijn kandidatuur wil halen.",
-    cta: "Start Pro",
-    href: "/registreren?plan=pro",
-    featured: false,
-    badge: null,
+    cta: "Start Pro", priceKey: "pro_monthly", featured: false, badge: null,
     features: [
       { text: "Alles van Starter", included: true },
       { text: "Onbeperkt cv's opslaan", included: true },
@@ -152,15 +140,13 @@ export default function PrijzenPage() {
                   <CardDescription className="mt-2">{tier.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button
-                    asChild
-                    variant={tier.featured ? "default" : "secondary"}
-                    className="w-full"
-                  >
-                    <Link href={tier.href}>
-                      {tier.cta} <ArrowRight className="size-4" />
-                    </Link>
-                  </Button>
+                  {tier.priceKey ? (
+                    <CheckoutButton priceKey={tier.priceKey} variant={tier.featured ? "default" : "secondary"}>
+                      {tier.cta}
+                    </CheckoutButton>
+                  ) : (
+                    <FreeButton />
+                  )}
                   <ul className="mt-6 space-y-3">
                     {tier.features.map((feature) => (
                       <li key={feature.text} className="flex items-center gap-3 text-sm">
