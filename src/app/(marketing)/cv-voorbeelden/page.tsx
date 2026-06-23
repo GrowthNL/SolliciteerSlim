@@ -23,6 +23,8 @@ import {
   Truck,
   Users,
 } from "lucide-react";
+import { Reveal } from "@/components/magic/reveal";
+import { TrustBar } from "@/components/magic/trust-bar";
 
 export const metadata: Metadata = {
   title: "CV-voorbeelden per beroep — 24 beroepen",
@@ -239,6 +241,8 @@ export default function CvVoorbeeldenPage() {
         </div>
       </section>
 
+      <TrustBar />
+
       {/* Grid section */}
       <section className="py-20 sm:py-24">
         <div className="container-shell">
@@ -279,10 +283,10 @@ export default function CvVoorbeeldenPage() {
 
           {/* Profession cards */}
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {professions.map(({ icon: Icon, title, sector, sections, tip }) => (
+            {professions.map(({ icon: Icon, title, sector, sections, tip }, i) => (
+              <Reveal key={title} delay={(i % 4) * 70} className="h-full">
               <div
-                key={title}
-                className="flex flex-col rounded-2xl border border-[#E5E3DA] bg-white p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#111113]/5"
+                className="flex h-full flex-col rounded-2xl border border-[#E5E3DA] bg-white p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#111113]/5"
               >
                 <span className="flex size-10 items-center justify-center rounded-xl bg-[#EDF7C6] text-[#111113]">
                   <Icon className="size-5" />
@@ -319,6 +323,7 @@ export default function CvVoorbeeldenPage() {
                   Gebruik als basis <ArrowRight className="size-3" />
                 </Link>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -350,12 +355,14 @@ export default function CvVoorbeeldenPage() {
                 title: "Afgestemd op de vacature",
                 desc: "Een generiek cv verliest het van een specifiek cv. Pas taal en prioriteiten aan per functie.",
               },
-            ].map(({ num, title, desc }) => (
-              <div key={title} className="rounded-2xl border border-white/10 bg-white/[.04] p-6 text-left">
+            ].map(({ num, title, desc }, i) => (
+              <Reveal key={title} delay={i * 100} className="h-full">
+              <div className="h-full rounded-2xl border border-white/10 bg-white/[.04] p-6 text-left">
                 <span className="font-mono-label text-2xl font-black text-[#C6F24E]">{num}</span>
                 <p className="mt-3 font-bold text-[#F2F1EC]">{title}</p>
                 <p className="mt-2 text-sm leading-6 text-[#9A9A92]">{desc}</p>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>

@@ -11,6 +11,8 @@ import {
   Zap,
   X,
 } from "lucide-react";
+import { Reveal } from "@/components/magic/reveal";
+import { Testimonials } from "@/components/magic/testimonials";
 
 export const metadata: Metadata = {
   title: "AI CV Maker | CVmaken.nu — Je cv gebouwd en aangescherpt door AI",
@@ -138,28 +140,29 @@ export default function AiCvMakerPage() {
                 description:
                   "Kies je favoriete template — Modern, Klassiek of Minimaal — en download een professionele PDF die door elk ATS-systeem heen komt.",
               },
-            ].map(({ number, title, description }) => (
-              <div
-                key={number}
-                className="rounded-2xl border p-8"
-                style={{ borderColor: "#E5E3DA", backgroundColor: "#F8F8F6" }}
-              >
+            ].map(({ number, title, description }, i) => (
+              <Reveal key={number} delay={i * 100}>
                 <div
-                  className="font-display text-5xl font-bold leading-none"
-                  style={{ color: "#C6F24E" }}
+                  className="h-full rounded-2xl border p-8"
+                  style={{ borderColor: "#E5E3DA", backgroundColor: "#F8F8F6" }}
                 >
-                  {number}
+                  <div
+                    className="font-display text-5xl font-bold leading-none"
+                    style={{ color: "#C6F24E" }}
+                  >
+                    {number}
+                  </div>
+                  <h3
+                    className="font-display mt-5 text-xl font-semibold"
+                    style={{ color: "#111113" }}
+                  >
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6" style={{ color: "#56564F" }}>
+                    {description}
+                  </p>
                 </div>
-                <h3
-                  className="font-display mt-5 text-xl font-semibold"
-                  style={{ color: "#111113" }}
-                >
-                  {title}
-                </h3>
-                <p className="mt-3 text-sm leading-6" style={{ color: "#56564F" }}>
-                  {description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -207,28 +210,29 @@ export default function AiCvMakerPage() {
                 description:
                   "Kies uit Modern, Klassiek of Minimaal. Alle templates zijn ATS-getest en zien er op elk scherm verzorgd uit.",
               },
-            ].map(({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="rounded-2xl border p-7"
-                style={{ borderColor: "#ffffff14", backgroundColor: "#ffffff08" }}
-              >
+            ].map(({ icon: Icon, title, description }, i) => (
+              <Reveal key={title} delay={(i % 4) * 90}>
                 <div
-                  className="flex size-11 items-center justify-center rounded-xl"
-                  style={{ backgroundColor: "#C6F24E" }}
+                  className="h-full rounded-2xl border p-7"
+                  style={{ borderColor: "#ffffff14", backgroundColor: "#ffffff08" }}
                 >
-                  <Icon className="size-5" style={{ color: "#111113" }} />
+                  <div
+                    className="flex size-11 items-center justify-center rounded-xl"
+                    style={{ backgroundColor: "#C6F24E" }}
+                  >
+                    <Icon className="size-5" style={{ color: "#111113" }} />
+                  </div>
+                  <h3
+                    className="font-display mt-5 text-base font-semibold"
+                    style={{ color: "#F2F1EC" }}
+                  >
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6" style={{ color: "#9A9A92" }}>
+                    {description}
+                  </p>
                 </div>
-                <h3
-                  className="font-display mt-5 text-base font-semibold"
-                  style={{ color: "#F2F1EC" }}
-                >
-                  {title}
-                </h3>
-                <p className="mt-2 text-sm leading-6" style={{ color: "#9A9A92" }}>
-                  {description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -252,8 +256,9 @@ export default function AiCvMakerPage() {
 
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {/* CVmaken.nu */}
+            <Reveal delay={0} className="h-full">
             <div
-              className="rounded-2xl border-2 p-8"
+              className="h-full rounded-2xl border-2 p-8"
               style={{ borderColor: "#C6F24E", backgroundColor: "#F2F1EC" }}
             >
               <div className="mb-6 flex items-center gap-3">
@@ -288,10 +293,12 @@ export default function AiCvMakerPage() {
                 ))}
               </ul>
             </div>
+            </Reveal>
 
             {/* ChatGPT */}
+            <Reveal delay={120} className="h-full">
             <div
-              className="rounded-2xl border p-8"
+              className="h-full rounded-2xl border p-8"
               style={{ borderColor: "#E5E3DA", backgroundColor: "#F2F1EC" }}
             >
               <div className="mb-6 flex items-center gap-3">
@@ -326,9 +333,13 @@ export default function AiCvMakerPage() {
                 ))}
               </ul>
             </div>
+            </Reveal>
           </div>
         </div>
       </section>
+
+      {/* ── Social proof ──────────────────────────────────────────── */}
+      <Testimonials />
 
       {/* ── FAQ ───────────────────────────────────────────────────── */}
       <section className="py-20 sm:py-24" style={{ backgroundColor: "#F2F1EC" }}>

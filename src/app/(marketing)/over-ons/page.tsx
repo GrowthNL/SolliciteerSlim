@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Heart, Shield, Globe, Users, ArrowRight, Check } from "lucide-react";
+import { Reveal } from "@/components/magic/reveal";
+import { NumberTicker } from "@/components/magic/number-ticker";
+import { Testimonials } from "@/components/magic/testimonials";
 
 export const metadata: Metadata = {
   title: "Over ons | CVmaken.nu — Gebouwd voor de Nederlandse arbeidsmarkt",
@@ -14,7 +17,11 @@ const stats = [
     sub: "Voor de Nederlandse markt",
   },
   {
-    label: "3 templates",
+    label: (
+      <>
+        <NumberTicker value={3} /> templates
+      </>
+    ),
     sub: "Modern, Klassiek, Minimaal",
   },
   {
@@ -89,11 +96,13 @@ export default function OverOnsPage() {
       <section className="bg-[#111113]">
         <div className="container-shell">
           <div className="grid grid-cols-2 divide-x divide-white/10 lg:grid-cols-4">
-            {stats.map(({ label, sub }) => (
-              <div key={label} className="px-6 py-10 text-center sm:px-10">
-                <div className="text-xl font-black text-[#F2F1EC] sm:text-2xl">{label}</div>
-                <div className="mt-1.5 text-sm text-[#9A9A92]">{sub}</div>
-              </div>
+            {stats.map(({ label, sub }, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <div className="px-6 py-10 text-center sm:px-10">
+                  <div className="text-xl font-black text-[#F2F1EC] sm:text-2xl">{label}</div>
+                  <div className="mt-1.5 text-sm text-[#9A9A92]">{sub}</div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -210,41 +219,45 @@ export default function OverOnsPage() {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map(({ icon: Icon, title, description, accent, iconColor }) => (
-              <div
-                key={title}
-                className="flex flex-col rounded-2xl border border-[#E5E3DA] bg-white p-6"
-              >
-                <div className={`flex size-11 items-center justify-center rounded-xl ${accent}`}>
-                  <Icon className={`size-5 ${iconColor}`} />
+            {values.map(({ icon: Icon, title, description, accent, iconColor }, i) => (
+              <Reveal key={title} delay={i * 90}>
+                <div className="flex h-full flex-col rounded-2xl border border-[#E5E3DA] bg-white p-6">
+                  <div className={`flex size-11 items-center justify-center rounded-xl ${accent}`}>
+                    <Icon className={`size-5 ${iconColor}`} />
+                  </div>
+                  <h3 className="mt-5 font-black text-[#111113]">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#56564F]">{description}</p>
                 </div>
-                <h3 className="mt-5 font-black text-[#111113]">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#56564F]">{description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Social proof */}
+      <Testimonials />
+
       {/* Large centered quote */}
       <section className="bg-[#F2F1EC] py-20 sm:py-28">
         <div className="container-shell mx-auto max-w-3xl text-center">
-          <div className="text-[#9A9A92]">
-            <svg
-              className="mx-auto mb-6 size-10 opacity-50"
-              viewBox="0 0 40 40"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M10 28c0-5.523 4.477-10 10-10V8C9.163 8 0 17.163 0 28v4h10v-4zm20 0c0-5.523 4.477-10 10-10V8c-10.837 0-20 9.163-20 20v4h10v-4z" />
-            </svg>
-          </div>
-          <blockquote className="text-balance text-2xl font-black tracking-[-0.03em] text-[#111113] sm:text-3xl lg:text-4xl">
-            Elk cv dat door de ATS-filter glipt en bij een recruiter belandt, is er één meer.
-          </blockquote>
-          <p className="mt-6 text-[#56564F]">
-            Dat is waar we elke dag aan werken.
-          </p>
+          <Reveal>
+            <div className="text-[#9A9A92]">
+              <svg
+                className="mx-auto mb-6 size-10 opacity-50"
+                viewBox="0 0 40 40"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M10 28c0-5.523 4.477-10 10-10V8C9.163 8 0 17.163 0 28v4h10v-4zm20 0c0-5.523 4.477-10 10-10V8c-10.837 0-20 9.163-20 20v4h10v-4z" />
+              </svg>
+            </div>
+            <blockquote className="text-balance text-2xl font-black tracking-[-0.03em] text-[#111113] sm:text-3xl lg:text-4xl">
+              Elk cv dat door de ATS-filter glipt en bij een recruiter belandt, is er één meer.
+            </blockquote>
+            <p className="mt-6 text-[#56564F]">
+              Dat is waar we elke dag aan werken.
+            </p>
+          </Reveal>
         </div>
       </section>
 

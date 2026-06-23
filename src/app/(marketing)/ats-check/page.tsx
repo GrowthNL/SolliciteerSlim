@@ -14,6 +14,10 @@ import {
   FileDown,
   Minus,
 } from "lucide-react";
+import { Reveal } from "@/components/magic/reveal";
+import { NumberTicker } from "@/components/magic/number-ticker";
+import { TrustBar } from "@/components/magic/trust-bar";
+import { ScoreRing } from "@/components/magic/score-ring";
 
 export const metadata: Metadata = {
   title: "ATS-check: zorg dat jouw cv wordt gelezen | CVmaken.nu",
@@ -130,10 +134,8 @@ export default function AtsCheckPage() {
             <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
               Voorbeeld ATS-score
             </p>
-            <div className="mt-6 flex items-center gap-4">
-              <div className="relative flex size-20 items-center justify-center rounded-full border-4 border-[#C6F24E] bg-white">
-                <span className="font-display text-2xl font-bold text-[#111113]">74</span>
-              </div>
+            <div className="mt-6 flex flex-wrap items-center gap-5">
+              <ScoreRing score={74} size={120} sublabel="Gedeeltelijk OK" />
               <div>
                 <div className="font-semibold text-[#111113]">Gedeeltelijk geoptimaliseerd</div>
                 <div className="mt-1 text-sm text-[#56564F]">Verbeterpunten gevonden</div>
@@ -159,6 +161,8 @@ export default function AtsCheckPage() {
           </div>
         </div>
       </section>
+
+      <TrustBar />
 
       {/* What is ATS */}
       <section className="py-20 sm:py-24">
@@ -223,14 +227,16 @@ export default function AtsCheckPage() {
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {atsReasons.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="rounded-2xl border border-[#E5E3DA] bg-white p-7">
-                <div className="mb-1 flex size-10 items-center justify-center rounded-xl bg-red-50">
-                  <Icon className="size-5 text-red-500" />
+            {atsReasons.map(({ icon: Icon, title, description }, i) => (
+              <Reveal key={title} delay={i * 90} className="h-full">
+                <div className="h-full rounded-2xl border border-[#E5E3DA] bg-white p-7">
+                  <div className="mb-1 flex size-10 items-center justify-center rounded-xl bg-red-50">
+                    <Icon className="size-5 text-red-500" />
+                  </div>
+                  <div className="mt-3 font-semibold text-[#111113]">{title}</div>
+                  <div className="mt-1.5 text-sm leading-6 text-[#56564F]">{description}</div>
                 </div>
-                <div className="mt-3 font-semibold text-[#111113]">{title}</div>
-                <div className="mt-1.5 text-sm leading-6 text-[#56564F]">{description}</div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -251,21 +257,20 @@ export default function AtsCheckPage() {
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {atsTips.map(({ icon: Icon, tip, explanation }, index) => (
-              <div
-                key={tip}
-                className="rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#EDF7C6]">
-                    <span className="text-xs font-bold text-[#111113]">{index + 1}</span>
-                  </span>
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#F8FCE8]">
-                    <Icon className="size-4 text-[#111113]" />
-                  </span>
+              <Reveal key={tip} delay={(index % 3) * 80} className="h-full">
+                <div className="h-full rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+                  <div className="flex items-start gap-3">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#EDF7C6]">
+                      <span className="text-xs font-bold text-[#111113]">{index + 1}</span>
+                    </span>
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#F8FCE8]">
+                      <Icon className="size-4 text-[#111113]" />
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-semibold text-[#111113]">{tip}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#56564F]">{explanation}</p>
                 </div>
-                <h3 className="mt-4 font-semibold text-[#111113]">{tip}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#56564F]">{explanation}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -333,19 +338,19 @@ export default function AtsCheckPage() {
               {[
                 {
                   label: "Zoekwoord-dekking",
-                  score: "62%",
+                  score: 62,
                   color: "bg-yellow-500",
                   width: "w-[62%]",
                 },
                 {
                   label: "Opmaak-score",
-                  score: "90%",
+                  score: 90,
                   color: "bg-[#C6F24E]",
                   width: "w-[90%]",
                 },
                 {
                   label: "Leesbaarheid",
-                  score: "85%",
+                  score: 85,
                   color: "bg-[#C6F24E]",
                   width: "w-[85%]",
                 },
@@ -353,7 +358,7 @@ export default function AtsCheckPage() {
                 <div key={label}>
                   <div className="mb-2 flex items-center justify-between text-sm">
                     <span className="text-[#9A9A92]">{label}</span>
-                    <span className="font-semibold text-white">{score}</span>
+                    <NumberTicker value={score} suffix="%" className="font-semibold text-white" />
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-white/10">
                     <div className={`h-full rounded-full ${color} ${width}`} />

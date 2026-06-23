@@ -10,6 +10,9 @@ import {
   Handshake,
   Sparkles,
 } from "lucide-react";
+import { Reveal } from "@/components/magic/reveal";
+import { TrustBar } from "@/components/magic/trust-bar";
+import { Testimonials } from "@/components/magic/testimonials";
 
 export const metadata: Metadata = {
   title: "Sollicitatiebrief maken die uitnodigt | CVmaken.nu",
@@ -151,6 +154,8 @@ export default function SollicitatiebriefMakenPage() {
         </div>
       </section>
 
+      <TrustBar />
+
       {/* Structure */}
       <section className="py-20 sm:py-24">
         <div className="container-shell">
@@ -166,9 +171,9 @@ export default function SollicitatiebriefMakenPage() {
           </div>
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {structure.map(({ icon: Icon, label, title, description, tip }, index) => (
+              <Reveal key={title} delay={index * 100} className="h-full">
               <div
-                key={title}
-                className="relative rounded-2xl border border-[#E5E3DA] bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
+                className="relative h-full rounded-2xl border border-[#E5E3DA] bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               >
                 <div className="flex items-center gap-3">
                   <span className="flex size-10 items-center justify-center rounded-xl bg-[#EDF7C6]">
@@ -187,6 +192,7 @@ export default function SollicitatiebriefMakenPage() {
                   </div>
                 </div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -207,11 +213,13 @@ export default function SollicitatiebriefMakenPage() {
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {mistakes.map(({ mistake, explanation }, index) => (
-              <div
+              <Reveal
                 key={mistake}
-                className={`rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)] ${
-                  index === 4 ? "md:col-span-2 lg:col-span-1" : ""
-                }`}
+                delay={(index % 3) * 80}
+                className={index === 4 ? "md:col-span-2 lg:col-span-1" : ""}
+              >
+              <div
+                className="h-full rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               >
                 <div className="flex items-start gap-3">
                   <XCircle className="mt-0.5 size-5 shrink-0 text-red-500" />
@@ -221,6 +229,7 @@ export default function SollicitatiebriefMakenPage() {
                   </div>
                 </div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -240,10 +249,10 @@ export default function SollicitatiebriefMakenPage() {
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {exampleSentences.map(({ context, sentence }) => (
+            {exampleSentences.map(({ context, sentence }, i) => (
+              <Reveal key={context} delay={(i % 2) * 100} className="h-full">
               <div
-                key={context}
-                className="rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
+                className="h-full rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               >
                 <span className="inline-flex items-center rounded-full border border-[#E5E3DA] bg-[#F2F1EC] px-2.5 py-0.5 text-xs font-medium text-[#56564F]">
                   {context}
@@ -252,10 +261,13 @@ export default function SollicitatiebriefMakenPage() {
                   &ldquo;{sentence}&rdquo;
                 </blockquote>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* CTA — AI letter generation */}
       <section className="border-t border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-24">

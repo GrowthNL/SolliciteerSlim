@@ -12,6 +12,10 @@ import {
   Download,
   AlignLeft,
 } from "lucide-react";
+import { Reveal } from "@/components/magic/reveal";
+import { NumberTicker } from "@/components/magic/number-ticker";
+import { TrustBar } from "@/components/magic/trust-bar";
+import { Testimonials } from "@/components/magic/testimonials";
 
 export const metadata: Metadata = {
   title: "CV maken in 5 minuten | CVmaken.nu",
@@ -22,19 +26,22 @@ export const metadata: Metadata = {
 const stats = [
   {
     icon: Clock,
-    number: "6",
+    value: 6,
+    suffix: "",
     unit: "seconden",
     label: "Zo lang besteedt een recruiter gemiddeld aan een eerste cv-scan",
   },
   {
     icon: Filter,
-    number: "75%",
+    value: 75,
+    suffix: "%",
     unit: "van de cv's",
     label: "wordt gefilterd door een ATS-systeem voordat een recruiter het ziet",
   },
   {
     icon: TrendingUp,
-    number: "40%",
+    value: 40,
+    suffix: "%",
     unit: "meer kans",
     label: "hebben kandidaten met een vacaturegericht cv op een uitnodiging",
   },
@@ -182,6 +189,8 @@ export default function CvMakenPage() {
         </div>
       </section>
 
+      <TrustBar />
+
       {/* Stats */}
       <section className="border-b border-[#E5E3DA] py-16 sm:py-20">
         <div className="container-shell">
@@ -195,18 +204,19 @@ export default function CvMakenPage() {
             </p>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {stats.map(({ icon: Icon, number, unit, label }) => (
-              <div
-                key={label}
-                className="rounded-2xl border border-[#E5E3DA] bg-white p-8 text-center shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
-              >
-                <span className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-[#EDF7C6]">
-                  <Icon className="size-6 text-[#111113]" />
-                </span>
-                <div className="font-display text-4xl font-bold text-[#111113]">{number}</div>
-                <div className="mt-1 text-sm font-semibold text-[#111113]">{unit}</div>
-                <p className="mt-3 text-sm leading-6 text-[#56564F]">{label}</p>
-              </div>
+            {stats.map(({ icon: Icon, value, suffix, unit, label }, i) => (
+              <Reveal key={label} delay={i * 100}>
+                <div className="rounded-2xl border border-[#E5E3DA] bg-white p-8 text-center shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+                  <span className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-[#EDF7C6]">
+                    <Icon className="size-6 text-[#111113]" />
+                  </span>
+                  <div className="font-display text-4xl font-bold text-[#111113]">
+                    <NumberTicker value={value} suffix={suffix} />
+                  </div>
+                  <div className="mt-1 text-sm font-semibold text-[#111113]">{unit}</div>
+                  <p className="mt-3 text-sm leading-6 text-[#56564F]">{label}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -228,24 +238,25 @@ export default function CvMakenPage() {
             </p>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {steps.map(({ number, icon: Icon, title, description }) => (
-              <div
+            {steps.map(({ number, icon: Icon, title, description }, i) => (
+              <Reveal
                 key={title}
-                className={`relative rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)] ${
-                  number === 5 ? "md:col-span-2 lg:col-span-1" : ""
-                }`}
+                delay={i * 80}
+                className={number === 5 ? "md:col-span-2 lg:col-span-1" : ""}
               >
-                <div className="flex items-start gap-4">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#C6F24E] text-sm font-bold text-[#111113]">
-                    {number}
-                  </span>
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#EDF7C6]">
-                    <Icon className="size-5 text-[#111113]" />
-                  </span>
+                <div className="relative h-full rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+                  <div className="flex items-start gap-4">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#C6F24E] text-sm font-bold text-[#111113]">
+                      {number}
+                    </span>
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#EDF7C6]">
+                      <Icon className="size-5 text-[#111113]" />
+                    </span>
+                  </div>
+                  <h3 className="font-display mt-5 text-lg font-semibold text-[#111113]">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#56564F]">{description}</p>
                 </div>
-                <h3 className="font-display mt-5 text-lg font-semibold text-[#111113]">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#56564F]">{description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
           <div className="mt-10 text-center">
@@ -275,18 +286,22 @@ export default function CvMakenPage() {
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {tips.map(({ title, description }) => (
-              <div key={title} className="rounded-2xl border border-white/10 bg-white/[.055] p-6">
-                <h3 className="flex items-center gap-2 text-base font-semibold text-white">
-                  <CheckCircle2 className="size-5 shrink-0 text-[#C6F24E]" />
-                  {title}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[#9A9A92]">{description}</p>
-              </div>
+            {tips.map(({ title, description }, i) => (
+              <Reveal key={title} delay={i * 90}>
+                <div className="h-full rounded-2xl border border-white/10 bg-white/[.055] p-6">
+                  <h3 className="flex items-center gap-2 text-base font-semibold text-white">
+                    <CheckCircle2 className="size-5 shrink-0 text-[#C6F24E]" />
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-[#9A9A92]">{description}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* FAQ */}
       <section className="py-20 sm:py-24">
