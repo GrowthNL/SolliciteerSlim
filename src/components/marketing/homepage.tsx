@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { ArrowRight, Check, FileCheck2, FileText, SearchCheck, ShieldCheck, Sparkles, WandSparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ModernPreview } from "@/features/templates/modern-preview";
+import { KlassiekPreview } from "@/features/templates/klassiek-preview";
+import { MinimaalPreview } from "@/features/templates/minimaal-preview";
 
 const steps = [
   "Vul je gegevens in of plak je bestaande cv",
@@ -228,12 +231,96 @@ export function Homepage() {
         </div>
       </section>
 
+      {/* ── Templates ──────────────────────────────────────────────────────── */}
+      <section className="border-y border-[#E5E3DA] bg-white py-20 sm:py-24">
+        <div className="container-shell">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="font-mono-label text-xs text-[#9A9A92]">
+              <span className="text-[#FB5B36] font-bold">03</span> — Kies jouw template
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
+              Professionele cv-ontwerpen die bij jou passen
+            </h2>
+            <p className="mt-4 text-[#56564F]">
+              Drie stijlen, één platform. Kies wat bij je past en download als PDF.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {(
+              [
+                {
+                  Component: ModernPreview,
+                  name: "Modern",
+                  tagline: "Tweekolomsig met fotoslot",
+                  badge: "Populair",
+                  cardBorder: "border-[#C6F24E]",
+                  shadow: "group-hover:shadow-[#C6F24E]/30",
+                },
+                {
+                  Component: KlassiekPreview,
+                  name: "Klassiek",
+                  tagline: "Tijdloos & formeel",
+                  badge: null,
+                  cardBorder: "border-[#E5E3DA]",
+                  shadow: "group-hover:shadow-[#111113]/10",
+                },
+                {
+                  Component: MinimaalPreview,
+                  name: "Minimaal",
+                  tagline: "Strak & ruimtelijk",
+                  badge: null,
+                  cardBorder: "border-[#E5E3DA]",
+                  shadow: "group-hover:shadow-[#111113]/10",
+                },
+              ] as const
+            ).map(({ Component, name, tagline, badge, cardBorder, shadow }) => (
+              <div key={name} className="group flex flex-col">
+                <div
+                  className={`overflow-hidden rounded-2xl border-2 ${cardBorder} transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-2xl ${shadow}`}
+                >
+                  <Component />
+                </div>
+                <div className="mt-5 flex items-start justify-between px-1">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-black text-lg text-[#111113]">{name}</span>
+                      {badge && (
+                        <span className="inline-block rounded-full bg-[#FB5B36] px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-white">
+                          {badge}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-0.5 text-sm text-[#9A9A92]">{tagline}</div>
+                  </div>
+                  <Link
+                    href="/registreren"
+                    className="shrink-0 flex items-center gap-1.5 rounded-lg bg-[#111113] px-4 py-2 text-xs font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]"
+                  >
+                    Kiezen <ArrowRight className="size-3" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/cv-templates"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#56564F] transition-colors hover:text-[#111113]"
+            >
+              Meer over onze templates <ArrowRight className="size-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Trust ──────────────────────────────────────────────────────────── */}
       <section className="py-20 sm:py-24">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">03</span> — AI met gezonde grenzen
+              <span className="text-[#FB5B36] font-bold">04</span> — AI met gezonde grenzen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
               Jouw verhaal blijft altijd van jou
@@ -273,7 +360,7 @@ export function Homepage() {
         <div className="container-shell">
           <div className="mx-auto max-w-xl text-center">
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">04</span> — Eenvoudige prijzen
+              <span className="text-[#FB5B36] font-bold">05</span> — Eenvoudige prijzen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
               Begin gratis, betaal pas als je klaar bent
@@ -315,7 +402,7 @@ export function Homepage() {
         <div className="container-shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
           <div>
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">05</span> — Veelgestelde vragen
+              <span className="text-[#FB5B36] font-bold">06</span> — Veelgestelde vragen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113]">
               Helder voordat je begint

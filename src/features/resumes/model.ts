@@ -9,6 +9,7 @@ export interface PersonalDetails {
   city: string;
   linkedinUrl: string;
   websiteUrl: string;
+  photoUrl?: string;
 }
 
 export interface WorkExperience {

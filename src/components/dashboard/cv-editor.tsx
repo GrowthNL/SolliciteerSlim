@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
+  Camera,
   Check,
   ChevronRight,
   Loader2,
@@ -68,8 +69,64 @@ function PersonalSection({
   const set = (key: keyof typeof p) => (e: React.ChangeEvent<HTMLInputElement>) =>
     update({ ...doc, personalDetails: { ...p, [key]: e.target.value } });
 
+  function handlePhoto(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      alert("Foto mag maximaal 2MB zijn.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      update({ ...doc, personalDetails: { ...p, photoUrl: ev.target?.result as string } });
+    };
+    reader.readAsDataURL(file);
+  }
+
   return (
     <div className="grid gap-5 sm:grid-cols-2">
+      {/* Photo upload */}
+      <div className="sm:col-span-2 flex items-center gap-5 rounded-xl border border-[#E5E3DA] bg-[#F8F8F6] p-4">
+        <div className="relative shrink-0">
+          <div className="h-20 w-20 overflow-hidden rounded-full border-2 border-[#DDDBD1] bg-[#F2F1EC]">
+            {p.photoUrl ? (
+              <img src={p.photoUrl} alt="Foto" className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <Camera className="size-7 text-[#9A9A92]" />
+              </div>
+            )}
+          </div>
+          <label
+            htmlFor="photo-upload"
+            className="absolute -bottom-1 -right-1 flex size-7 cursor-pointer items-center justify-center rounded-full bg-[#111113] text-white shadow-md hover:bg-[#2E2E2C] transition-colors"
+          >
+            <Plus className="size-3.5" />
+          </label>
+          <input
+            id="photo-upload"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            className="hidden"
+            onChange={handlePhoto}
+          />
+        </div>
+        <div>
+          <div className="text-sm font-semibold text-[#111113]">Profielfoto (optioneel)</div>
+          <div className="mt-0.5 text-xs text-[#9A9A92]">JPG, PNG of WebP · max 2 MB</div>
+          <div className="mt-0.5 text-xs text-[#9A9A92]">Wordt getoond in Modern en Minimaal template</div>
+          {p.photoUrl && (
+            <button
+              type="button"
+              onClick={() => update({ ...doc, personalDetails: { ...p, photoUrl: "" } })}
+              className="mt-2 text-xs font-medium text-[#FB5B36] hover:text-[#C0432E] transition-colors"
+            >
+              Foto verwijderen
+            </button>
+          )}
+        </div>
+      </div>
+
       <label>
         <span className="mb-2 block text-sm font-semibold">Voornaam</span>
         <Input value={p.firstName} onChange={set("firstName")} placeholder="Sophie" />
