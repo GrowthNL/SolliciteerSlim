@@ -5,7 +5,7 @@ export function Logo({ className, compact = false }: { className?: string; compa
   return (
     <Link href="/" className={cn("inline-flex items-center gap-3", className)} aria-label="CVmaken.nu homepage">
       {/* Symbol */}
-      <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="64" height="64" rx="14" fill="#111113" />
         <rect x="15" y="11" width="30" height="40" rx="5" fill="#C6F24E" />
         <rect x="20" y="19" width="20" height="3" rx="1.5" fill="#111113" />
@@ -14,9 +14,8 @@ export function Logo({ className, compact = false }: { className?: string; compa
         <circle cx="45" cy="46" r="11" fill="#FB5B36" stroke="#111113" strokeWidth="3" />
         <path d="M40.5 46 L44 49.5 L50 43" stroke="#fff" strokeWidth="2.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      {/* Wordmark */}
       {!compact && (
-        <span className="text-[19px] font-extrabold tracking-[-0.035em] leading-none text-[#111113]">
+        <span className="text-[24px] font-extrabold tracking-[-0.04em] leading-none text-[#111113]">
           CVmaken<span className="text-[#9A9A92]">.nu</span>
         </span>
       )}
@@ -27,7 +26,7 @@ export function Logo({ className, compact = false }: { className?: string; compa
 export function LogoDark({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (
     <Link href="/" className={cn("inline-flex items-center gap-3", className)} aria-label="CVmaken.nu homepage">
-      <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="64" height="64" rx="14" fill="#C6F24E" />
         <rect x="15" y="11" width="30" height="40" rx="5" fill="#111113" />
         <rect x="20" y="19" width="20" height="3" rx="1.5" fill="#C6F24E" />
@@ -37,7 +36,7 @@ export function LogoDark({ className, compact = false }: { className?: string; c
         <path d="M40.5 46 L44 49.5 L50 43" stroke="#fff" strokeWidth="2.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
       {!compact && (
-        <span className="text-[19px] font-extrabold tracking-[-0.035em] leading-none text-[#F2F1EC]">
+        <span className="text-[24px] font-extrabold tracking-[-0.04em] leading-none text-[#F2F1EC]">
           CVmaken<span className="text-[#C6F24E]">.nu</span>
         </span>
       )}

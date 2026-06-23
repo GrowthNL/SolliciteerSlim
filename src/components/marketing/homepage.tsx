@@ -1,36 +1,112 @@
 import Link from "next/link";
 import { ArrowRight, Check, FileCheck2, FileText, SearchCheck, ShieldCheck, Sparkles, WandSparkles } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-const steps = ["Vul je gegevens in of plak je bestaande cv", "Plak een vacature", "Laat AI je cv en brief verbeteren", "Kies een template en download je PDF"];
+const steps = [
+  "Vul je gegevens in of plak je bestaande cv",
+  "Plak een vacature voor directe analyse",
+  "Laat AI je cv en brief verbeteren",
+  "Kies een template en download je PDF",
+];
+
 const features = [
   { icon: WandSparkles, title: "AI cv verbeteren", text: "Maak je profiel en werkervaring sterker, zonder feiten te verzinnen." },
   { icon: FileText, title: "Sollicitatiebrief maken", text: "Genereer een persoonlijke basisbrief die aansluit op jouw verhaal." },
-  { icon: SearchCheck, title: "Vacature-analyse", text: "Zie snel welke vaardigheden, woorden en ervaring belangrijk zijn." },
-  { icon: FileCheck2, title: "ATS-check light", text: "Controleer leesbaarheid, opbouw en dekking van relevante zoekwoorden." },
-  { icon: Sparkles, title: "Professionele templates", text: "Kies uit rustige ontwerpen die inhoud en leesbaarheid vooropzetten." },
+  { icon: SearchCheck, title: "Vacature-analyse", text: "Zie snel welke vaardigheden, woorden en ervaring écht tellen." },
+  { icon: FileCheck2, title: "ATS-check", text: "Controleer leesbaarheid, opbouw en dekking van relevante zoekwoorden." },
+  { icon: Sparkles, title: "Professionele templates", text: "Kies uit strakke ontwerpen die inhoud en leesbaarheid vooropzetten." },
   { icon: ShieldCheck, title: "PDF export", text: "Download een verzorgd document dat klaar is om te versturen." },
 ];
+
 const faqs = [
-  ["Verzint de AI ervaring die ik niet heb?", "Nee. CVmaken.nu verbetert formuleringen, maar mag nooit werkgevers, diploma’s, resultaten of datums bedenken. Jij controleert altijd de uitkomst."],
+  ["Verzint de AI ervaring die ik niet heb?", "Nee. CVmaken.nu verbetert formuleringen, maar mag nooit werkgevers, diploma's, resultaten of datums bedenken. Jij controleert altijd de uitkomst."],
   ["Kan ik CVmaken.nu gratis proberen?", "Ja. Je kunt gratis een account en cv maken, bewerken en bekijken. Betaalde opties worden pas relevant bij uitgebreid AI-gebruik en PDF-export."],
-  ["Is mijn cv veilig?", "Privacy is een uitgangspunt in de architectuur. Persoonlijke gegevens worden alleen verwerkt waar nodig en zijn straks met toegangsregels per gebruiker afgeschermd."],
-  ["Is dit geschikt voor elke branche?", "De basis is breed inzetbaar. Door een vacature toe te voegen kan de assistent rekening houden met de rol, branche en gevraagde vaardigheden."],
+  ["Is mijn cv veilig?", "Privacy is een uitgangspunt in de architectuur. Persoonlijke gegevens worden alleen verwerkt waar nodig en zijn met toegangsregels per gebruiker afgeschermd."],
+  ["Is dit geschikt voor elke branche?", "De basis is breed inzetbaar. Door een vacature toe te voegen houdt de AI rekening met de rol, branche en gevraagde vaardigheden."],
+];
+
+const stats = [
+  { value: "3 min", label: "gemiddelde bouwtijd" },
+  { value: "3×", label: "templates beschikbaar" },
+  { value: "AI", label: "powered by GPT-4o" },
 ];
 
 function ResumePreview() {
   return (
     <div className="relative mx-auto w-full max-w-lg">
-      <div className="absolute -left-5 top-16 hidden rounded-2xl border border-emerald-100 bg-white p-4 shadow-xl sm:block"><div className="flex items-center gap-3"><span className="flex size-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"><Sparkles className="size-4" /></span><div><div className="text-xs text-slate-500">Vacaturematch</div><div className="font-bold text-slate-950">82% passend</div></div></div></div>
-      <div className="rotate-[1.5deg] rounded-[1.75rem] border border-slate-200 bg-white p-3 shadow-[0_30px_80px_rgba(24,55,43,0.16)]">
-        <div className="rounded-2xl bg-slate-50 p-6 sm:p-8">
-          <div className="flex gap-4 border-b border-slate-200 pb-6"><div className="size-14 rounded-full bg-emerald-800" /><div><div className="font-display text-xl font-bold">Sophie de Vries</div><div className="mt-1 text-xs font-semibold uppercase tracking-[.16em] text-emerald-700">Marketing specialist</div></div></div>
-          <div className="mt-6 grid grid-cols-[1fr_.5fr] gap-6"><div><div className="h-2 w-20 rounded bg-slate-800" /><div className="mt-3 space-y-2"><div className="h-1.5 rounded bg-slate-200" /><div className="h-1.5 rounded bg-slate-200" /><div className="h-1.5 w-5/6 rounded bg-slate-200" /></div><div className="mt-6 h-2 w-28 rounded bg-slate-800" /><div className="mt-4 border-l-2 border-emerald-700 pl-4"><div className="h-2 w-32 rounded bg-slate-300" /><div className="mt-2 h-1.5 rounded bg-slate-200" /><div className="mt-2 h-1.5 w-4/5 rounded bg-slate-200" /></div></div><div><div className="h-2 w-14 rounded bg-slate-800" /><div className="mt-3 flex flex-wrap gap-1.5"><span className="h-5 w-14 rounded bg-emerald-100" /><span className="h-5 w-12 rounded bg-emerald-100" /><span className="h-5 w-16 rounded bg-emerald-100" /></div><div className="mt-7 h-2 w-16 rounded bg-slate-800" /><div className="mt-3 space-y-2"><div className="h-1.5 rounded bg-slate-200" /><div className="h-1.5 w-3/4 rounded bg-slate-200" /></div></div></div>
+      {/* Floating match badge */}
+      <div className="absolute -left-5 top-14 z-10 hidden animate-float rounded-2xl border border-[#E5E3DA] bg-white p-4 shadow-xl sm:block">
+        <div className="flex items-center gap-3">
+          <span className="flex size-9 items-center justify-center rounded-full bg-[#EDF7C6] text-[#111113]">
+            <Sparkles className="size-4" />
+          </span>
+          <div>
+            <div className="text-xs text-[#9A9A92]">Vacaturematch</div>
+            <div className="font-bold text-[#111113]">82% passend</div>
+          </div>
         </div>
       </div>
-      <div className="absolute -bottom-5 right-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-800 shadow-lg"><span className="mr-2 text-emerald-600">✓</span> Klaar voor export</div>
+
+      {/* CV mockup */}
+      <div className="rotate-[1.5deg] rounded-[1.75rem] border border-[#E5E3DA] bg-white p-3 shadow-[0_30px_80px_rgba(17,17,19,0.14)]">
+        <div className="rounded-2xl bg-[#F2F1EC] p-6 sm:p-8">
+          <div className="flex gap-4 border-b border-[#DDDBD1] pb-6">
+            <div className="size-14 overflow-hidden rounded-full bg-[#111113]">
+              <svg viewBox="0 0 64 64" fill="none" className="size-full">
+                <circle cx="32" cy="32" r="32" fill="#F0EBE3"/>
+                <ellipse cx="32" cy="70" rx="22" ry="18" fill="#2E2E2C"/>
+                <rect x="27" y="46" width="10" height="10" rx="2" fill="#D4A574"/>
+                <circle cx="32" cy="38" r="14" fill="#D4A574"/>
+                <path d="M18 36 Q18 22 32 20 Q46 22 46 36 Q44 28 32 27 Q20 28 18 36Z" fill="#2E2E2C"/>
+                <ellipse cx="27" cy="37" rx="2" ry="2.2" fill="#1a1a1a"/>
+                <ellipse cx="37" cy="37" rx="2" ry="2.2" fill="#1a1a1a"/>
+                <path d="M27 43 Q32 47 37 43" stroke="#C0856A" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div className="text-xl font-black tracking-tight text-[#111113]">Lisa van der Berg</div>
+              <div className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-[#C6F24E] bg-[#111113] px-1.5 py-0.5 rounded inline-block">Marketing Manager</div>
+            </div>
+          </div>
+          <div className="mt-6 grid grid-cols-[1fr_.45fr] gap-6">
+            <div>
+              <div className="h-2 w-20 rounded bg-[#111113]" />
+              <div className="mt-3 space-y-2">
+                <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                <div className="h-1.5 w-5/6 rounded bg-[#DDDBD1]" />
+              </div>
+              <div className="mt-5 h-2 w-28 rounded bg-[#111113]" />
+              <div className="mt-3 border-l-2 border-[#C6F24E] pl-3">
+                <div className="h-2 w-24 rounded bg-[#2E2E2C]" />
+                <div className="mt-1 text-[9px] text-[#9A9A92]">Coolblue · 2021–heden</div>
+                <div className="mt-1.5 h-1.5 rounded bg-[#DDDBD1]" />
+                <div className="mt-1 h-1.5 w-4/5 rounded bg-[#DDDBD1]" />
+              </div>
+            </div>
+            <div>
+              <div className="h-2 w-14 rounded bg-[#111113]" />
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <span className="h-5 w-14 rounded-full bg-[#EDF7C6]" />
+                <span className="h-5 w-10 rounded-full bg-[#EDF7C6]" />
+                <span className="h-5 w-16 rounded-full bg-[#EDF7C6]" />
+                <span className="h-5 w-12 rounded-full bg-[#FFE3DA]" />
+              </div>
+              <div className="mt-5 h-2 w-12 rounded bg-[#111113]" />
+              <div className="mt-2 space-y-1.5">
+                <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                <div className="h-1.5 w-3/4 rounded bg-[#DDDBD1]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom badge */}
+      <div className="absolute -bottom-4 right-4 flex items-center gap-2 rounded-xl border border-[#E5E3DA] bg-white px-4 py-2.5 text-sm font-semibold text-[#111113] shadow-lg">
+        <span className="size-2 rounded-full bg-[#FB5B36]" />
+        Klaar voor export
+      </div>
     </div>
   );
 }
@@ -38,19 +114,259 @@ function ResumePreview() {
 export function Homepage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-slate-100 bg-[linear-gradient(135deg,#fbfcfa_45%,#edf8f1)] py-18 sm:py-24 lg:py-28"><div className="grid-fade absolute inset-0" /><div className="container-shell relative grid items-center gap-14 lg:grid-cols-[1.05fr_.95fr]"><div><Badge><span className="mr-1.5 size-1.5 rounded-full bg-emerald-600" /> AI-hulp voor jouw volgende stap</Badge><h1 className="font-display mt-6 max-w-3xl text-balance text-4xl font-bold leading-[1.08] tracking-[-.035em] text-slate-950 sm:text-5xl lg:text-6xl">Maak sneller een professioneel cv dat <span className="text-emerald-700">past bij je vacature.</span></h1><p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">CVmaken.nu helpt je met AI om je cv, motivatiebrief en vacaturematch te verbeteren, zonder gedoe.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button asChild size="lg"><Link href="/registreren">Start gratis <ArrowRight className="size-4" /></Link></Button><Button asChild size="lg" variant="secondary"><Link href="/cv-voorbeelden">Bekijk voorbeelden</Link></Button></div><div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600">{["Geen creditcard nodig", "Jij houdt de controle", "Gemaakt voor Nederland"].map((item) => <span className="flex items-center gap-1.5" key={item}><Check className="size-4 text-emerald-700" />{item}</span>)}</div></div><ResumePreview /></div></section>
+      {/* ── Hero ───────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden border-b border-[#E5E3DA] py-20 sm:py-28 lg:py-32">
+        <div className="grid-fade absolute inset-0" />
+        <div className="container-shell relative grid items-center gap-16 lg:grid-cols-[1.1fr_.9fr]">
+          <div className="animate-fade-up">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">
+              <span className="size-2 rounded-full bg-[#FB5B36]" />
+              AI-hulp voor jouw volgende stap
+            </div>
 
-      <section className="py-20 sm:py-24"><div className="container-shell"><div className="mx-auto max-w-2xl text-center"><Badge>Zo werkt het</Badge><h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Van losse informatie naar een sterke sollicitatie</h2><p className="mt-4 text-slate-600">Vier overzichtelijke stappen. De AI doet voorstellen, jij maakt de keuzes.</p></div><div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{steps.map((step, index) => <div key={step} className="relative rounded-2xl border border-slate-200 bg-white p-6"><span className="flex size-9 items-center justify-center rounded-full bg-emerald-700 text-sm font-bold text-white">{index + 1}</span><p className="mt-5 font-semibold leading-6 text-slate-900">{step}</p>{index < 3 && <ArrowRight className="absolute -right-3 top-8 z-10 hidden size-5 rounded-full bg-white text-slate-300 lg:block" />}</div>)}</div></div></section>
+            <h1 className="mt-6 max-w-2xl text-balance text-4xl font-black leading-[1.05] tracking-[-0.04em] text-[#111113] sm:text-5xl lg:text-[58px]">
+              Maak sneller een cv dat{" "}
+              <span className="bg-[#C6F24E] px-[0.1em] rounded-[4px] text-[#111113]">echt past</span>{" "}
+              bij de vacature.
+            </h1>
 
-      <section className="bg-slate-950 py-20 text-white sm:py-24"><div className="container-shell"><div className="max-w-2xl"><Badge className="border-white/10 bg-white/10 text-emerald-200">Eén slimme werkplek</Badge><h2 className="font-display mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Alles wat je nodig hebt om gericht te solliciteren</h2><p className="mt-4 leading-7 text-slate-300">Niet alleen een mooi ontwerp, maar praktische hulp om je inhoud beter te laten aansluiten.</p></div><div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{features.map(({ icon: Icon, title, text }) => <Card key={title} className="border-white/10 bg-white/[.055] text-white"><CardHeader><span className="mb-3 flex size-10 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-300"><Icon className="size-5" /></span><CardTitle className="text-white">{title}</CardTitle><CardDescription className="text-slate-300">{text}</CardDescription></CardHeader></Card>)}</div></div></section>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#56564F]">
+              CVmaken.nu helpt je met AI om je cv, motivatiebrief en vacaturematch te verbeteren — zonder gedoe, zonder nepfeiten.
+            </p>
 
-      <section className="py-20 sm:py-24"><div className="container-shell grid items-center gap-12 lg:grid-cols-2"><div><Badge>AI met gezonde grenzen</Badge><h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Jouw verhaal blijft altijd van jou</h2><p className="mt-5 max-w-xl leading-7 text-slate-600">CVmaken.nu is ontworpen om je werk uit handen te nemen, niet om de waarheid mooier te maken dan die is.</p><div className="mt-8 grid gap-4 sm:grid-cols-2">{["Geen verborgen proefabonnementen", "Jij houdt controle over je gegevens", "AI verzint geen ervaring", "Voor Nederlandse sollicitaties"].map((item) => <div key={item} className="flex gap-3 text-sm font-medium text-slate-800"><span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-100"><Check className="size-3.5 text-emerald-800" /></span>{item}</div>)}</div></div><div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-8 sm:p-10"><ShieldCheck className="size-10 text-emerald-700" /><p className="font-display mt-6 text-2xl font-bold leading-snug text-slate-950">“AI helpt je om scherper te formuleren. Jij bepaalt wat klopt en wat wordt verstuurd.”</p><p className="mt-5 text-sm leading-6 text-emerald-900/70">Privacy-first • Feitelijk • Transparant</p></div></div></section>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" className="bg-[#111113] text-[#F2F1EC] hover:bg-[#2E2E2C] rounded-lg text-[15px] font-bold px-7 py-3.5 h-auto">
+                <Link href="/registreren">Start gratis <ArrowRight className="size-4" /></Link>
+              </Button>
+              <Button asChild size="lg" variant="secondary" className="rounded-lg border border-[#DDDBD1] bg-white text-[#111113] hover:bg-[#F2F1EC] text-[15px] font-semibold h-auto px-7 py-3.5">
+                <Link href="/cv-voorbeelden">Bekijk voorbeelden</Link>
+              </Button>
+            </div>
 
-      <section className="border-y border-slate-200 bg-white py-20 sm:py-24"><div className="container-shell"><div className="mx-auto max-w-xl text-center"><Badge>Eenvoudige prijzen</Badge><h2 className="font-display mt-4 text-3xl font-bold text-slate-950 sm:text-4xl">Begin gratis, betaal pas als je klaar bent</h2></div><div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-3">{[["Gratis", "€0", "Maak en bewerk je cv", false], ["Eenmalig", "Per download", "Eén verzorgde PDF-export", true], ["Starter", "Per maand", "Meer AI en meerdere documenten", false]].map(([name, price, copy, featured]) => <Card key={String(name)} className={featured ? "border-emerald-600 ring-2 ring-emerald-600/10" : ""}><CardHeader><CardTitle>{name}</CardTitle><div className="mt-2 text-2xl font-bold text-slate-950">{price}</div><CardDescription>{copy}</CardDescription></CardHeader><CardContent><Button asChild variant={featured ? "default" : "secondary"} className="w-full"><Link href="/prijzen">Bekijk mogelijkheden</Link></Button></CardContent></Card>)}</div></div></section>
+            {/* Trust strip */}
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#56564F]">
+              {["Geen creditcard nodig", "Jij houdt de controle", "Gemaakt voor Nederland"].map((item) => (
+                <span key={item} className="flex items-center gap-1.5">
+                  <Check className="size-4 text-[#FB5B36]" />{item}
+                </span>
+              ))}
+            </div>
 
-      <section className="py-20 sm:py-24"><div className="container-shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]"><div><Badge>Veelgestelde vragen</Badge><h2 className="font-display mt-4 text-3xl font-bold text-slate-950">Helder voordat je begint</h2><p className="mt-4 leading-7 text-slate-600">Nog iets onduidelijk? In de app leggen we iedere AI-stap begrijpelijk uit.</p></div><div className="divide-y divide-slate-200 border-y border-slate-200">{faqs.map(([question, answer]) => <details key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-950">{question}<span className="text-xl font-normal text-emerald-700 group-open:rotate-45">+</span></summary><p className="mt-3 max-w-2xl pr-8 text-sm leading-6 text-slate-600">{answer}</p></details>)}</div></div></section>
+            {/* Stats */}
+            <div className="mt-10 flex gap-8 border-t border-[#E5E3DA] pt-8">
+              {stats.map(({ value, label }) => (
+                <div key={label}>
+                  <div className="text-2xl font-black tracking-tight text-[#111113]">{value}</div>
+                  <div className="mt-0.5 text-xs text-[#9A9A92]">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-      <section className="px-4 pb-20"><div className="container-shell overflow-hidden rounded-3xl bg-emerald-800 px-6 py-14 text-center text-white sm:px-12 sm:py-16"><h2 className="font-display mx-auto max-w-2xl text-balance text-3xl font-bold sm:text-4xl">Klaar om slimmer aan je sollicitatie te werken?</h2><p className="mx-auto mt-4 max-w-xl text-emerald-100">Maak gratis je eerste cv. Je hebt geen creditcard nodig.</p><Button asChild className="mt-7 bg-white text-emerald-900 hover:bg-emerald-50" size="lg"><Link href="/registreren">Start gratis <ArrowRight className="size-4" /></Link></Button></div></section>
+          <ResumePreview />
+        </div>
+      </section>
+
+      {/* ── How it works ───────────────────────────────────────────────────── */}
+      <section className="py-20 sm:py-24">
+        <div className="container-shell">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="font-mono-label text-xs text-[#9A9A92]">
+              <span className="text-[#FB5B36] font-bold">01</span> — Zo werkt het
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
+              Van losse info naar een sterke sollicitatie
+            </h2>
+            <p className="mt-4 text-[#56564F]">Vier stappen. De AI doet voorstellen, jij maakt de keuzes.</p>
+          </div>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, i) => (
+              <div key={step} className="group relative rounded-2xl border border-[#E5E3DA] bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#111113]/5">
+                <span className="flex size-10 items-center justify-center rounded-full bg-[#FB5B36] text-sm font-black text-white">
+                  {i + 1}
+                </span>
+                <p className="mt-5 font-semibold leading-6 text-[#111113]">{step}</p>
+                {i < 3 && (
+                  <ArrowRight className="absolute -right-3 top-9 z-10 hidden size-5 rounded-full bg-white text-[#DDDBD1] lg:block" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Features dark ──────────────────────────────────────────────────── */}
+      <section className="bg-[#111113] py-20 sm:py-24">
+        <div className="container-shell">
+          <div className="max-w-2xl">
+            <p className="font-mono-label text-xs text-[#9A9A92]">
+              <span className="text-[#C6F24E] font-bold">02</span> — Eén slimme werkplek
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#F2F1EC] sm:text-4xl">
+              Alles wat je nodig hebt om gericht te solliciteren
+            </h2>
+            <p className="mt-4 leading-7 text-[#9A9A92]">
+              Niet alleen een mooi ontwerp, maar praktische hulp om je inhoud beter te laten aansluiten.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {features.map(({ icon: Icon, title, text }, i) => (
+              <div
+                key={title}
+                className="group rounded-2xl border border-white/10 bg-white/[.04] p-6 transition-all duration-200 hover:bg-white/[.07] hover:border-white/20"
+              >
+                <span className={`mb-4 flex size-10 items-center justify-center rounded-xl ${i % 3 === 2 ? "bg-[#FFE3DA]/20 text-[#FB5B36]" : "bg-[#C6F24E]/15 text-[#C6F24E]"}`}>
+                  <Icon className="size-5" />
+                </span>
+                <div className="font-bold text-[#F2F1EC]">{title}</div>
+                <p className="mt-1.5 text-sm leading-6 text-[#9A9A92]">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Trust ──────────────────────────────────────────────────────────── */}
+      <section className="py-20 sm:py-24">
+        <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <p className="font-mono-label text-xs text-[#9A9A92]">
+              <span className="text-[#FB5B36] font-bold">03</span> — AI met gezonde grenzen
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
+              Jouw verhaal blijft altijd van jou
+            </h2>
+            <p className="mt-5 max-w-xl leading-7 text-[#56564F]">
+              CVmaken.nu is ontworpen om je werk uit handen te nemen, niet om de waarheid mooier te maken dan die is.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {["Geen verborgen proefabonnementen", "Jij houdt controle over je gegevens", "AI verzint geen ervaring", "Voor Nederlandse sollicitaties"].map((item) => (
+                <div key={item} className="flex gap-3 text-sm font-medium text-[#111113]">
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#C6F24E]">
+                    <Check className="size-3.5 text-[#111113]" />
+                  </span>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-3xl border-2 border-[#C6F24E] bg-[#111113] p-8 sm:p-10">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-[#FB5B36]" />
+              <span className="font-mono-label text-[10px] text-[#9A9A92]">ONZE BELOFTE</span>
+            </div>
+            <p className="mt-6 text-2xl font-black leading-snug tracking-tight text-[#F2F1EC]">
+              &ldquo;AI helpt je om{" "}
+              <span className="bg-[#C6F24E] px-[0.08em] rounded-sm text-[#111113]">scherper</span>{" "}
+              te formuleren. Jij bepaalt wat klopt en wat wordt verstuurd.&rdquo;
+            </p>
+            <p className="mt-5 text-sm leading-6 text-[#9A9A92]">Privacy-first · Feitelijk · Transparant</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Pricing preview ────────────────────────────────────────────────── */}
+      <section className="border-y border-[#E5E3DA] bg-white py-20 sm:py-24">
+        <div className="container-shell">
+          <div className="mx-auto max-w-xl text-center">
+            <p className="font-mono-label text-xs text-[#9A9A92]">
+              <span className="text-[#FB5B36] font-bold">04</span> — Eenvoudige prijzen
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
+              Begin gratis, betaal pas als je klaar bent
+            </h2>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-3">
+            {([
+              ["Gratis", "€0", "Maak en bewerk je cv", false],
+              ["Starter", "€7/mnd", "PDF-export + meerdere cv's", true],
+              ["Pro", "€14/mnd", "Alles + AI-credits per maand", false],
+            ] as const).map(([name, price, copy, featured]) => (
+              <div
+                key={name}
+                className={`rounded-2xl border p-6 transition-all ${featured ? "border-[#C6F24E] bg-[#111113] text-[#F2F1EC] shadow-xl" : "border-[#E5E3DA] bg-white"}`}
+              >
+                {featured && (
+                  <span className="mb-3 inline-block rounded-full bg-[#C6F24E] px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-[#111113]">
+                    Populair
+                  </span>
+                )}
+                <div className="text-lg font-black">{name}</div>
+                <div className={`mt-1 text-2xl font-black ${featured ? "text-[#C6F24E]" : "text-[#111113]"}`}>{price}</div>
+                <p className={`mt-2 text-sm ${featured ? "text-[#9A9A92]" : "text-[#56564F]"}`}>{copy}</p>
+                <Link
+                  href="/prijzen"
+                  className={`mt-6 flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold transition-all ${featured ? "bg-[#C6F24E] text-[#111113] hover:bg-[#DCF58A]" : "border border-[#E5E3DA] text-[#111113] hover:bg-[#F2F1EC]"}`}
+                >
+                  Bekijk mogelijkheden <ArrowRight className="size-3.5" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ────────────────────────────────────────────────────────────── */}
+      <section className="py-20 sm:py-24">
+        <div className="container-shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
+          <div>
+            <p className="font-mono-label text-xs text-[#9A9A92]">
+              <span className="text-[#FB5B36] font-bold">05</span> — Veelgestelde vragen
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113]">
+              Helder voordat je begint
+            </h2>
+            <p className="mt-4 leading-7 text-[#56564F]">
+              Nog iets onduidelijk? In de app leggen we iedere AI-stap begrijpelijk uit.
+            </p>
+          </div>
+          <div className="divide-y divide-[#E5E3DA] border-y border-[#E5E3DA]">
+            {faqs.map(([question, answer]) => (
+              <details key={question} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-[#111113]">
+                  {question}
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-[#E5E3DA] text-xl font-light text-[#FB5B36] transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 max-w-2xl pr-8 text-sm leading-6 text-[#56564F]">{answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ────────────────────────────────────────────────────────────── */}
+      <section className="px-4 pb-24">
+        <div className="container-shell overflow-hidden rounded-3xl bg-[#111113] px-6 py-16 sm:px-14 sm:py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-semibold text-[#9A9A92]">
+              <span className="size-1.5 rounded-full bg-[#C6F24E]" />
+              Gratis beginnen
+            </div>
+            <h2 className="mt-6 text-balance text-3xl font-black tracking-[-0.04em] text-[#F2F1EC] sm:text-4xl">
+              Klaar om slimmer aan je sollicitatie te werken?
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[#9A9A92]">
+              Maak gratis je eerste cv. Je hebt geen creditcard nodig.
+            </p>
+            <Button asChild size="lg" className="mt-8 bg-[#C6F24E] text-[#111113] hover:bg-[#DCF58A] rounded-lg text-[15px] font-black px-8 py-4 h-auto">
+              <Link href="/registreren">Start gratis <ArrowRight className="size-4" /></Link>
+            </Button>
+            <div className="mt-6 flex items-center justify-center gap-6 text-sm text-[#56564F]">
+              {["Geen creditcard", "Direct aan de slag", "Made in NL"].map((t) => (
+                <span key={t} className="flex items-center gap-1.5">
+                  <Check className="size-3.5 text-[#C6F24E]" />{t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

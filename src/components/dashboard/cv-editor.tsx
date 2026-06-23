@@ -18,7 +18,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CvTemplatePreview } from "@/components/dashboard/cv-template-preview";
+import { ModernPreview } from "@/features/templates/modern-preview";
 import { KlassiekPreview } from "@/features/templates/klassiek-preview";
 import { MinimaalPreview } from "@/features/templates/minimaal-preview";
 import { PdfDownloadButton } from "@/components/dashboard/pdf-download-button";
@@ -1023,7 +1023,7 @@ export function CvEditor({ initialId, initialDoc, plan = "free" }: CvEditorProps
               ))}
             </div>
           </div>
-          {templateId === "modern" && <CvTemplatePreview doc={doc} />}
+          {templateId === "modern" && <ModernPreview doc={doc} />}
           {templateId === "klassiek" && <KlassiekPreview doc={doc} />}
           {templateId === "minimaal" && <MinimaalPreview doc={doc} />}
           <div className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 p-3 text-xs leading-5 text-emerald-900/70">
