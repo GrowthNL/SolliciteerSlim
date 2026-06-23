@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   Check,
   ChevronRight,
+  Loader2,
   Plus,
   Sparkles,
   Trash2,
@@ -23,6 +24,7 @@ import { MinimaalPreview } from "@/features/templates/minimaal-preview";
 import { PdfDownloadButton } from "@/components/dashboard/pdf-download-button";
 import { TEMPLATES, type TemplateId } from "@/features/templates/index";
 import { saveResume } from "@/app/actions/resumes";
+import { improveText, type ImproveTextResult } from "@/app/actions/ai";
 import {
   createEmptyResumeDocument,
   type Education,
@@ -118,20 +120,125 @@ function ProfileSection({
   doc: ResumeDocument;
   update: (d: ResumeDocument) => void;
 }) {
+  const [isPending, startTransition] = useTransition();
+  const [suggestion, setSuggestion] = useState<ImproveTextResult | null>(null);
+  const [aiError, setAiError] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
+
+  function handleImprove() {
+    if (!doc.profileSummary.trim()) return;
+    setAiError(null);
+    startTransition(async () => {
+      const result = await improveText(doc.profileSummary, "Profiel/samenvatting sectie van een Nederlands cv");
+      if ("error" in result) {
+        setAiError(result.error);
+      } else {
+        setSuggestion(result.data);
+        setShowModal(true);
+      }
+    });
+  }
+
+  function handleAccept() {
+    if (suggestion) {
+      update({ ...doc, profileSummary: suggestion.improved });
+    }
+    setShowModal(false);
+    setSuggestion(null);
+  }
+
+  function handleIgnore() {
+    setShowModal(false);
+    setSuggestion(null);
+  }
+
   return (
     <div className="grid gap-3">
-      <label>
-        <span className="mb-2 block text-sm font-semibold">Profiel / samenvatting</span>
+      <div>
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <span className="text-sm font-semibold">Profiel / samenvatting</span>
+          <button
+            type="button"
+            onClick={handleImprove}
+            disabled={isPending || !doc.profileSummary.trim()}
+            className="flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-700 hover:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {isPending ? (
+              <Loader2 className="size-3 animate-spin" />
+            ) : (
+              <Sparkles className="size-3" />
+            )}
+            {isPending ? "Even geduld…" : "Verbeter met AI"}
+          </button>
+        </div>
         <Textarea
           rows={6}
           value={doc.profileSummary}
           onChange={(e) => update({ ...doc, profileSummary: e.target.value })}
           placeholder="Een korte krachtige introductie over wie je bent, wat je kunt en wat je zoekt. Houd het bij 3–5 zinnen."
         />
-      </label>
+      </div>
+      {aiError && (
+        <p className="rounded-xl bg-red-50 px-3 py-2 text-xs font-medium text-red-700">
+          {aiError}
+        </p>
+      )}
       <p className="text-xs text-slate-400">
         Tip: schrijf in de eerste persoon en stem het af op elke vacature.
       </p>
+
+      {/* AI suggestion modal */}
+      {showModal && suggestion && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+            <div className="mb-4 flex items-center gap-2">
+              <Sparkles className="size-5 text-emerald-600" />
+              <h3 className="font-display text-lg font-bold text-slate-950">
+                AI-suggestie
+              </h3>
+            </div>
+
+            <div className="mb-4 rounded-xl bg-emerald-50 p-4">
+              <p className="text-sm leading-relaxed text-slate-800">
+                {suggestion.improved}
+              </p>
+            </div>
+
+            {suggestion.changes.length > 0 && (
+              <div className="mb-5">
+                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-400">
+                  Verbeteringen
+                </p>
+                <ul className="space-y-1">
+                  {suggestion.changes.map((change, i) => (
+                    <li key={i} className="flex gap-2 text-sm text-slate-600">
+                      <Check className="mt-0.5 size-3.5 shrink-0 text-emerald-500" />
+                      {change}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={handleAccept}
+                className="flex-1 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800"
+              >
+                Accepteren
+              </button>
+              <button
+                type="button"
+                onClick={handleIgnore}
+                className="flex-1 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+              >
+                Negeren
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -918,7 +1025,7 @@ export function CvEditor({ initialId, initialDoc }: CvEditorProps) {
           {templateId === "minimaal" && <MinimaalPreview doc={doc} />}
           <div className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 p-3 text-xs leading-5 text-emerald-900/70">
             <Sparkles className="mr-1 inline size-3.5" />
-            AI-verbeteringen worden in Phase 4 toegevoegd.
+            Gebruik &ldquo;Verbeter met AI&rdquo; in het Profiel-onderdeel om je samenvatting te versterken.
           </div>
         </div>
       </div>

@@ -20,9 +20,11 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
     "next": "^15.5.7",
+    "openai": "^6.44.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^2.6.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
