@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { ScanSearch, CheckCircle, XCircle, AlertCircle, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -49,13 +49,13 @@ export default function AtsCheckPage() {
   const [dataLoading, startDataLoad] = useTransition();
 
   // Load data on first render
-  useState(() => {
+  useEffect(() => {
     startDataLoad(async () => {
       const [r, j] = await Promise.all([getResumes(), getJobPosts()]);
       setResumes(r as { id: string; title: string; data_json: ResumeDocument }[]);
       setJobPosts(j);
     });
-  });
+  }, []);
 
   const handleCheck = () => {
     if (!selectedCv || !selectedJob) return;
