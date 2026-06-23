@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/logo";
 const groups = [
   { title: "Product", links: [["CV maken", "/cv-maken"], ["Sollicitatiebrief", "/sollicitatiebrief-maken"], ["ATS-check", "/ats-check"], ["Prijzen", "/prijzen"]] },
   { title: "Inspiratie", links: [["CV voorbeelden", "/cv-voorbeelden"], ["CV templates", "/cv-templates"], ["Blog", "/blog"]] },
-  { title: "Bedrijf", links: [["Privacy", "#"], ["Voorwaarden", "#"], ["Contact", "mailto:hallo@solliciteerslim.nl"]] },
+  { title: "Bedrijf", links: [["Privacy", "#"], ["Voorwaarden", "#"], ["Contact", "/contact"]] },
 ];
 
 export function SiteFooter() {
