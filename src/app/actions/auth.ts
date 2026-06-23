@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { sendWelcomeEmail } from "@/lib/resend/emails";
 
 export type AuthState = { error: string } | { success: string } | null;
 
@@ -59,6 +60,9 @@ export async function signUp(_: AuthState, formData: FormData): Promise<AuthStat
       }
       return { error: error.message };
     }
+
+    // fire-and-forget: don't block redirect on email failure
+    sendWelcomeEmail(email, fullName).catch(() => {});
 
     redirect("/dashboard");
   } catch (e) {

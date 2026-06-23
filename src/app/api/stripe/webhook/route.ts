@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { stripe } from "@/lib/stripe/client";
 import { createClient } from "@supabase/supabase-js";
+import { sendPaymentConfirmationEmail } from "@/lib/resend/emails";
 
 function getPlanFromPriceId(priceId: string): "starter" | "pro" | null {
   if (
@@ -61,6 +62,13 @@ export async function POST(request: NextRequest) {
             updated_at: new Date().toISOString(),
           })
           .eq("stripe_customer_id", session.customer as string);
+
+        // send payment confirmation email (fire-and-forget)
+        if (session.customer_email || session.customer_details?.email) {
+          const toEmail = (session.customer_email || session.customer_details?.email) as string;
+          const toName = session.customer_details?.name ?? undefined;
+          sendPaymentConfirmationEmail(toEmail, toName, plan).catch(() => {});
+        }
         break;
       }
 
