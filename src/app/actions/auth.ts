@@ -120,3 +120,21 @@ export async function updateProfile(_: AuthState, formData: FormData): Promise<A
     return { error: "Er is een onverwachte fout opgetreden. Probeer het opnieuw." };
   }
 }
+
+export async function updatePassword(_: AuthState, formData: FormData): Promise<AuthState> {
+  const password = formData.get("password") as string;
+  const confirm = formData.get("confirm") as string;
+
+  if (!password || password.length < 8) return { error: "Wachtwoord moet minimaal 8 tekens bevatten." };
+  if (password !== confirm) return { error: "Wachtwoorden komen niet overeen." };
+
+  try {
+    const supabase = await createClient();
+    const { error } = await supabase.auth.updateUser({ password });
+    if (error) return { error: error.message };
+    redirect("/dashboard");
+  } catch (e) {
+    if (isRedirect(e)) throw e;
+    return { error: "Er is een fout opgetreden. Probeer het opnieuw." };
+  }
+}
