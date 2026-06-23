@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 import { getPlanLabel, getPlanColor, type Plan } from "@/lib/entitlements";
-import { createPortalSession } from "@/app/actions/stripe";
 import { ProfileForm } from "./profile-form";
 import { PortalButton } from "./portal-button";
 

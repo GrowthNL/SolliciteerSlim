@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { openai, DEFAULT_MODEL } from "@/lib/openai/client";
 import { z } from "zod";
+import { PLAN_LIMITS, type Plan } from "@/lib/entitlements";
 
 // ─── Service role client for logging ─────────────────────────────────────────
 
@@ -21,7 +22,6 @@ async function logUsage(
   actionType: string,
   inputTokens: number,
   outputTokens: number,
-  refId?: string,
 ) {
   const costEstimate =
     (inputTokens / 1_000_000) * 0.15 + (outputTokens / 1_000_000) * 0.6;
@@ -32,8 +32,40 @@ async function logUsage(
     input_tokens: inputTokens,
     output_tokens: outputTokens,
     cost_estimate: costEstimate,
-    ref_id: refId ?? null,
   });
+}
+
+// ─── Monthly usage guard ──────────────────────────────────────────────────────
+
+export async function getMonthlyAiUsage(userId: string): Promise<number> {
+  const supabase = await createClient();
+  const start = new Date();
+  start.setDate(1);
+  start.setHours(0, 0, 0, 0);
+
+  const { count } = await supabase
+    .from("ai_usage_logs")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .gte("created_at", start.toISOString());
+
+  return count ?? 0;
+}
+
+async function guardAiUsage(
+  userId: string,
+  plan: Plan,
+): Promise<{ error: string } | null> {
+  if (!PLAN_LIMITS[plan].canUseAi) {
+    return { error: "AI-functies zijn beschikbaar vanaf het Pro-abonnement. Upgrade via je account." };
+  }
+  const limit = PLAN_LIMITS[plan].aiCallsPerMonth as number;
+  if (limit <= 0) return null;
+  const used = await getMonthlyAiUsage(userId);
+  if (used >= limit) {
+    return { error: `Je hebt je ${limit} AI-credits voor deze maand gebruikt. Volgende maand worden ze vernieuwd.` };
+  }
+  return null;
 }
 
 // ─── Zod schemas ──────────────────────────────────────────────────────────────
@@ -142,7 +174,6 @@ Retourneer alleen valide JSON, geen extra tekst.`;
     "analyzeVacature",
     completion.usage?.prompt_tokens ?? 0,
     completion.usage?.completion_tokens ?? 0,
-    jobPostId,
   ).catch(() => {});
 
   return { data: parsed, job_post_id: jobPostId };
@@ -157,10 +188,12 @@ export async function improveText(
   context: string,
 ): Promise<{ data: ImproveTextResult } | { error: string }> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Niet ingelogd." };
+
+  const { data: userProfile } = await supabase.from("users").select("plan").eq("id", user.id).single();
+  const guard = await guardAiUsage(user.id, (userProfile?.plan ?? "free") as Plan);
+  if (guard) return guard;
 
   const systemPrompt = `Je bent een Nederlandse loopbaancoach die cv-teksten verbetert.
 Verbeter de gegeven cv-tekst. Houd de tekst in het Nederlands. Maak de tekst krachtiger, specifieker en ATS-vriendelijker.
@@ -216,10 +249,12 @@ export async function generateAtsCheck(
   jobPostId: string,
 ): Promise<{ data: AtsCheckResult } | { error: string }> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Niet ingelogd." };
+
+  const { data: userProfile } = await supabase.from("users").select("plan").eq("id", user.id).single();
+  const guard = await guardAiUsage(user.id, (userProfile?.plan ?? "free") as Plan);
+  if (guard) return guard;
 
   // Fetch job post keywords
   const { data: jobPost } = await supabase
@@ -278,7 +313,6 @@ Retourneer alleen valide JSON, geen extra tekst.`;
     "generateAtsCheck",
     completion.usage?.prompt_tokens ?? 0,
     completion.usage?.completion_tokens ?? 0,
-    jobPostId,
   ).catch(() => {});
 
   return { data: parsed };
@@ -294,10 +328,12 @@ export async function generateCoverLetter(
   tone: "professioneel" | "enthousiast" | "informeel",
 ): Promise<{ data: CoverLetterResult } | { error: string }> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Niet ingelogd." };
+
+  const { data: userProfile } = await supabase.from("users").select("plan").eq("id", user.id).single();
+  const guard = await guardAiUsage(user.id, (userProfile?.plan ?? "free") as Plan);
+  if (guard) return guard;
 
   // Fetch job post
   const { data: jobPost } = await supabase
@@ -391,7 +427,6 @@ ${cvSummary}`,
     "generateCoverLetter",
     completion.usage?.prompt_tokens ?? 0,
     completion.usage?.completion_tokens ?? 0,
-    jobPostId,
   ).catch(() => {});
 
   return { data: { content: parsed.content, cover_letter_id: coverLetterId } };

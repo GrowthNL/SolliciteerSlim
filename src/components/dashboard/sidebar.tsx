@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FileText, LayoutDashboard, LetterText, LogOut, Settings, Sparkles, Target } from "lucide-react";
+import { FileText, LayoutDashboard, LetterText, LogOut, ScanSearch, Settings, Sparkles, Target } from "lucide-react";
 import { Logo } from "@/components/shared/logo";
 import { signOut } from "@/app/actions/auth";
 
@@ -11,6 +11,7 @@ const items = [
   { label: "Mijn cv's", href: "/dashboard/cv", icon: FileText, exact: false },
   { label: "Sollicitatiebrieven", href: "/dashboard/sollicitatiebrieven", icon: LetterText, exact: false },
   { label: "Vacatures", href: "/dashboard/vacatures", icon: Target, exact: false },
+  { label: "ATS-check", href: "/dashboard/ats-check", icon: ScanSearch, exact: false },
 ];
 
 export function Sidebar() {
