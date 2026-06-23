@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="64" viewBox="0 0 340 64" fill="none">
+  <g transform="translate(0,0)">
+    <rect width="64" height="64" rx="14" fill="#C6F24E"></rect>
+    <rect x="15" y="11" width="30" height="40" rx="5" fill="#111113"></rect>
+    <rect x="20" y="19" width="20" height="3" rx="1.5" fill="#C6F24E"></rect>
+    <rect x="20" y="26" width="20" height="3" rx="1.5" fill="#C6F24E"></rect>
+    <rect x="20" y="33" width="13" height="3" rx="1.5" fill="#C6F24E"></rect>
+    <circle cx="45" cy="46" r="11" fill="#FB5B36" stroke="#C6F24E" stroke-width="3"></circle>
+    <path d="M40.5 46 L44 49.5 L50 43" stroke="#fff" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+  </g>
+    <text x="92" y="42" font-family="&#39;Schibsted Grotesk&#39;, sans-serif" font-weight="800" font-size="40" letter-spacing="-1.4" fill="#F2F1EC">CVmaken<tspan fill="#C6F24E">.nu</tspan></text>
+</svg>
