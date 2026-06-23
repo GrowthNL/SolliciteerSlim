@@ -234,7 +234,7 @@ export default function CvMakenPage() {
             </h2>
             <p className="mt-4 text-[#56564F]">
               CVmaken.nu neemt je mee door elk onderdeel. Je hoeft niet te weten wat je moet
-              schrijven — de app helpt je op weg.
+              schrijven, de app helpt je op weg.
             </p>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

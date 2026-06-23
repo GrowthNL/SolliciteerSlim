@@ -160,7 +160,7 @@ export default function Page() {
                 disabled={isGenerating}
                 className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-100"
               >
-                <option value="">— Kies een cv —</option>
+                <option value="">Kies een cv</option>
                 {resumes.map((r) => (
                   <option key={r.id} value={r.id}>
                     {r.title}
@@ -185,10 +185,10 @@ export default function Page() {
                 disabled={isGenerating}
                 className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-100"
               >
-                <option value="">— Kies een vacature —</option>
+                <option value="">Kies een vacature</option>
                 {jobPosts.map((j) => (
                   <option key={j.id} value={j.id}>
-                    {j.job_title} — {j.company}
+                    {j.job_title} · {j.company}
                   </option>
                 ))}
               </select>

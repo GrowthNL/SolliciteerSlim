@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Blog | CVmaken.nu — Tips voor je sollicitatie",
+  title: "Blog | CVmaken.nu, Tips voor je sollicitatie",
   description:
     "Praktische tips over cv's schrijven, ATS-systemen, sollicitatiegesprekken en AI in je sollicitatie. Voor Nederlandse werkzoekenden.",
 };
@@ -37,7 +37,7 @@ const articles: Article[] = [
     slug: "profiel-dat-recruiters-bijblijft",
     title: "Hoe schrijf je een profiel dat recruiters bijblijft?",
     excerpt:
-      "Het profileringsvak bovenaan je cv is de enige plek waar je volledig in de ik-vorm mag spreken — en veel mensen verspillen die kans met clichés als 'resultaatgericht' en 'teamspeler'. Wij laten je zien hoe je in drie zinnen vertelt wie je bent, wat je kunt en waarom juist jij past bij de functie.",
+      "Het profileringsvak bovenaan je cv is de enige plek waar je volledig in de ik-vorm mag spreken, en veel mensen verspillen die kans met clichés als 'resultaatgericht' en 'teamspeler'. Wij laten je zien hoe je in drie zinnen vertelt wie je bent, wat je kunt en waarom juist jij past bij de functie.",
     author: "CVmaken.nu Team",
     date: "20 mei 2025",
     readTime: "4 min",
@@ -57,7 +57,7 @@ const articles: Article[] = [
     slug: "cv-zonder-werkervaring",
     title: "Van stage naar eerste baan: een cv zonder werkervaring",
     excerpt:
-      "Geen werkervaring hebben betekent niet dat je niets te vertellen hebt. Bijbanen, studieopdrachten, vrijwilligerswerk en extracurriculaire activiteiten zijn allemaal bewijs van vaardigheden en inzet — je hoeft ze alleen op de juiste manier te presenteren.",
+      "Geen werkervaring hebben betekent niet dat je niets te vertellen hebt. Bijbanen, studieopdrachten, vrijwilligerswerk en extracurriculaire activiteiten zijn allemaal bewijs van vaardigheden en inzet, je hoeft ze alleen op de juiste manier te presenteren.",
     author: "CVmaken.nu Team",
     date: "5 mei 2025",
     readTime: "5 min",
@@ -67,7 +67,7 @@ const articles: Article[] = [
     slug: "sollicitatiegesprek-10-vragen",
     title: "Sollicitatiegesprek: 10 vragen die je moet voorbereiden",
     excerpt:
-      "De meeste sollicitatiegesprekken draaien om een handvol terugkerende vragen — maar toch komen kandidaten keer op keer onvoorbereid aan. Met deze tien vragen, inclusief uitleg over wat de interviewer écht wil weten, stap je een stuk zelfverzekerder de kamer in.",
+      "De meeste sollicitatiegesprekken draaien om een handvol terugkerende vragen, maar toch komen kandidaten keer op keer onvoorbereid aan. Met deze tien vragen, inclusief uitleg over wat de interviewer écht wil weten, stap je een stuk zelfverzekerder de kamer in.",
     author: "CVmaken.nu Team",
     date: "28 april 2025",
     readTime: "8 min",
@@ -77,7 +77,7 @@ const articles: Article[] = [
     slug: "linkedin-vs-cv",
     title: "LinkedIn vs cv: wat schrijf je waar?",
     excerpt:
-      "Veel sollicitanten kopiëren hun cv één-op-één naar LinkedIn — een gemiste kans. Je LinkedIn-profiel en je cv hebben elk een andere lezer en een ander doel, en de inhoud moet daarop worden afgestemd. We laten zien hoe je beide optimaal benut zonder jezelf te herhalen.",
+      "Veel sollicitanten kopiëren hun cv één-op-één naar LinkedIn, een gemiste kans. Je LinkedIn-profiel en je cv hebben elk een andere lezer en een ander doel, en de inhoud moet daarop worden afgestemd. We laten zien hoe je beide optimaal benut zonder jezelf te herhalen.",
     author: "CVmaken.nu Team",
     date: "18 april 2025",
     readTime: "4 min",
@@ -273,10 +273,10 @@ export default function BlogPage() {
               Nieuwe artikelen direct in je inbox
             </h2>
             <p className="mt-3 text-slate-600">
-              Maximaal twee e-mails per maand. Geen spam, geen reclame — alleen praktische tips voor
+              Maximaal twee e-mails per maand. Geen spam, geen reclame, alleen praktische tips voor
               je sollicitatie. Je kunt op elk moment uitschrijven.
             </p>
-            {/* Static form — not functional yet */}
+            {/* Static form, not functional yet */}
             <form
               action="#"
               className="mt-7 flex flex-col gap-3 sm:flex-row"

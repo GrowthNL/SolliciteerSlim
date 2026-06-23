@@ -17,7 +17,7 @@ import { Testimonials } from "@/components/magic/testimonials";
 export const metadata: Metadata = {
   title: "Sollicitatiebrief maken die uitnodigt | CVmaken.nu",
   description:
-    "Schrijf een sollicitatiebrief die recruiters overtuigt en jou een uitnodiging oplevert. Leer de structuur, voorbeeldzinnen en veelgemaakte fouten — en gebruik AI-hulp voor een persoonlijke brief.",
+    "Schrijf een sollicitatiebrief die recruiters overtuigt en jou een uitnodiging oplevert. Leer de structuur, voorbeeldzinnen en veelgemaakte fouten, en gebruik AI-hulp voor een persoonlijke brief.",
 };
 
 const structure = [
@@ -42,7 +42,7 @@ const structure = [
     label: "Afsluiting",
     title: "Eindig met een duidelijke call-to-action",
     description:
-      "Sluit af met een concrete uitnodiging tot gesprek. Wacht niet passief af — laat weten dat je beschikbaar bent en geef aan wanneer je belt of mailt voor een reactie.",
+      "Sluit af met een concrete uitnodiging tot gesprek. Wacht niet passief af, laat weten dat je beschikbaar bent en geef aan wanneer je belt of mailt voor een reactie.",
     tip: "Schrijf: 'Ik ga graag in gesprek en neem volgende week contact op om een moment af te stemmen.' Dit toont initiatief zonder opdringerig te zijn.",
   },
 ];
@@ -66,7 +66,7 @@ const mistakes = [
   {
     mistake: "Fouten in spelling",
     explanation:
-      "Spelfouten in een sollicitatiebrief zijn een dealbreaker — zeker voor functies waarbij communicatie belangrijk is. Laat je brief altijd nalezen of gebruik een schrijfhulp.",
+      "Spelfouten in een sollicitatiebrief zijn een dealbreaker, zeker voor functies waarbij communicatie belangrijk is. Laat je brief altijd nalezen of gebruik een schrijfhulp.",
   },
   {
     mistake: "Geen duidelijke call-to-action",
@@ -79,7 +79,7 @@ const exampleSentences = [
   {
     context: "Van de ene branche naar de andere",
     sentence:
-      "Mijn achtergrond in de gezondheidszorg heeft mij geleerd hoe ik complexe informatie helder communiceer — een vaardigheid die ik nu graag inzet in een commerciële omgeving.",
+      "Mijn achtergrond in de gezondheidszorg heeft mij geleerd hoe ik complexe informatie helder communiceer, een vaardigheid die ik nu graag inzet in een commerciële omgeving.",
   },
   {
     context: "Solliciteren op een groeifunctie",
@@ -166,7 +166,7 @@ export default function SollicitatiebriefMakenPage() {
             </h2>
             <p className="mt-4 text-[#56564F]">
               Een effectieve sollicitatiebrief heeft drie duidelijke delen. Elk deel heeft een
-              specifiek doel — en als één onderdeel ontbreekt, mist de brief haar kracht.
+              specifiek doel, en als één onderdeel ontbreekt, mist de brief haar kracht.
             </p>
           </div>
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
@@ -180,7 +180,7 @@ export default function SollicitatiebriefMakenPage() {
                     <Icon className="size-5 text-[#111113]" />
                   </span>
                   <span className="rounded-full bg-[#EDF7C6] px-2.5 py-0.5 text-xs font-semibold text-[#111113]">
-                    Deel {index + 1} — {label}
+                    Deel {index + 1} · {label}
                   </span>
                 </div>
                 <h3 className="font-display mt-5 text-lg font-semibold text-[#111113]">{title}</h3>
@@ -244,7 +244,7 @@ export default function SollicitatiebriefMakenPage() {
               Sterke openingszinnen voor elke situatie
             </h2>
             <p className="mt-4 text-[#56564F]">
-              Gebruik deze als inspiratie — pas ze altijd aan op je eigen situatie en stem ze af op
+              Gebruik deze als inspiratie, pas ze altijd aan op je eigen situatie en stem ze af op
               het bedrijf waarnaar je solliciteert.
             </p>
           </div>
@@ -269,7 +269,7 @@ export default function SollicitatiebriefMakenPage() {
 
       <Testimonials />
 
-      {/* CTA — AI letter generation */}
+      {/* CTA, AI letter generation */}
       <section className="border-t border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-24">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
@@ -284,7 +284,7 @@ export default function SollicitatiebriefMakenPage() {
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Altijd gebaseerd op jouw echte ervaring — geen verzinsels",
+                "Altijd gebaseerd op jouw echte ervaring, geen verzinsels",
                 "Zoekwoorden uit de vacature verwerkt in de brief",
                 "Juiste toon per branche en functieniveau",
                 "Direct bewerkbaar en kopieerbaar",
@@ -332,7 +332,7 @@ export default function SollicitatiebriefMakenPage() {
             </ol>
             <div className="mt-7 rounded-xl border border-[#E5E3DA] bg-[#F8FCE8] p-4 text-xs leading-5 text-[#111113]">
               <strong>Let op:</strong> CVmaken.nu verzint geen ervaring. De AI verbetert je
-              formuleringen op basis van wat jij hebt ingevuld — jij controleert altijd het
+              formuleringen op basis van wat jij hebt ingevuld, jij controleert altijd het
               eindresultaat.
             </div>
           </div>

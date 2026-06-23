@@ -121,7 +121,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .pause-on-hover:hover .animate-marquee-slow,
 .pause-on-hover:hover .animate-marquee-reverse { animation-play-state: paused; }
 
-/* Scroll reveal — base hidden state, .is-visible fades up */
+/* Scroll reveal, base hidden state, .is-visible fades up */
 .reveal {
   opacity: 0;
   transform: translateY(24px);

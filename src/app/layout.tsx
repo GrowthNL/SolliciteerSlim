@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   title: {
-    default: "CVmaken.nu — Jouw beste cv, in een paar klikken",
+    default: "CVmaken.nu, Jouw beste cv, in een paar klikken",
     template: "%s | CVmaken.nu",
   },
   description:
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "nl_NL",
     siteName: "CVmaken.nu",
-    title: "CVmaken.nu — Jouw beste cv, in een paar klikken",
+    title: "CVmaken.nu, Jouw beste cv, in een paar klikken",
     description:
       "Maak met AI een professioneel cv en sollicitatiebrief die aansluiten op jouw vacature.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CVmaken.nu — Jouw beste cv, in een paar klikken",
+    title: "CVmaken.nu, Jouw beste cv, in een paar klikken",
     description:
       "Maak met AI een professioneel cv en sollicitatiebrief die aansluiten op jouw vacature.",
   },

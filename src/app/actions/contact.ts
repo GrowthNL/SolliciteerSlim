@@ -27,7 +27,7 @@ export async function sendContactMessage(
 
   const resend = getResend();
 
-  // Send notification to inbox — this is the critical one
+  // Send notification to inbox, this is the critical one
   const notifyResult = await resend.emails.send({
     from: FROM_EMAIL,
     to: NOTIFY_EMAIL,
@@ -46,7 +46,7 @@ export async function sendContactMessage(
     return { error: `Verzenden mislukt (${notifyResult.error.message}). Stuur je bericht direct naar info@cvmaken.nu.` };
   }
 
-  // Confirmation to sender — fire-and-forget, don't fail the action if this bounces
+  // Confirmation to sender, fire-and-forget, don't fail the action if this bounces
   resend.emails.send({
     from: FROM_EMAIL,
     to: email,
@@ -65,7 +65,7 @@ export async function sendContactMessage(
               <tr><td style="padding:36px 40px 32px;">
                 <h1 style="margin:0 0 12px;font-size:22px;font-weight:700;color:#0f172a;">Bedankt, ${name}!</h1>
                 <p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#475569;">
-                  We hebben je bericht ontvangen en nemen zo snel mogelijk contact met je op — doorgaans binnen één werkdag.
+                  We hebben je bericht ontvangen en nemen zo snel mogelijk contact met je op, doorgaans binnen één werkdag.
                 </p>
                 <a href="${SITE_URL}/dashboard"
                    style="display:inline-block;background:#059669;color:#fff;font-weight:600;font-size:14px;padding:12px 28px;border-radius:10px;text-decoration:none;">

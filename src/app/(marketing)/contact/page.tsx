@@ -36,7 +36,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xl font-black text-[#111113]">Bericht ontvangen!</p>
                   <p className="mt-2 text-sm leading-6 text-[#56564F]">
-                    We nemen zo snel mogelijk contact met je op — doorgaans binnen één werkdag.
+                    We nemen zo snel mogelijk contact met je op, doorgaans binnen één werkdag.
                   </p>
                 </div>
               </div>

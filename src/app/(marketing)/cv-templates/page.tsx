@@ -6,7 +6,7 @@ import { KlassiekPreview } from "@/features/templates/klassiek-preview";
 import { MinimaalPreview } from "@/features/templates/minimaal-preview";
 
 export const metadata: Metadata = {
-  title: "CV Templates | CVmaken.nu — Professioneel en ATS-proof",
+  title: "CV Templates | CVmaken.nu, Professioneel en ATS-proof",
   description:
     "Drie professionele cv-templates die ATS-systemen passeren én recruiters aanspreken. Kies de opmaak die bij jouw sector past.",
 };
@@ -40,7 +40,7 @@ const templates = [
     name: "Minimaal",
     tagline: "Strak & ruimtelijk",
     description:
-      "Maximale witruimte, één accentkleur. Rustige elegantie die van nature past bij creatieve sectoren — zonder dat het ten koste gaat van leesbaarheid of ATS-compatibiliteit.",
+      "Maximale witruimte, één accentkleur. Rustige elegantie die van nature past bij creatieve sectoren, zonder dat het ten koste gaat van leesbaarheid of ATS-compatibiliteit.",
     sectors: ["Design", "Creatief", "Architectuur"],
     accent: "border-[#E5E3DA]",
     badge: null,
@@ -71,7 +71,7 @@ export default function CvTemplatesPage() {
             passeren
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#56564F]">
-            Elke template is opgebouwd vanuit inhoud — niet vanuit design. Ze zien er goed uit voor
+            Elke template is opgebouwd vanuit inhoud, niet vanuit design. Ze zien er goed uit voor
             de recruiter én worden correct gelezen door geautomatiseerde filterprogramma&apos;s.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -197,7 +197,7 @@ export default function CvTemplatesPage() {
             </div>
             <div className="border-t border-white/10 bg-[#C6F24E]/10 px-6 py-4">
               <p className="text-xs font-semibold text-[#C6F24E]">
-                Alle secties correct gelezen — cv gaat door naar recruiter
+                Alle secties correct gelezen, cv gaat door naar recruiter
               </p>
             </div>
           </div>

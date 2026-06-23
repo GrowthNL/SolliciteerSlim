@@ -46,7 +46,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ u
               {getPlanLabel(plan)}
             </span>
             {plan === "free" && (
-              <span className="text-sm text-slate-500">Gratis plan — beperkte functies</span>
+              <span className="text-sm text-slate-500">Gratis plan, beperkte functies</span>
             )}
           </div>
 

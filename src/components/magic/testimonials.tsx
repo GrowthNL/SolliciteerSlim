@@ -110,7 +110,7 @@ export function Testimonials({ variant = "light" }: TestimonialsProps) {
       <div className="container-shell">
         <div className="mx-auto max-w-2xl text-center">
           <p className="font-mono-label text-xs text-[#9A9A92]">
-            <span className="font-bold text-[#FB5B36]">Reviews</span> — Wat gebruikers zeggen
+            <span className="font-bold text-[#FB5B36]">Reviews</span> · Wat gebruikers zeggen
           </p>
           <h2
             className={`mt-3 text-3xl font-black tracking-[-0.03em] sm:text-4xl ${

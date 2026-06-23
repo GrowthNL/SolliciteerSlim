@@ -58,10 +58,10 @@ export default function PrivacyPage() {
             CVmaken.nu verkoopt jouw gegevens nooit aan derden. We maken gebruik van de volgende verwerkers:
           </p>
           <ul className="list-disc list-inside space-y-1 text-slate-600 mt-3">
-            <li><strong>Supabase</strong> — databasehosting binnen de EU (opslag van accountgegevens en cv-data)</li>
-            <li><strong>OpenAI</strong> — AI-verwerking van cv-inhoud; gegevens worden geanonimiseerd doorgegeven en niet gebruikt voor modeltraining conform onze verwerkersovereenkomst</li>
-            <li><strong>Stripe</strong> — veilige verwerking van betalingen</li>
-            <li><strong>Resend</strong> — verzending van transactionele e-mails</li>
+            <li><strong>Supabase</strong>: databasehosting binnen de EU (opslag van accountgegevens en cv-data)</li>
+            <li><strong>OpenAI</strong>: AI-verwerking van cv-inhoud; gegevens worden geanonimiseerd doorgegeven en niet gebruikt voor modeltraining conform onze verwerkersovereenkomst</li>
+            <li><strong>Stripe</strong>: veilige verwerking van betalingen</li>
+            <li><strong>Resend</strong>: verzending van transactionele e-mails</li>
           </ul>
           <p className="text-slate-600 leading-7 mt-3">
             Met alle verwerkers hebben wij een verwerkersovereenkomst gesloten conform de AVG.
@@ -74,11 +74,11 @@ export default function PrivacyPage() {
             Op grond van de AVG (artikelen 15–22) heb je de volgende rechten:
           </p>
           <ul className="list-disc list-inside space-y-1 text-slate-600 mt-3">
-            <li><strong>Inzage</strong> — je kunt opvragen welke gegevens we van je verwerken</li>
-            <li><strong>Rectificatie</strong> — onjuiste gegevens kun je laten corrigeren</li>
-            <li><strong>Verwijdering</strong> — je kunt vragen je gegevens te wissen (recht op vergetelheid)</li>
-            <li><strong>Bezwaar</strong> — je kunt bezwaar maken tegen verwerking van je gegevens</li>
-            <li><strong>Datatransport</strong> — je kunt je gegevens in een machine-leesbaar formaat opvragen</li>
+            <li><strong>Inzage</strong>: je kunt opvragen welke gegevens we van je verwerken</li>
+            <li><strong>Rectificatie</strong>: onjuiste gegevens kun je laten corrigeren</li>
+            <li><strong>Verwijdering</strong>: je kunt vragen je gegevens te wissen (recht op vergetelheid)</li>
+            <li><strong>Bezwaar</strong>: je kunt bezwaar maken tegen verwerking van je gegevens</li>
+            <li><strong>Datatransport</strong>: je kunt je gegevens in een machine-leesbaar formaat opvragen</li>
           </ul>
           <p className="text-slate-600 leading-7 mt-3">
             Om een verzoek in te dienen, stuur een e-mail naar{" "}

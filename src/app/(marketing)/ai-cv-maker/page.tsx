@@ -15,7 +15,7 @@ import { Reveal } from "@/components/magic/reveal";
 import { Testimonials } from "@/components/magic/testimonials";
 
 export const metadata: Metadata = {
-  title: "AI CV Maker | CVmaken.nu — Je cv gebouwd en aangescherpt door AI",
+  title: "AI CV Maker | CVmaken.nu, Je cv gebouwd en aangescherpt door AI",
   description:
     "Maak je cv met AI die specifiek getraind is voor de Nederlandse arbeidsmarkt. Geen generieke ChatGPT, maar ATS-bewuste AI die jouw cv per sectie aanscherpt.",
 };
@@ -39,7 +39,7 @@ export default function AiCvMakerPage() {
               className="font-display text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
               style={{ color: "#111113" }}
             >
-              Jouw cv in 10 minuten —{" "}
+              Jouw cv in 10 minuten,{" "}
               <span
                 className="relative inline-block"
                 style={{ color: "#111113" }}
@@ -67,7 +67,7 @@ export default function AiCvMakerPage() {
               className="mx-auto mt-6 max-w-xl text-lg leading-8"
               style={{ color: "#56564F" }}
             >
-              CVmaken.nu gebruikt AI die speciaal getraind is voor Nederlandse cv&apos;s — niet de
+              CVmaken.nu gebruikt AI die speciaal getraind is voor Nederlandse cv&apos;s, niet de
               generieke ChatGPT die soms terug naar het Engels vertaalt. ATS-bewust, sectiegericht
               en klaar voor de Nederlandse arbeidsmarkt.
             </p>
@@ -138,7 +138,7 @@ export default function AiCvMakerPage() {
                 number: "03",
                 title: "Download als ATS-proof PDF",
                 description:
-                  "Kies je favoriete template — Modern, Klassiek of Minimaal — en download een professionele PDF die door elk ATS-systeem heen komt.",
+                  "Kies je favoriete template, Modern, Klassiek of Minimaal, en download een professionele PDF die door elk ATS-systeem heen komt.",
               },
             ].map(({ number, title, description }, i) => (
               <Reveal key={number} delay={i * 100}>
@@ -179,7 +179,7 @@ export default function AiCvMakerPage() {
               Alles wat je nodig hebt
             </h2>
             <p className="mt-4 text-base leading-7" style={{ color: "#9A9A92" }}>
-              CVmaken.nu combineert slimme AI-functies met een intuïtieve editor — gebouwd voor de
+              CVmaken.nu combineert slimme AI-functies met een intuïtieve editor, gebouwd voor de
               Nederlandse arbeidsmarkt.
             </p>
           </div>
@@ -376,11 +376,11 @@ export default function AiCvMakerPage() {
               [
                 [
                   "Kan de AI mijn cv schrijven?",
-                  "De AI schrijft niet je volledige cv van nul, maar scherpt jouw teksten aan. Je vult je eigen gegevens, ervaringen en vaardigheden in — de AI maakt die teksten vervolgens scherper, professioneler en beter afgestemd op de Nederlandse arbeidsmarkt. Zo blijft het cv authentiek jouw verhaal.",
+                  "De AI schrijft niet je volledige cv van nul, maar scherpt jouw teksten aan. Je vult je eigen gegevens, ervaringen en vaardigheden in, de AI maakt die teksten vervolgens scherper, professioneler en beter afgestemd op de Nederlandse arbeidsmarkt. Zo blijft het cv authentiek jouw verhaal.",
                 ],
                 [
                   "Is mijn cv door AI herkenbaar?",
-                  "Nee, niet als je de suggesties als startpunt gebruikt en ze personaliseert. De AI geeft je betere formuleringen, maar jij bent degene die de inhoud bepaalt. Een goed AI-verbeterd cv klinkt als jij — alleen scherper.",
+                  "Nee, niet als je de suggesties als startpunt gebruikt en ze personaliseert. De AI geeft je betere formuleringen, maar jij bent degene die de inhoud bepaalt. Een goed AI-verbeterd cv klinkt als jij, alleen scherper.",
                 ],
                 [
                   "Wat kost de AI-functie?",

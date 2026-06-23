@@ -132,7 +132,7 @@ export function Homepage() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-8 text-[#56564F]">
-              CVmaken.nu helpt je met AI om je cv, motivatiebrief en vacaturematch te verbeteren — zonder gedoe, zonder nepfeiten.
+              CVmaken.nu helpt je met AI om je cv, motivatiebrief en vacaturematch te verbeteren, zonder gedoe, zonder nepfeiten.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -186,7 +186,7 @@ export function Homepage() {
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">01</span> — Zo werkt het
+              <span className="text-[#FB5B36] font-bold">01</span> · Zo werkt het
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
               Van losse info naar een sterke sollicitatie
@@ -217,7 +217,7 @@ export function Homepage() {
         <div className="container-shell">
           <div className="max-w-2xl">
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#C6F24E] font-bold">02</span> — Eén slimme werkplek
+              <span className="text-[#C6F24E] font-bold">02</span> · Eén slimme werkplek
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#F2F1EC] sm:text-4xl">
               Alles wat je nodig hebt om gericht te solliciteren
@@ -248,7 +248,7 @@ export function Homepage() {
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">03</span> — Kies jouw template
+              <span className="text-[#FB5B36] font-bold">03</span> · Kies jouw template
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
               Professionele cv-ontwerpen die bij jou passen
@@ -335,7 +335,7 @@ export function Homepage() {
         <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">04</span> — AI met gezonde grenzen
+              <span className="text-[#FB5B36] font-bold">04</span> · AI met gezonde grenzen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
               Jouw verhaal blijft altijd van jou
@@ -375,7 +375,7 @@ export function Homepage() {
         <div className="container-shell">
           <div className="mx-auto max-w-xl text-center">
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">05</span> — Eenvoudige prijzen
+              <span className="text-[#FB5B36] font-bold">05</span> · Eenvoudige prijzen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
               Begin gratis, betaal pas als je klaar bent
@@ -417,7 +417,7 @@ export function Homepage() {
         <div className="container-shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
           <div>
             <p className="font-mono-label text-xs text-[#9A9A92]">
-              <span className="text-[#FB5B36] font-bold">06</span> — Veelgestelde vragen
+              <span className="text-[#FB5B36] font-bold">06</span> · Veelgestelde vragen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#111113]">
               Helder voordat je begint

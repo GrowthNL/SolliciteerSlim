@@ -912,7 +912,7 @@ export function CvEditor({ initialId, initialDoc, plan = "free" }: CvEditorProps
     setIsDirty(true);
   };
 
-  // Debounced autosave — fires 1.5 s after the last change
+  // Debounced autosave, fires 1.5 s after the last change
   useEffect(() => {
     if (!isDirty) return;
     setSaveStatus("saving");

@@ -1,4 +1,4 @@
-// PDF template — server/client compatible via dynamic import
+// PDF template, server/client compatible via dynamic import
 // Uses @react-pdf/renderer components (not HTML/CSS)
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { ResumeDocument } from "@/features/resumes/model";

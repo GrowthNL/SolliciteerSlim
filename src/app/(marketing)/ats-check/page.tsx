@@ -57,7 +57,7 @@ const atsTips = [
     icon: Tag,
     tip: "Gebruik standaard sectiekoppen",
     explanation:
-      "Schrijf 'Werkervaring', 'Opleiding' en 'Vaardigheden' — geen creatieve varianten als 'Mijn parcours' of 'Skills & meer'. ATS-systemen herkennen de standaardtermen.",
+      "Schrijf 'Werkervaring', 'Opleiding' en 'Vaardigheden', geen creatieve varianten als 'Mijn parcours' of 'Skills & meer'. ATS-systemen herkennen de standaardtermen.",
   },
   {
     icon: Table2,
@@ -173,7 +173,7 @@ export default function AtsCheckPage() {
               Wat is een ATS?
             </h2>
             <p className="mt-5 leading-7 text-[#56564F]">
-              ATS staat voor <strong className="text-[#111113]">Applicant Tracking System</strong> —
+              ATS staat voor <strong className="text-[#111113]">Applicant Tracking System</strong>:
               software die bedrijven gebruiken om het sollicitatieproces te beheren. Meer dan 90% van
               de grote bedrijven gebruikt een ATS.
             </p>
@@ -184,7 +184,7 @@ export default function AtsCheckPage() {
             </p>
             <p className="mt-4 leading-7 text-[#56564F]">
               Alleen cv&apos;s die voldoende overeenkomen met de vacature, krijgen een score die hoog
-              genoeg is om door te komen. De rest wordt automatisch afgewezen — zonder dat een mens
+              genoeg is om door te komen. De rest wordt automatisch afgewezen, zonder dat een mens
               ernaar heeft gekeken.
             </p>
           </div>

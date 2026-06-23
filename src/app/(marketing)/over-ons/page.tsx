@@ -6,9 +6,9 @@ import { NumberTicker } from "@/components/magic/number-ticker";
 import { Testimonials } from "@/components/magic/testimonials";
 
 export const metadata: Metadata = {
-  title: "Over ons | CVmaken.nu — Gebouwd voor de Nederlandse arbeidsmarkt",
+  title: "Over ons | CVmaken.nu, Gebouwd voor de Nederlandse arbeidsmarkt",
   description:
-    "CVmaken.nu is een Nederlands AI-cv-bouwer die gebouwd is voor de Nederlandse arbeidsmarkt. Direct, eerlijk, ATS-proof — zonder poespas.",
+    "CVmaken.nu is een Nederlands AI-cv-bouwer die gebouwd is voor de Nederlandse arbeidsmarkt. Direct, eerlijk, ATS-proof, zonder poespas.",
 };
 
 const stats = [
@@ -39,7 +39,7 @@ const values = [
     icon: Heart,
     title: "Eerlijkheid boven alles",
     description:
-      "Wij schrijven geen tekst voor je. AI verbetert en verfijnt jóúw woorden — de inhoud blijft authentiek en herkenbaar als van jou. Geen generieke bullshit die recruiters in één oogopslag doorzien.",
+      "Wij schrijven geen tekst voor je. AI verbetert en verfijnt jóúw woorden, de inhoud blijft authentiek en herkenbaar als van jou. Geen generieke bullshit die recruiters in één oogopslag doorzien.",
     accent: "bg-[#FFE3DA]",
     iconColor: "text-[#FB5B36]",
   },
@@ -55,7 +55,7 @@ const values = [
     icon: Globe,
     title: "Nederlands door en door",
     description:
-      "Gebouwd voor de Nederlandse arbeidsmarkt. Nederlandse ATS-normen, Nederlandse sectornamen, Nederlandse datumnotaties — niet een vertaalde Amerikaanse tool.",
+      "Gebouwd voor de Nederlandse arbeidsmarkt. Nederlandse ATS-normen, Nederlandse sectornamen, Nederlandse datumnotaties, niet een vertaalde Amerikaanse tool.",
     accent: "bg-[#EDF7C6]",
     iconColor: "text-[#111113]",
   },
@@ -130,7 +130,7 @@ export default function OverOnsPage() {
               <p>
                 De bestaande tools zijn ofwel peperduur, ofwel ontworpen voor de Amerikaanse
                 of Britse markt. Wij wilden iets anders: een tool die de Nederlandse normen
-                kent, de juiste ATS-structuren begrijpt, en toegankelijk is voor iedereen —
+                kent, de juiste ATS-structuren begrijpt, en toegankelijk is voor iedereen,
                 van recent afgestudeerde tot dertigjarige professional.
               </p>
               <p>
@@ -270,7 +270,7 @@ export default function OverOnsPage() {
               Het team
             </div>
             <h2 className="mt-5 text-balance text-3xl font-black tracking-[-0.03em] text-[#111113] sm:text-4xl">
-              We zijn nog klein —{" "}
+              We zijn nog klein,{" "}
               <span className="text-[#FB5B36]">en dat is juist goed</span>
             </h2>
             <div className="mt-6 space-y-4 leading-7 text-[#56564F]">
@@ -283,7 +283,7 @@ export default function OverOnsPage() {
               <p>
                 Kleine teams bewegen snel, luisteren scherp naar gebruikers, en kunnen
                 keuzes maken die een groot bedrijf nooit zou durven. Als iets niet klopt,
-                horen we het en passen we het aan — zonder drie vergaderen en een
+                horen we het en passen we het aan, zonder drie vergaderen en een
                 kwartaalplan.
               </p>
               <p>
@@ -335,7 +335,7 @@ export default function OverOnsPage() {
               Gratis beginnen
             </div>
             <h2 className="mt-6 text-balance text-3xl font-black tracking-[-0.04em] text-[#F2F1EC] sm:text-4xl">
-              Ervaar het zelf — gratis beginnen
+              Ervaar het zelf, gratis beginnen
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-[#9A9A92]">
               Bouw je eerste cv gratis. Geen creditcard, geen proefperiode die afloopt,

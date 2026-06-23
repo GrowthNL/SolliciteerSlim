@@ -13,7 +13,7 @@ type ScoreRingProps = {
 
 /**
  * Animated circular progress ring that draws + counts up when scrolled into view.
- * Used to visualize an ATS score — strong trust/conversion signal.
+ * Used to visualize an ATS score, strong trust/conversion signal.
  */
 export function ScoreRing({ score, size = 160, label = "ATS-score", sublabel }: ScoreRingProps) {
   const ref = useRef<HTMLDivElement>(null);

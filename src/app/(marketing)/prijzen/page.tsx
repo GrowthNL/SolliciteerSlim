@@ -100,7 +100,7 @@ export default function PrijzenPage() {
             Begin gratis en kies pas later wat je nodig hebt. Geen verborgen kosten, geen automatische upgrades, geen gedoe.
           </p>
 
-          {/* Billing toggle — static, annual shown */}
+          {/* Billing toggle, static, annual shown */}
           <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1 text-sm font-semibold shadow-sm">
             <span className="rounded-full px-4 py-1.5 text-slate-500">Per maand</span>
             <span className="rounded-full bg-emerald-700 px-4 py-1.5 text-white">

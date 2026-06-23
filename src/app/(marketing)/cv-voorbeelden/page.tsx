@@ -27,7 +27,7 @@ import { Reveal } from "@/components/magic/reveal";
 import { TrustBar } from "@/components/magic/trust-bar";
 
 export const metadata: Metadata = {
-  title: "CV-voorbeelden per beroep — 24 beroepen",
+  title: "CV-voorbeelden per beroep, 24 beroepen",
   description:
     "Bekijk cv-voorbeelden voor 24 beroepen: van software engineer tot verpleegkundige. Gebruik ze als inspiratie en maak jouw eigen cv in SolliciteerSlim.",
 };
@@ -38,7 +38,7 @@ const professions = [
     title: "Software Engineer",
     sector: "Tech",
     sections: ["Profiel", "Werkervaring", "Projecten", "Vaardigheden", "Opleiding"],
-    tip: "Zet vaardigheden en programmeertalen hoog — recruiters scannen hier als eerste op.",
+    tip: "Zet vaardigheden en programmeertalen hoog, recruiters scannen hier als eerste op.",
   },
   {
     icon: BarChart2,
@@ -80,7 +80,7 @@ const professions = [
     title: "Grafisch Designer",
     sector: "Creatief",
     sections: ["Profiel", "Werkervaring", "Vaardigheden", "Portfolio", "Opleiding"],
-    tip: "Link naar je online portfolio. Houd het cv clean — laat het werk spreken.",
+    tip: "Link naar je online portfolio. Houd het cv clean, laat het werk spreken.",
   },
   {
     icon: Package,
@@ -94,7 +94,7 @@ const professions = [
     title: "Doktersassistente",
     sector: "Zorg",
     sections: ["Profiel", "Werkervaring", "Opleiding", "BIG-registratie", "Vaardigheden"],
-    tip: "Vermeld je BIG-registratie en noem specifieke taken zoals triageren en assisteren bij kleine ingrepen — dat onderscheidt je direct van andere kandidaten.",
+    tip: "Vermeld je BIG-registratie en noem specifieke taken zoals triageren en assisteren bij kleine ingrepen, dat onderscheidt je direct van andere kandidaten.",
   },
   {
     icon: Users,
@@ -108,21 +108,21 @@ const professions = [
     title: "Data Analist",
     sector: "Tech",
     sections: ["Profiel", "Werkervaring", "Projecten", "Vaardigheden", "Opleiding"],
-    tip: "Noem concrete tools (Python, SQL, Power BI, Tableau) en beschrijf een project met een meetbaar bedrijfsresultaat — recruiters kijken direct naar impact, niet alleen naar technieken.",
+    tip: "Noem concrete tools (Python, SQL, Power BI, Tableau) en beschrijf een project met een meetbaar bedrijfsresultaat, recruiters kijken direct naar impact, niet alleen naar technieken.",
   },
   {
     icon: Briefcase,
     title: "Financieel Controller",
     sector: "Finance",
     sections: ["Profiel", "Werkervaring", "Opleiding", "Vaardigheden", "Lidmaatschappen"],
-    tip: "Kwantificeer de omvang van je rapportages (jaarrekening voor €50M omzet) en vermeld lidmaatschap van het NBA of NIVRA — dat wekt direct vertrouwen bij de hiring manager.",
+    tip: "Kwantificeer de omvang van je rapportages (jaarrekening voor €50M omzet) en vermeld lidmaatschap van het NBA of NIVRA, dat wekt direct vertrouwen bij de hiring manager.",
   },
   {
     icon: Scale,
     title: "Juridisch Medewerker",
     sector: "Juridisch",
     sections: ["Profiel", "Werkervaring", "Opleiding", "Publicaties", "Talen"],
-    tip: "Specificeer je rechtsgebied (arbeidsrecht, vastgoed, strafrecht) en noem eventuele publicaties of stages bij rechtbanken — generalisten vallen minder op dan specialisten.",
+    tip: "Specificeer je rechtsgebied (arbeidsrecht, vastgoed, strafrecht) en noem eventuele publicaties of stages bij rechtbanken, generalisten vallen minder op dan specialisten.",
   },
   {
     icon: TrendingUp,
@@ -136,14 +136,14 @@ const professions = [
     title: "UX Designer",
     sector: "Creatief",
     sections: ["Profiel", "Werkervaring", "Portfolio", "Vaardigheden", "Opleiding"],
-    tip: "Voeg een portfoliolink toe direct naast je naam — zonder portfolio wordt een UX cv zelden serieus genomen. Beschrijf je ontwerpproces, niet alleen het eindresultaat.",
+    tip: "Voeg een portfoliolink toe direct naast je naam, zonder portfolio wordt een UX cv zelden serieus genomen. Beschrijf je ontwerpproces, niet alleen het eindresultaat.",
   },
   {
     icon: Heart,
     title: "Sociaal Werker",
     sector: "Zorg",
     sections: ["Profiel", "Werkervaring", "Opleiding", "Certificaten", "Vrijwilligerswerk"],
-    tip: "Benoem de doelgroepen waarmee je hebt gewerkt (jeugd, ouderen, daklozen) en vermeld agressietraining of SKJ-registratie als je die hebt — werkgevers in de zorg hechten hier veel waarde aan.",
+    tip: "Benoem de doelgroepen waarmee je hebt gewerkt (jeugd, ouderen, daklozen) en vermeld agressietraining of SKJ-registratie als je die hebt, werkgevers in de zorg hechten hier veel waarde aan.",
   },
   {
     icon: MessageSquare,
@@ -157,7 +157,7 @@ const professions = [
     title: "Bouwkundig Ingenieur",
     sector: "Techniek",
     sections: ["Profiel", "Werkervaring", "Projecten", "Certificaten", "Opleiding"],
-    tip: "Omschrijf projecten met m², budget en opdrachtgever. Vermeld BIM-software (Revit, AutoCAD) en VCA-certificering — dat zijn standaard vereisten bij grote aannemers.",
+    tip: "Omschrijf projecten met m², budget en opdrachtgever. Vermeld BIM-software (Revit, AutoCAD) en VCA-certificering, dat zijn standaard vereisten bij grote aannemers.",
   },
   {
     icon: Home,
@@ -171,7 +171,7 @@ const professions = [
     title: "Hotelmanager",
     sector: "Horeca",
     sections: ["Profiel", "Werkervaring", "Talen", "Vaardigheden", "Opleiding"],
-    tip: "Vermeld talen met niveau (C1, B2) en het type accommodatie (boutique, 4-sterren keten, resort) — gastvrije sectoren kijken als eerste naar communicatie en flexibiliteit.",
+    tip: "Vermeld talen met niveau (C1, B2) en het type accommodatie (boutique, 4-sterren keten, resort), gastvrije sectoren kijken als eerste naar communicatie en flexibiliteit.",
   },
   {
     icon: Truck,
@@ -199,7 +199,7 @@ const professions = [
     title: "Starter / Geen ervaring",
     sector: "Algemeen",
     sections: ["Profiel", "Opleiding", "Stage", "Vaardigheden", "Vrijwilligerswerk"],
-    tip: "Zet je stageplaatsen en bijbanen bovenaan werkervaring en omschrijf wat je geleerd hebt. Recruiters weten dat je net begint — durf te laten zien wat je wil en kunt leren.",
+    tip: "Zet je stageplaatsen en bijbanen bovenaan werkervaring en omschrijf wat je geleerd hebt. Recruiters weten dat je net begint, durf te laten zien wat je wil en kunt leren.",
   },
 ];
 
@@ -222,7 +222,7 @@ export default function CvVoorbeeldenPage() {
         <div className="container-shell text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">
             <span className="size-2 rounded-full bg-[#FB5B36]" />
-            24 beroepen — direct te gebruiken
+            24 beroepen, direct te gebruiken
           </div>
           <h1 className="mt-6 text-balance text-4xl font-black tracking-[-0.04em] text-[#111113] sm:text-5xl">
             Het juiste cv voor{" "}
@@ -253,7 +253,7 @@ export default function CvVoorbeeldenPage() {
               Zijn voorbeelden slim als startpunt?
             </p>
             <p className="mt-2 text-sm leading-6 text-[#56564F]">
-              Ja — en dat is geen toeval. Zien hoe een sterk cv eruitziet in jouw vakgebied geeft
+              Ja, en dat is geen toeval. Zien hoe een sterk cv eruitziet in jouw vakgebied geeft
               direct houvast: je weet welke secties recruiters verwachten, welke toon werkt en waar
               je je kunt onderscheiden. Dat scheelt je uren zoeken en gokken. Kies hieronder het
               voorbeeld dat het dichtst bij jouw situatie ligt en gebruik het als basis.
@@ -333,7 +333,7 @@ export default function CvVoorbeeldenPage() {
       <section className="bg-[#111113] py-20 sm:py-24">
         <div className="container-shell max-w-4xl text-center">
           <p className="font-mono-label text-xs text-[#9A9A92]">
-            <span className="font-bold text-[#C6F24E]">Recruiter-inzichten</span> — Wat elke recruiter wil zien
+            <span className="font-bold text-[#C6F24E]">Recruiter-inzichten</span> · Wat elke recruiter wil zien
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#F2F1EC]">
             De drie regels van een sterk cv
