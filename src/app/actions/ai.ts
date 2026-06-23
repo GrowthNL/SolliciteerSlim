@@ -35,7 +35,7 @@ async function logUsage(
   });
 }
 
-// ─── Monthly usage guard ──────────────────────────────────────────────────────
+// ─── Monthly usage guard + per-minute rate limit ─────────────────────────────
 
 export async function getMonthlyAiUsage(userId: string): Promise<number> {
   const supabase = await createClient();
@@ -52,6 +52,17 @@ export async function getMonthlyAiUsage(userId: string): Promise<number> {
   return count ?? 0;
 }
 
+async function checkMinuteRateLimit(userId: string): Promise<boolean> {
+  const supabase = await createClient();
+  const since = new Date(Date.now() - 60_000).toISOString();
+  const { count } = await supabase
+    .from("ai_usage_logs")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .gte("created_at", since);
+  return (count ?? 0) < 5;
+}
+
 async function guardAiUsage(
   userId: string,
   plan: Plan,
@@ -61,7 +72,13 @@ async function guardAiUsage(
   }
   const limit = PLAN_LIMITS[plan].aiCallsPerMonth as number;
   if (limit <= 0) return null;
-  const used = await getMonthlyAiUsage(userId);
+  const [used, withinRateLimit] = await Promise.all([
+    getMonthlyAiUsage(userId),
+    checkMinuteRateLimit(userId),
+  ]);
+  if (!withinRateLimit) {
+    return { error: "Je verstuurt te snel aanvragen. Wacht even en probeer het opnieuw." };
+  }
   if (used >= limit) {
     return { error: `Je hebt je ${limit} AI-credits voor deze maand gebruikt. Volgende maand worden ze vernieuwd.` };
   }
