@@ -8,6 +8,22 @@ import { Reveal } from "@/components/magic/reveal";
 import { NumberTicker } from "@/components/magic/number-ticker";
 import { TrustBar } from "@/components/magic/trust-bar";
 import { Testimonials } from "@/components/magic/testimonials";
+import { JsonLd } from "@/components/seo/json-ld";
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    ["Verzint de AI ervaring die ik niet heb?", "Nee. CVmaken.nu verbetert formuleringen, maar mag nooit werkgevers, diploma's, resultaten of datums bedenken. Jij controleert altijd de uitkomst."],
+    ["Kan ik CVmaken.nu gratis proberen?", "Ja. Je kunt gratis een account en cv maken, bewerken en bekijken. Betaalde opties worden pas relevant bij uitgebreid AI-gebruik en PDF-export."],
+    ["Is mijn cv veilig?", "Privacy is een uitgangspunt in de architectuur. Persoonlijke gegevens worden alleen verwerkt waar nodig en zijn met toegangsregels per gebruiker afgeschermd."],
+    ["Is dit geschikt voor elke branche?", "De basis is breed inzetbaar. Door een vacature toe te voegen houdt de AI rekening met de rol, branche en gevraagde vaardigheden."],
+  ].map(([q, a]) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
 const steps = [
   "Vul je gegevens in of plak je bestaande cv",
@@ -115,6 +131,7 @@ function ResumePreview() {
 export function Homepage() {
   return (
     <>
+      <JsonLd data={faqJsonLd} />
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-[#E5E3DA] py-20 sm:py-28 lg:py-32">
         <div className="grid-fade absolute inset-0" />
