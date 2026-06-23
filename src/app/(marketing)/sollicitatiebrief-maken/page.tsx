@@ -10,8 +10,6 @@ import {
   Handshake,
   Sparkles,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Sollicitatiebrief maken die uitnodigt | CVmaken.nu",
@@ -101,34 +99,30 @@ export default function SollicitatiebriefMakenPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-100 bg-[linear-gradient(135deg,#fbfcfa_45%,#edf8f1)] py-20 sm:py-28">
+      <section className="relative overflow-hidden border-b border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-28">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-[1fr_.75fr]">
           <div>
-            <Badge>Sollicitatiebrief</Badge>
-            <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">Sollicitatiebrief</div>
+            <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-bold tracking-tight text-[#111113] sm:text-5xl">
               Een sollicitatiebrief die jou{" "}
-              <span className="text-emerald-700">uitnodigt voor een gesprek</span>
+              <span className="text-[#111113]">uitnodigt voor een gesprek</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#56564F]">
               De meeste sollicitatiebrieven worden niet eens uitgelezen. Leer hoe je een brief
               schrijft die direct aansluit op de vacature, de recruiter pakt en jou onderscheidt van
               de rest.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <Link href="/registreren">
-                  Schrijf mijn brief <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/cv-maken">Maak eerst mijn cv</Link>
-              </Button>
+              <Link href="/registreren" className="inline-flex items-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]">
+                Schrijf mijn brief <ArrowRight className="size-4" />
+              </Link>
+              <Link href="/cv-maken" className="inline-flex items-center gap-2 rounded-lg border border-[#E5E3DA] bg-white px-6 py-3.5 text-sm font-semibold text-[#111113] transition-colors hover:bg-[#F2F1EC]">Maak eerst mijn cv</Link>
             </div>
-            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600">
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#56564F]">
               {["Gebaseerd op jouw cv", "Afgestemd op de vacature", "Klaar in minuten"].map(
                 (item) => (
                   <span key={item} className="flex items-center gap-1.5">
-                    <CheckCircle2 className="size-4 text-emerald-700" />
+                    <CheckCircle2 className="size-4 text-[#111113]" />
                     {item}
                   </span>
                 )
@@ -136,8 +130,8 @@ export default function SollicitatiebriefMakenPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-7 sm:p-9">
-            <p className="text-sm font-semibold uppercase tracking-[.14em] text-emerald-800">
+          <div className="rounded-3xl border border-[#E5E3DA] bg-[#F8FCE8] p-7 sm:p-9">
+            <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
               Wat CVmaken.nu doet
             </p>
             <ul className="mt-6 space-y-5">
@@ -147,8 +141,8 @@ export default function SollicitatiebriefMakenPage() {
                 "Past de toon aan op branche en functieniveau",
                 "Geeft suggesties voor sterkere formuleringen",
               ].map((item) => (
-                <li key={item} className="flex gap-3 font-medium leading-6 text-slate-800">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-700" />
+                <li key={item} className="flex gap-3 font-medium leading-6 text-[#111113]">
+                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#111113]" />
                   {item}
                 </li>
               ))}
@@ -161,11 +155,11 @@ export default function SollicitatiebriefMakenPage() {
       <section className="py-20 sm:py-24">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge>Structuur</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">Structuur</div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               De structuur van een winnende sollicitatiebrief
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-[#56564F]">
               Een effectieve sollicitatiebrief heeft drie duidelijke delen. Elk deel heeft een
               specifiek doel — en als één onderdeel ontbreekt, mist de brief haar kracht.
             </p>
@@ -174,22 +168,22 @@ export default function SollicitatiebriefMakenPage() {
             {structure.map(({ icon: Icon, label, title, description, tip }, index) => (
               <div
                 key={title}
-                className="relative rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
+                className="relative rounded-2xl border border-[#E5E3DA] bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-10 items-center justify-center rounded-xl bg-emerald-50">
-                    <Icon className="size-5 text-emerald-700" />
+                  <span className="flex size-10 items-center justify-center rounded-xl bg-[#EDF7C6]">
+                    <Icon className="size-5 text-[#111113]" />
                   </span>
-                  <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
+                  <span className="rounded-full bg-[#EDF7C6] px-2.5 py-0.5 text-xs font-semibold text-[#111113]">
                     Deel {index + 1} — {label}
                   </span>
                 </div>
-                <h3 className="font-display mt-5 text-lg font-semibold text-slate-950">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
-                <div className="mt-5 rounded-xl border border-emerald-100 bg-emerald-50 p-4">
+                <h3 className="font-display mt-5 text-lg font-semibold text-[#111113]">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#56564F]">{description}</p>
+                <div className="mt-5 rounded-xl border border-[#E5E3DA] bg-[#F8FCE8] p-4">
                   <div className="flex items-start gap-2">
-                    <Lightbulb className="mt-0.5 size-4 shrink-0 text-emerald-700" />
-                    <p className="text-xs leading-5 text-emerald-900">{tip}</p>
+                    <Lightbulb className="mt-0.5 size-4 shrink-0 text-[#111113]" />
+                    <p className="text-xs leading-5 text-[#111113]">{tip}</p>
                   </div>
                 </div>
               </div>
@@ -199,14 +193,14 @@ export default function SollicitatiebriefMakenPage() {
       </section>
 
       {/* Mistakes */}
-      <section className="border-y border-slate-100 bg-slate-50 py-20 sm:py-24">
+      <section className="border-y border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-24">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge>Valkuilen</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">Valkuilen</div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               5 fouten die de meeste sollicitatiebrieven maken
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-[#56564F]">
               Herken je een van deze fouten? Je bent niet de enige. Maar als je ze vermijdt, sta je
               al voor op de meeste andere kandidaten.
             </p>
@@ -215,15 +209,15 @@ export default function SollicitatiebriefMakenPage() {
             {mistakes.map(({ mistake, explanation }, index) => (
               <div
                 key={mistake}
-                className={`rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)] ${
+                className={`rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)] ${
                   index === 4 ? "md:col-span-2 lg:col-span-1" : ""
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <XCircle className="mt-0.5 size-5 shrink-0 text-red-500" />
                   <div>
-                    <h3 className="font-semibold text-slate-950">{mistake}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{explanation}</p>
+                    <h3 className="font-semibold text-[#111113]">{mistake}</h3>
+                    <p className="mt-2 text-sm leading-6 text-[#56564F]">{explanation}</p>
                   </div>
                 </div>
               </div>
@@ -236,11 +230,11 @@ export default function SollicitatiebriefMakenPage() {
       <section className="py-20 sm:py-24">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge>Voorbeeldzinnen</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">Voorbeeldzinnen</div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               Sterke openingszinnen voor elke situatie
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-[#56564F]">
               Gebruik deze als inspiratie — pas ze altijd aan op je eigen situatie en stem ze af op
               het bedrijf waarnaar je solliciteert.
             </p>
@@ -249,12 +243,12 @@ export default function SollicitatiebriefMakenPage() {
             {exampleSentences.map(({ context, sentence }) => (
               <div
                 key={context}
-                className="rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
+                className="rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               >
-                <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-xs font-medium text-slate-600">
+                <span className="inline-flex items-center rounded-full border border-[#E5E3DA] bg-[#F2F1EC] px-2.5 py-0.5 text-xs font-medium text-[#56564F]">
                   {context}
                 </span>
-                <blockquote className="mt-4 border-l-2 border-emerald-600 pl-4 text-sm italic leading-7 text-slate-700">
+                <blockquote className="mt-4 border-l-2 border-[#111113] pl-4 text-sm italic leading-7 text-[#111113]">
                   &ldquo;{sentence}&rdquo;
                 </blockquote>
               </div>
@@ -264,14 +258,14 @@ export default function SollicitatiebriefMakenPage() {
       </section>
 
       {/* CTA — AI letter generation */}
-      <section className="border-t border-slate-100 bg-[linear-gradient(135deg,#fbfcfa_30%,#edf8f1)] py-20 sm:py-24">
+      <section className="border-t border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-24">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <Badge>AI-hulp</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">AI-hulp</div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               Laat CVmaken.nu je brief voor je schrijven
             </h2>
-            <p className="mt-5 max-w-xl leading-7 text-slate-600">
+            <p className="mt-5 max-w-xl leading-7 text-[#56564F]">
               Upload je cv en plak de vacaturetekst. CVmaken.nu analyseert beide en genereert
               een persoonlijke sollicitatiebrief die aansluit op jouw profiel én de specifieke eisen
               van de functie.
@@ -283,32 +277,28 @@ export default function SollicitatiebriefMakenPage() {
                 "Juiste toon per branche en functieniveau",
                 "Direct bewerkbaar en kopieerbaar",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-emerald-700" />
+                <li key={item} className="flex items-start gap-3 text-sm text-[#111113]">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#111113]" />
                   {item}
                 </li>
               ))}
             </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <Link href="/registreren">
-                  Maak mijn brief <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/cv-maken">Eerst cv maken</Link>
-              </Button>
+              <Link href="/registreren" className="inline-flex items-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]">
+                Maak mijn brief <ArrowRight className="size-4" />
+              </Link>
+              <Link href="/cv-maken" className="inline-flex items-center gap-2 rounded-lg border border-[#E5E3DA] bg-white px-6 py-3.5 text-sm font-semibold text-[#111113] transition-colors hover:bg-[#F2F1EC]">Eerst cv maken</Link>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-emerald-100 bg-white p-8 shadow-[0_4px_24px_rgba(16,185,129,0.08)] sm:p-10">
-            <div className="flex items-center gap-3 border-b border-slate-100 pb-5">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-emerald-100">
-                <Sparkles className="size-5 text-emerald-700" />
+          <div className="rounded-3xl border border-[#E5E3DA] bg-white p-8 shadow-[0_4px_24px_rgba(16,185,129,0.08)] sm:p-10">
+            <div className="flex items-center gap-3 border-b border-[#E5E3DA] pb-5">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-[#EDF7C6]">
+                <Sparkles className="size-5 text-[#111113]" />
               </span>
               <div>
-                <div className="font-semibold text-slate-950">AI Briefgenerator</div>
-                <div className="text-sm text-slate-500">
+                <div className="font-semibold text-[#111113]">AI Briefgenerator</div>
+                <div className="text-sm text-[#9A9A92]">
                   Jouw cv + vacature = persoonlijke brief
                 </div>
               </div>
@@ -321,14 +311,14 @@ export default function SollicitatiebriefMakenPage() {
                 ["4", "Pas aan, kopieer en verstuur"],
               ].map(([num, step]) => (
                 <li key={step} className="flex items-center gap-4">
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-xs font-bold text-white">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#C6F24E] text-xs font-bold text-[#111113]">
                     {num}
                   </span>
-                  <span className="text-sm font-medium text-slate-800">{step}</span>
+                  <span className="text-sm font-medium text-[#111113]">{step}</span>
                 </li>
               ))}
             </ol>
-            <div className="mt-7 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-xs leading-5 text-emerald-900">
+            <div className="mt-7 rounded-xl border border-[#E5E3DA] bg-[#F8FCE8] p-4 text-xs leading-5 text-[#111113]">
               <strong>Let op:</strong> CVmaken.nu verzint geen ervaring. De AI verbetert je
               formuleringen op basis van wat jij hebt ingevuld — jij controleert altijd het
               eindresultaat.

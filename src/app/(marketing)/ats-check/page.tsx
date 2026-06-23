@@ -14,9 +14,6 @@ import {
   FileDown,
   Minus,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "ATS-check: zorg dat jouw cv wordt gelezen | CVmaken.nu",
@@ -94,38 +91,34 @@ export default function AtsCheckPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-100 bg-[linear-gradient(135deg,#fbfcfa_45%,#edf8f1)] py-20 sm:py-28">
+      <section className="relative overflow-hidden border-b border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-28">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-[1fr_.75fr]">
           <div>
-            <Badge>ATS-check</Badge>
-            <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">ATS-check</div>
+            <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-bold tracking-tight text-[#111113] sm:text-5xl">
               Wordt jouw cv gefilterd{" "}
-              <span className="text-emerald-700">
+              <span className="text-[#111113]">
                 voordat een recruiter het ziet?
               </span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#56564F]">
               De meeste grote bedrijven gebruiken software die cv&apos;s automatisch doorzoekt en filtert
               vóórdat een mens ernaar kijkt. CVmaken.nu helpt je om die filters te passeren.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <Link href="/registreren">
-                  Check mijn cv <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/cv-maken">Maak een ATS-vriendelijk cv</Link>
-              </Button>
+              <Link href="/registreren" className="inline-flex items-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-black text-white">
+                Check mijn cv <ArrowRight className="size-4" />
+              </Link>
+              <Link href="/cv-maken" className="inline-flex items-center gap-2 rounded-lg border border-[#E5E3DA] bg-white px-6 py-3.5 text-sm font-black text-[#111113]">Maak een ATS-vriendelijk cv</Link>
             </div>
-            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600">
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#56564F]">
               {[
                 "Zoekwoorden gecontroleerd",
                 "Opmaak geanalyseerd",
                 "Verbeterpunten in één overzicht",
               ].map((item) => (
                 <span key={item} className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-4 text-emerald-700" />
+                  <CheckCircle2 className="size-4 text-[#111113]" />
                   {item}
                 </span>
               ))}
@@ -133,17 +126,17 @@ export default function AtsCheckPage() {
           </div>
 
           {/* ATS score mockup */}
-          <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-7 sm:p-9">
-            <p className="text-sm font-semibold uppercase tracking-[.14em] text-emerald-800">
+          <div className="rounded-3xl border border-[#E5E3DA] bg-[#EDF7C6] p-7 sm:p-9">
+            <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
               Voorbeeld ATS-score
             </p>
             <div className="mt-6 flex items-center gap-4">
-              <div className="relative flex size-20 items-center justify-center rounded-full border-4 border-emerald-600 bg-white">
-                <span className="font-display text-2xl font-bold text-emerald-700">74</span>
+              <div className="relative flex size-20 items-center justify-center rounded-full border-4 border-[#C6F24E] bg-white">
+                <span className="font-display text-2xl font-bold text-[#111113]">74</span>
               </div>
               <div>
-                <div className="font-semibold text-slate-900">Gedeeltelijk geoptimaliseerd</div>
-                <div className="mt-1 text-sm text-slate-600">Verbeterpunten gevonden</div>
+                <div className="font-semibold text-[#111113]">Gedeeltelijk geoptimaliseerd</div>
+                <div className="mt-1 text-sm text-[#56564F]">Verbeterpunten gevonden</div>
               </div>
             </div>
             <ul className="mt-6 space-y-3">
@@ -153,9 +146,9 @@ export default function AtsCheckPage() {
                 { ok: false, label: "8 zoekwoorden uit vacature ontbreken" },
                 { ok: false, label: "Contactinfo staat in de header" },
               ].map(({ ok, label }) => (
-                <li key={label} className="flex items-center gap-3 text-sm text-slate-800">
+                <li key={label} className="flex items-center gap-3 text-sm text-[#111113]">
                   {ok ? (
-                    <CheckCircle2 className="size-4 shrink-0 text-emerald-600" />
+                    <CheckCircle2 className="size-4 shrink-0 text-[#111113]" />
                   ) : (
                     <XCircle className="size-4 shrink-0 text-red-500" />
                   )}
@@ -171,29 +164,29 @@ export default function AtsCheckPage() {
       <section className="py-20 sm:py-24">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <Badge>Uitleg</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">Uitleg</div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               Wat is een ATS?
             </h2>
-            <p className="mt-5 leading-7 text-slate-600">
-              ATS staat voor <strong className="text-slate-900">Applicant Tracking System</strong> —
+            <p className="mt-5 leading-7 text-[#56564F]">
+              ATS staat voor <strong className="text-[#111113]">Applicant Tracking System</strong> —
               software die bedrijven gebruiken om het sollicitatieproces te beheren. Meer dan 90% van
               de grote bedrijven gebruikt een ATS.
             </p>
-            <p className="mt-4 leading-7 text-slate-600">
+            <p className="mt-4 leading-7 text-[#56564F]">
               Wanneer jij je cv uploadt op een vacaturesite of direct solliciteert, wordt het cv
               eerst door deze software gelezen. Het systeem scant op sleutelwoorden, functietitels,
               vaardigheden en opleidingen.
             </p>
-            <p className="mt-4 leading-7 text-slate-600">
+            <p className="mt-4 leading-7 text-[#56564F]">
               Alleen cv&apos;s die voldoende overeenkomen met de vacature, krijgen een score die hoog
               genoeg is om door te komen. De rest wordt automatisch afgewezen — zonder dat een mens
               ernaar heeft gekeken.
             </p>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10">
-            <Bot className="size-10 text-slate-400" />
-            <h3 className="font-display mt-5 text-xl font-bold text-slate-950">
+          <div className="rounded-3xl border border-[#E5E3DA] bg-[#F8F8F6] p-8 sm:p-10">
+            <Bot className="size-10 text-[#9A9A92]" />
+            <h3 className="font-display mt-5 text-xl font-bold text-[#111113]">
               Hoe werkt een ATS in de praktijk?
             </h3>
             <ol className="mt-5 space-y-4">
@@ -205,10 +198,10 @@ export default function AtsCheckPage() {
                 "Alleen boven een drempelwaarde gaat het door naar een recruiter",
               ].map((step, index) => (
                 <li key={step} className="flex gap-4">
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-xs font-bold text-white">
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#C6F24E] text-xs font-bold text-[#111113]">
                     {index + 1}
                   </span>
-                  <span className="text-sm leading-6 text-slate-700">{step}</span>
+                  <span className="text-sm leading-6 text-[#111113]">{step}</span>
                 </li>
               ))}
             </ol>
@@ -217,32 +210,27 @@ export default function AtsCheckPage() {
       </section>
 
       {/* Why 75% never reaches a recruiter */}
-      <section className="border-y border-slate-100 bg-slate-50 py-20 sm:py-24">
+      <section className="border-y border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-24">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge>
-              <AlertTriangle className="mr-1.5 size-3.5" />
-              Waarschuwing
-            </Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]"><AlertTriangle className="size-3.5 text-[#FB5B36]" />Waarschuwing</div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               Waarom 75% van de cv&apos;s nooit een menselijke recruiter bereikt
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-[#56564F]">
               Het is niet altijd jouw ervaring die je dwarszit. Vaak zit het probleem in de manier
               waarop je cv is opgemaakt of hoe de tekst is geformuleerd.
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {atsReasons.map(({ icon: Icon, title, description }) => (
-              <Card key={title}>
-                <CardHeader>
-                  <span className="mb-1 flex size-10 items-center justify-center rounded-xl bg-red-50">
-                    <Icon className="size-5 text-red-500" />
-                  </span>
-                  <CardTitle>{title}</CardTitle>
-                  <CardDescription>{description}</CardDescription>
-                </CardHeader>
-              </Card>
+              <div key={title} className="rounded-2xl border border-[#E5E3DA] bg-white p-7">
+                <div className="mb-1 flex size-10 items-center justify-center rounded-xl bg-red-50">
+                  <Icon className="size-5 text-red-500" />
+                </div>
+                <div className="mt-3 font-semibold text-[#111113]">{title}</div>
+                <div className="mt-1.5 text-sm leading-6 text-[#56564F]">{description}</div>
+              </div>
             ))}
           </div>
         </div>
@@ -252,11 +240,11 @@ export default function AtsCheckPage() {
       <section className="py-20 sm:py-24">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge>6 concrete tips</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">6 concrete tips</div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               Zo maak je jouw cv ATS-proof
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-[#56564F]">
               Geen technische kennis nodig. Volg deze zes stappen en je cv passeert de ATS-filter
               een stuk makkelijker.
             </p>
@@ -265,18 +253,18 @@ export default function AtsCheckPage() {
             {atsTips.map(({ icon: Icon, tip, explanation }, index) => (
               <div
                 key={tip}
-                className="rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
+                className="rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               >
                 <div className="flex items-start gap-3">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800">
-                    <span className="text-xs font-bold">{index + 1}</span>
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#EDF7C6]">
+                    <span className="text-xs font-bold text-[#111113]">{index + 1}</span>
                   </span>
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50">
-                    <Icon className="size-4 text-emerald-700" />
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#F8FCE8]">
+                    <Icon className="size-4 text-[#111113]" />
                   </span>
                 </div>
-                <h3 className="mt-4 font-semibold text-slate-950">{tip}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{explanation}</p>
+                <h3 className="mt-4 font-semibold text-[#111113]">{tip}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#56564F]">{explanation}</p>
               </div>
             ))}
           </div>
@@ -284,16 +272,14 @@ export default function AtsCheckPage() {
       </section>
 
       {/* CVmaken.nu ATS check */}
-      <section className="bg-slate-950 py-20 text-white sm:py-24">
+      <section className="bg-[#111113] py-20 text-white sm:py-24">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <Badge className="border-white/10 bg-white/10 text-emerald-200">
-              CVmaken.nu ATS-check
-            </Badge>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-[#C6F24E]">CVmaken.nu ATS-check</div>
             <h2 className="font-display mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Wat doet de ATS-check van CVmaken.nu?
             </h2>
-            <p className="mt-5 leading-7 text-slate-300">
+            <p className="mt-5 leading-7 text-[#9A9A92]">
               CVmaken.nu analyseert je cv op de meest voorkomende ATS-knelpunten en vergelijkt
               het direct met een vacature van jouw keuze.
             </p>
@@ -316,34 +302,31 @@ export default function AtsCheckPage() {
                 },
               ].map(({ icon: Icon, label, desc }) => (
                 <li key={label} className="flex items-start gap-4">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-400/15">
-                    <Icon className="size-5 text-emerald-300" />
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#C6F24E]/15">
+                    <Icon className="size-5 text-[#C6F24E]" />
                   </span>
                   <div>
                     <div className="font-semibold text-white">{label}</div>
-                    <div className="mt-0.5 text-sm text-slate-300">{desc}</div>
+                    <div className="mt-0.5 text-sm text-[#9A9A92]">{desc}</div>
                   </div>
                 </li>
               ))}
             </ul>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Button asChild className="bg-emerald-600 hover:bg-emerald-500" size="lg">
-                <Link href="/registreren">
-                  Check mijn cv nu <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="border-white/20 bg-white/10 text-white hover:bg-white/20"
+              <Link href="/registreren" className="inline-flex items-center gap-2 rounded-lg bg-[#C6F24E] px-6 py-3.5 text-sm font-black text-[#111113]">
+                Check mijn cv nu <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                href="/cv-maken"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-black text-white"
               >
-                <Link href="/cv-maken">Maak een nieuw cv</Link>
-              </Button>
+                Maak een nieuw cv
+              </Link>
             </div>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-white/[.055] p-8 sm:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[.14em] text-emerald-200">
+            <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#C6F24E]">
               Dit krijg je te zien
             </p>
             <div className="mt-6 space-y-4">
@@ -357,19 +340,19 @@ export default function AtsCheckPage() {
                 {
                   label: "Opmaak-score",
                   score: "90%",
-                  color: "bg-emerald-500",
+                  color: "bg-[#C6F24E]",
                   width: "w-[90%]",
                 },
                 {
                   label: "Leesbaarheid",
                   score: "85%",
-                  color: "bg-emerald-500",
+                  color: "bg-[#C6F24E]",
                   width: "w-[85%]",
                 },
               ].map(({ label, score, color, width }) => (
                 <div key={label}>
                   <div className="mb-2 flex items-center justify-between text-sm">
-                    <span className="text-slate-300">{label}</span>
+                    <span className="text-[#9A9A92]">{label}</span>
                     <span className="font-semibold text-white">{score}</span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-white/10">
@@ -389,7 +372,7 @@ export default function AtsCheckPage() {
                   "Verplaats contactgegevens uit de header",
                   "Gebruik 'projectmanager' i.p.v. 'projectleider'",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-slate-300">
+                  <li key={item} className="flex items-start gap-2 text-xs text-[#9A9A92]">
                     <span className="mt-0.5 block size-1.5 shrink-0 rounded-full bg-yellow-400" />
                     {item}
                   </li>
@@ -402,18 +385,16 @@ export default function AtsCheckPage() {
 
       {/* Final CTA */}
       <section className="px-4 py-20">
-        <div className="container-shell overflow-hidden rounded-3xl bg-emerald-800 px-6 py-14 text-center text-white sm:px-12 sm:py-16">
+        <div className="container-shell overflow-hidden rounded-3xl bg-[#111113] px-6 py-14 text-center text-white sm:px-12 sm:py-16">
           <h2 className="font-display mx-auto max-w-2xl text-balance text-3xl font-bold sm:text-4xl">
             Wil je weten of jouw cv de ATS-filter passeert?
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-emerald-100">
+          <p className="mx-auto mt-4 max-w-xl text-[#9A9A92]">
             Maak gratis een account en gebruik de ATS-check op je bestaande of nieuw gebouwde cv.
           </p>
-          <Button asChild className="mt-7 bg-white text-emerald-900 hover:bg-emerald-50" size="lg">
-            <Link href="/registreren">
-              Start gratis <ArrowRight className="size-4" />
-            </Link>
-          </Button>
+          <Link href="/registreren" className="mt-7 inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3.5 text-sm font-black text-[#111113]">
+            Start gratis <ArrowRight className="size-4" />
+          </Link>
         </div>
       </section>
     </>

@@ -2,9 +2,9 @@ import Link from "next/link";
 import { LogoDark } from "@/components/shared/logo";
 
 const groups = [
-  { title: "Product", links: [["CV maken", "/cv-maken"], ["Sollicitatiebrief", "/sollicitatiebrief-maken"], ["ATS-check", "/ats-check"], ["Prijzen", "/prijzen"]] },
+  { title: "Product", links: [["CV maken", "/cv-maken"], ["AI CV Maker", "/ai-cv-maker"], ["Sollicitatiebrief", "/sollicitatiebrief-maken"], ["ATS-check", "/ats-check"], ["Prijzen", "/prijzen"]] },
   { title: "Inspiratie", links: [["CV voorbeelden", "/cv-voorbeelden"], ["CV templates", "/cv-templates"], ["Blog", "/blog"]] },
-  { title: "Bedrijf", links: [["Privacy", "/privacy"], ["Voorwaarden", "/voorwaarden"], ["Contact", "/contact"]] },
+  { title: "Bedrijf", links: [["Over ons", "/over-ons"], ["Privacy", "/privacy"], ["Voorwaarden", "/voorwaarden"], ["Contact", "/contact"]] },
 ];
 
 export function SiteFooter() {

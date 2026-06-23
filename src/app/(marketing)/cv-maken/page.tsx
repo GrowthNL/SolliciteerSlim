@@ -12,9 +12,6 @@ import {
   Download,
   AlignLeft,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "CV maken in 5 minuten | CVmaken.nu",
@@ -123,33 +120,39 @@ export default function CvMakenPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-100 bg-[linear-gradient(135deg,#fbfcfa_45%,#edf8f1)] py-20 sm:py-28">
+      <section className="relative overflow-hidden border-b border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-28">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-[1fr_.75fr]">
           <div>
-            <Badge>CV Maken</Badge>
-            <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">
+              CV Maken
+            </div>
+            <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-bold tracking-tight text-[#111113] sm:text-5xl">
               Een professioneel cv maken in{" "}
-              <span className="text-emerald-700">5 minuten</span>
+              <span className="text-[#111113]">5 minuten</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#56564F]">
               CVmaken.nu begeleidt je stap voor stap. Vul je gegevens in, laat de AI je
               teksten aanscherpen en download een ATS-vriendelijk cv dat opvalt.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <Link href="/registreren">
-                  Start gratis <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/cv-templates">Bekijk templates</Link>
-              </Button>
+              <Link
+                href="/registreren"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]"
+              >
+                Start gratis <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                href="/cv-templates"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#E5E3DA] bg-white px-6 py-3.5 text-sm font-semibold text-[#111113] transition-colors hover:bg-[#F2F1EC]"
+              >
+                Bekijk templates
+              </Link>
             </div>
-            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600">
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#56564F]">
               {["Geen creditcard nodig", "Direct beginnen", "3 professionele templates"].map(
                 (item) => (
                   <span key={item} className="flex items-center gap-1.5">
-                    <CheckCircle2 className="size-4 text-emerald-700" />
+                    <CheckCircle2 className="size-4 text-[#111113]" />
                     {item}
                   </span>
                 )
@@ -158,8 +161,8 @@ export default function CvMakenPage() {
           </div>
 
           {/* Mini CV preview */}
-          <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-7 sm:p-9">
-            <p className="text-sm font-semibold uppercase tracking-[.14em] text-emerald-800">
+          <div className="rounded-3xl border border-[#E5E3DA] bg-[#F8FCE8] p-7 sm:p-9">
+            <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
               Wat je bereikt
             </p>
             <ul className="mt-6 space-y-5">
@@ -169,8 +172,8 @@ export default function CvMakenPage() {
                 "Geoptimaliseerd voor ATS-systemen van recruiters",
                 "Direct beschikbaar als professionele PDF",
               ].map((item) => (
-                <li key={item} className="flex gap-3 font-medium leading-6 text-slate-800">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-700" />
+                <li key={item} className="flex gap-3 font-medium leading-6 text-[#111113]">
+                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#111113]" />
                   {item}
                 </li>
               ))}
@@ -180,13 +183,13 @@ export default function CvMakenPage() {
       </section>
 
       {/* Stats */}
-      <section className="border-b border-slate-100 py-16 sm:py-20">
+      <section className="border-b border-[#E5E3DA] py-16 sm:py-20">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+            <h2 className="font-display text-2xl font-bold tracking-tight text-[#111113] sm:text-3xl">
               Waarom een goed cv cruciaal is
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-[#56564F]">
               De cijfers liegen er niet om. Een cv dat niet door de eerste filters komt, wordt nooit
               gezien.
             </p>
@@ -195,14 +198,14 @@ export default function CvMakenPage() {
             {stats.map(({ icon: Icon, number, unit, label }) => (
               <div
                 key={label}
-                className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
+                className="rounded-2xl border border-[#E5E3DA] bg-white p-8 text-center shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               >
-                <span className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-emerald-100">
-                  <Icon className="size-6 text-emerald-700" />
+                <span className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-[#EDF7C6]">
+                  <Icon className="size-6 text-[#111113]" />
                 </span>
-                <div className="font-display text-4xl font-bold text-slate-950">{number}</div>
-                <div className="mt-1 text-sm font-semibold text-emerald-700">{unit}</div>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{label}</p>
+                <div className="font-display text-4xl font-bold text-[#111113]">{number}</div>
+                <div className="mt-1 text-sm font-semibold text-[#111113]">{unit}</div>
+                <p className="mt-3 text-sm leading-6 text-[#56564F]">{label}</p>
               </div>
             ))}
           </div>
@@ -213,11 +216,13 @@ export default function CvMakenPage() {
       <section className="py-20 sm:py-24">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge>Stap voor stap</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">
+              Stap voor stap
+            </div>
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-[#111113] sm:text-4xl">
               In 5 stappen naar een professioneel cv
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-[#56564F]">
               CVmaken.nu neemt je mee door elk onderdeel. Je hoeft niet te weten wat je moet
               schrijven — de app helpt je op weg.
             </p>
@@ -226,59 +231,58 @@ export default function CvMakenPage() {
             {steps.map(({ number, icon: Icon, title, description }) => (
               <div
                 key={title}
-                className={`relative rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)] ${
+                className={`relative rounded-2xl border border-[#E5E3DA] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.03)] ${
                   number === 5 ? "md:col-span-2 lg:col-span-1" : ""
                 }`}
               >
                 <div className="flex items-start gap-4">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-sm font-bold text-white">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#C6F24E] text-sm font-bold text-[#111113]">
                     {number}
                   </span>
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-50">
-                    <Icon className="size-5 text-emerald-700" />
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#EDF7C6]">
+                    <Icon className="size-5 text-[#111113]" />
                   </span>
                 </div>
-                <h3 className="font-display mt-5 text-lg font-semibold text-slate-950">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+                <h3 className="font-display mt-5 text-lg font-semibold text-[#111113]">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#56564F]">{description}</p>
               </div>
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Button asChild size="lg">
-              <Link href="/registreren">
-                Begin nu gratis <ArrowRight className="size-4" />
-              </Link>
-            </Button>
+            <Link
+              href="/registreren"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]"
+            >
+              Begin nu gratis <ArrowRight className="size-4" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Tips for a good Dutch CV */}
-      <section className="bg-slate-950 py-20 text-white sm:py-24">
+      <section className="bg-[#111113] py-20 text-white sm:py-24">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge className="border-white/10 bg-white/10 text-emerald-200">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-[#C6F24E]">
               Tips voor een sterk cv
-            </Badge>
+            </div>
             <h2 className="font-display mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Wat maakt een goed Nederlands cv?
             </h2>
-            <p className="mt-4 leading-7 text-slate-300">
+            <p className="mt-4 leading-7 text-[#9A9A92]">
               Recruiters in Nederland hebben specifieke verwachtingen. Dit zijn de regels die het
               meeste verschil maken.
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {tips.map(({ title, description }) => (
-              <Card key={title} className="border-white/10 bg-white/[.055] text-white">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-white">
-                    <CheckCircle2 className="size-5 shrink-0 text-emerald-400" />
-                    {title}
-                  </CardTitle>
-                  <CardDescription className="text-slate-300">{description}</CardDescription>
-                </CardHeader>
-              </Card>
+              <div key={title} className="rounded-2xl border border-white/10 bg-white/[.055] p-6">
+                <h3 className="flex items-center gap-2 text-base font-semibold text-white">
+                  <CheckCircle2 className="size-5 shrink-0 text-[#C6F24E]" />
+                  {title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-[#9A9A92]">{description}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -288,32 +292,35 @@ export default function CvMakenPage() {
       <section className="py-20 sm:py-24">
         <div className="container-shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
           <div>
-            <Badge>Veelgestelde vragen</Badge>
-            <h2 className="font-display mt-4 text-3xl font-bold text-slate-950">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">
+              Veelgestelde vragen
+            </div>
+            <h2 className="font-display mt-4 text-3xl font-bold text-[#111113]">
               Alles over cv maken
             </h2>
-            <p className="mt-4 leading-7 text-slate-600">
+            <p className="mt-4 leading-7 text-[#56564F]">
               Heb je nog een andere vraag? Onze helpcentrum staat klaar, of stel je vraag direct in
               de app.
             </p>
             <div className="mt-8">
-              <Button asChild variant="secondary">
-                <Link href="/registreren">
-                  Start gratis <ArrowRight className="size-4" />
-                </Link>
-              </Button>
+              <Link
+                href="/registreren"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#E5E3DA] bg-white px-6 py-3.5 text-sm font-semibold text-[#111113] transition-colors hover:bg-[#F2F1EC]"
+              >
+                Start gratis <ArrowRight className="size-4" />
+              </Link>
             </div>
           </div>
-          <div className="divide-y divide-slate-200 border-y border-slate-200">
+          <div className="divide-y divide-[#E5E3DA] border-y border-[#E5E3DA]">
             {faqs.map(([question, answer]) => (
               <details key={question} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-950">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-[#111113]">
                   {question}
-                  <span className="text-xl font-normal text-emerald-700 group-open:rotate-45">
+                  <span className="text-xl font-normal text-[#C6F24E] group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-3 max-w-2xl pr-8 text-sm leading-6 text-slate-600">{answer}</p>
+                <p className="mt-3 max-w-2xl pr-8 text-sm leading-6 text-[#56564F]">{answer}</p>
               </details>
             ))}
           </div>
@@ -322,27 +329,26 @@ export default function CvMakenPage() {
 
       {/* CTA */}
       <section className="px-4 pb-20">
-        <div className="container-shell overflow-hidden rounded-3xl bg-emerald-800 px-6 py-14 text-center text-white sm:px-12 sm:py-16">
+        <div className="container-shell overflow-hidden rounded-3xl bg-[#111113] px-6 py-14 text-center text-white sm:px-12 sm:py-16">
           <h2 className="font-display mx-auto max-w-2xl text-balance text-3xl font-bold sm:text-4xl">
             Klaar om je cv te maken?
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-emerald-100">
+          <p className="mx-auto mt-4 max-w-xl text-[#9A9A92]">
             Maak gratis je eerste cv. Geen creditcard nodig, geen verborgen kosten.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild className="bg-white text-emerald-900 hover:bg-emerald-50" size="lg">
-              <Link href="/registreren">
-                Start gratis <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="secondary"
-              size="lg"
-              className="border-white/20 bg-white/10 text-white hover:bg-white/20"
+            <Link
+              href="/registreren"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#C6F24E] px-6 py-3.5 text-sm font-bold text-[#111113] transition-colors hover:bg-[#d4f566]"
             >
-              <Link href="/cv-voorbeelden">Bekijk cv-voorbeelden</Link>
-            </Button>
+              Start gratis <ArrowRight className="size-4" />
+            </Link>
+            <Link
+              href="/cv-voorbeelden"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+            >
+              Bekijk cv-voorbeelden
+            </Link>
           </div>
         </div>
       </section>
