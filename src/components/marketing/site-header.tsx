@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Menu } from "lucide-react";
 import { marketingNavigation } from "@/lib/navigation";
 import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
+import { MobileMenu } from "@/components/marketing/mobile-menu";
 
 export function SiteHeader() {
   return (
@@ -12,11 +12,11 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Hoofdnavigatie">
           {marketingNavigation.map((item) => <Link key={item.href} href={item.href} className="text-sm font-medium text-ink-600 transition-colors hover:text-ink">{item.label}</Link>)}
         </nav>
-        <div className="hidden items-center gap-2 sm:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <Button asChild variant="ghost" size="sm"><Link href="/login">Inloggen</Link></Button>
           <Button asChild size="sm"><Link href="/registreren">Start gratis</Link></Button>
         </div>
-        <Button className="sm:hidden" variant="ghost" size="icon" aria-label="Menu openen"><Menu className="size-5" /></Button>
+        <MobileMenu />
       </div>
     </header>
   );
