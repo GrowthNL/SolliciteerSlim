@@ -2,29 +2,23 @@
 
 import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FileText, Upload, Sparkles, X, ArrowRight, Loader2 } from "lucide-react";
 import { importCvFromFile, importCvFromText } from "@/app/actions/cv-import";
 
 type Props = {
   onClose?: () => void;
+  initialStep?: "choose" | "import";
 };
 
-export function NewCvModal({ onClose }: Props) {
+export function NewCvModal({ onClose, initialStep = "choose" }: Props) {
   const router = useRouter();
-  const [step, setStep] = useState<"choose" | "import">("choose");
+  const [step, setStep] = useState<"choose" | "import">(initialStep);
   const [importMethod, setImportMethod] = useState<"file" | "paste">("file");
   const [pastedText, setPastedText] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const fileRef = useRef<HTMLInputElement>(null);
-
-  function handleBlank() {
-    router.push("/dashboard/cv/new?start=blank");
-  }
-
-  function handleExample() {
-    router.push("/dashboard/cv/new?start=example");
-  }
 
   function handleImportFile() {
     setError(null);
@@ -78,8 +72,8 @@ export function NewCvModal({ onClose }: Props) {
 
             <div className="mt-6 flex flex-col gap-3">
               {/* Blank */}
-              <button
-                onClick={handleBlank}
+              <Link
+                href="/dashboard/cv/new?start=blank"
                 className="group flex items-start gap-4 rounded-2xl border-2 border-[#E5E3DA] p-5 text-left transition-all hover:border-[#C6F24E] hover:bg-[#F8FCE8]"
               >
                 <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#F2F1EC] transition-colors group-hover:bg-[#C6F24E]">
@@ -97,11 +91,11 @@ export function NewCvModal({ onClose }: Props) {
                   </p>
                 </div>
                 <ArrowRight className="size-4 shrink-0 self-center text-[#9A9A92] transition-colors group-hover:text-[#111113]" />
-              </button>
+              </Link>
 
               {/* Example */}
-              <button
-                onClick={handleExample}
+              <Link
+                href="/dashboard/cv/new?start=example"
                 className="group flex items-start gap-4 rounded-2xl border-2 border-[#E5E3DA] p-5 text-left transition-all hover:border-[#111113] hover:bg-[#F8F8F6]"
               >
                 <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#F2F1EC] transition-colors group-hover:bg-[#111113]">
@@ -114,10 +108,11 @@ export function NewCvModal({ onClose }: Props) {
                   </p>
                 </div>
                 <ArrowRight className="size-4 shrink-0 self-center text-[#9A9A92] transition-colors group-hover:text-[#111113]" />
-              </button>
+              </Link>
 
               {/* Import */}
-              <button
+              <Link
+                href="/dashboard/cv/new?start=import"
                 onClick={() => setStep("import")}
                 className="group flex items-start gap-4 rounded-2xl border-2 border-[#E5E3DA] p-5 text-left transition-all hover:border-[#111113] hover:bg-[#F8F8F6]"
               >
@@ -131,17 +126,18 @@ export function NewCvModal({ onClose }: Props) {
                   </p>
                 </div>
                 <ArrowRight className="size-4 shrink-0 self-center text-[#9A9A92] transition-colors group-hover:text-[#111113]" />
-              </button>
+              </Link>
             </div>
           </>
         ) : (
           <>
-            <button
+            <Link
+              href="/dashboard/cv/new"
               onClick={() => { setStep("choose"); setError(null); }}
               className="mb-4 flex items-center gap-1.5 text-sm font-semibold text-[#9A9A92] transition-colors hover:text-[#111113]"
             >
               ← Terug
-            </button>
+            </Link>
 
             <h2 className="text-2xl font-black tracking-[-0.03em] text-[#111113]">
               Importeer je cv

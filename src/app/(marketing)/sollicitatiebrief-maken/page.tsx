@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Reveal } from "@/components/magic/reveal";
+import { NumberTicker } from "@/components/magic/number-ticker";
 import { TrustBar } from "@/components/magic/trust-bar";
 import { Testimonials } from "@/components/magic/testimonials";
 
@@ -103,7 +104,8 @@ export default function SollicitatiebriefMakenPage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-28">
-        <div className="container-shell grid items-center gap-12 lg:grid-cols-[1fr_.75fr]">
+        <div className="grid-fade absolute inset-0" />
+        <div className="container-shell relative grid items-center gap-12 lg:grid-cols-[1fr_.85fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">Sollicitatiebrief</div>
             <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-bold tracking-tight text-[#111113] sm:text-5xl">
@@ -133,24 +135,109 @@ export default function SollicitatiebriefMakenPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-[#E5E3DA] bg-[#F8FCE8] p-7 sm:p-9">
-            <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
-              Wat CVmaken.nu doet
-            </p>
-            <ul className="mt-6 space-y-5">
-              {[
-                "Analyseert de vacature op sleutelwoorden en eisen",
-                "Genereert een gepersonaliseerde brief op basis van jouw cv",
-                "Past de toon aan op branche en functieniveau",
-                "Geeft suggesties voor sterkere formuleringen",
-              ].map((item) => (
-                <li key={item} className="flex gap-3 font-medium leading-6 text-[#111113]">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#111113]" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+          {/* Visual: stylized letter mockup + benefit card */}
+          <div className="space-y-6">
+            <div className="relative mx-auto w-full max-w-md">
+              {/* Floating vacancy-match badge */}
+              <div className="absolute -left-4 top-12 z-10 hidden animate-float rounded-2xl border border-[#E5E3DA] bg-white p-3.5 shadow-xl sm:block">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-9 items-center justify-center rounded-full bg-[#EDF7C6] text-[#111113]">
+                    <Sparkles className="size-4" />
+                  </span>
+                  <div>
+                    <div className="text-xs text-[#9A9A92]">Vacaturematch</div>
+                    <div className="text-sm font-bold text-[#111113]">91% passend</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Letter / brief mockup */}
+              <div className="-rotate-[1.5deg] rounded-[1.75rem] border border-[#E5E3DA] bg-white p-3 shadow-[0_30px_80px_rgba(17,17,19,0.14)]">
+                <div className="rounded-2xl bg-white p-6 sm:p-7">
+                  <div className="flex items-start justify-between border-b border-[#E5E3DA] pb-4">
+                    <div>
+                      <div className="h-2.5 w-28 rounded bg-[#111113]" />
+                      <div className="mt-2 h-1.5 w-20 rounded bg-[#DDDBD1]" />
+                    </div>
+                    <span className="flex size-8 items-center justify-center rounded-lg bg-[#EDF7C6]">
+                      <FileText className="size-4 text-[#111113]" />
+                    </span>
+                  </div>
+                  <div className="mt-5 space-y-2.5">
+                    <div className="h-1.5 w-24 rounded bg-[#111113]" />
+                    <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                    <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                    <div className="h-1.5 w-11/12 rounded bg-[#DDDBD1]" />
+                  </div>
+                  {/* AI-sharpened paragraph */}
+                  <div className="mt-5 rounded-lg border-l-2 border-[#C6F24E] bg-[#F8FCE8] py-3 pl-3 pr-2">
+                    <div className="flex items-center gap-1.5">
+                      <Sparkles className="size-3 text-[#111113]" />
+                      <div className="h-1.5 w-16 rounded bg-[#111113]" />
+                    </div>
+                    <div className="mt-2 space-y-1.5">
+                      <div className="h-1.5 rounded bg-[#C6F24E]/60" />
+                      <div className="h-1.5 w-5/6 rounded bg-[#C6F24E]/60" />
+                    </div>
+                  </div>
+                  <div className="mt-5 space-y-2.5">
+                    <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                    <div className="h-1.5 w-3/4 rounded bg-[#DDDBD1]" />
+                  </div>
+                  <div className="mt-6 flex items-center gap-2">
+                    <div className="h-1.5 w-16 rounded bg-[#111113]" />
+                    <div className="ml-auto h-6 w-20 rounded-md bg-[#111113]" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom badge */}
+              <div className="absolute -bottom-3 right-5 flex items-center gap-2 rounded-xl border border-[#E5E3DA] bg-white px-3.5 py-2 text-xs font-semibold text-[#111113] shadow-lg">
+                <span className="size-2 rounded-full bg-[#FB5B36]" />
+                Klaar in minuten
+              </div>
+            </div>
+
+            {/* Benefit card with animated border */}
+            <div className="beam-card rounded-3xl">
+              <div className="rounded-3xl border border-[#E5E3DA] bg-[#F8FCE8] p-7 sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
+                  Wat CVmaken.nu doet
+                </p>
+                <ul className="mt-6 space-y-4">
+                  {[
+                    "Analyseert de vacature op sleutelwoorden en eisen",
+                    "Genereert een gepersonaliseerde brief op basis van jouw cv",
+                    "Past de toon aan op branche en functieniveau",
+                    "Geeft suggesties voor sterkere formuleringen",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3 font-medium leading-6 text-[#111113]">
+                      <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#111113]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Stat strip */}
+      <section className="border-b border-[#E5E3DA] bg-white py-10">
+        <div className="container-shell grid gap-6 text-center sm:grid-cols-3">
+          {[
+            { value: 1, suffix: " A4", label: "ideale lengte van een brief" },
+            { value: 5, suffix: " min", label: "tot een persoonlijke brief" },
+            { value: 40, suffix: "%", label: "meer kans met een gerichte brief" },
+          ].map(({ value, suffix, label }, i) => (
+            <Reveal key={label} delay={i * 100}>
+              <div className="font-display text-3xl font-bold text-[#111113] sm:text-4xl">
+                <NumberTicker value={value} suffix={suffix} />
+              </div>
+              <p className="mt-1 text-sm text-[#56564F]">{label}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -303,7 +390,8 @@ export default function SollicitatiebriefMakenPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-[#E5E3DA] bg-white p-8 shadow-[0_4px_24px_rgba(16,185,129,0.08)] sm:p-10">
+          <div className="beam-card rounded-3xl shadow-[0_4px_24px_rgba(17,17,19,0.08)]">
+          <div className="rounded-3xl border border-[#E5E3DA] bg-white p-8 sm:p-10">
             <div className="flex items-center gap-3 border-b border-[#E5E3DA] pb-5">
               <span className="flex size-10 items-center justify-center rounded-xl bg-[#EDF7C6]">
                 <Sparkles className="size-5 text-[#111113]" />
@@ -335,6 +423,7 @@ export default function SollicitatiebriefMakenPage() {
               formuleringen op basis van wat jij hebt ingevuld, jij controleert altijd het
               eindresultaat.
             </div>
+          </div>
           </div>
         </div>
       </section>

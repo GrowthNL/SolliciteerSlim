@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
+import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cvmaken.nu";
@@ -33,6 +34,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
     <>
       <JsonLd data={[orgJsonLd, siteJsonLd]} />
       <SiteHeader />
+      <Breadcrumbs />
       <main>{children}</main>
       <SiteFooter />
     </>

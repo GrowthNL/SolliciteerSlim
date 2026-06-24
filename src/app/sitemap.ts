@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/features/blog/posts";
+import { getAllExamples } from "@/features/cv-examples/examples";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cvmaken.nu";
 
@@ -35,5 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  const exampleEntries: MetadataRoute.Sitemap = getAllExamples().map((ex) => ({
+    url: `${BASE}/cv-voorbeelden/${ex.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...blogEntries, ...exampleEntries];
 }

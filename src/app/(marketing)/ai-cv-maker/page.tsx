@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { Reveal } from "@/components/magic/reveal";
+import { NumberTicker } from "@/components/magic/number-ticker";
 import { Testimonials } from "@/components/magic/testimonials";
 
 export const metadata: Metadata = {
@@ -24,9 +25,10 @@ export default function AiCvMakerPage() {
   return (
     <>
       {/* ── Hero ───────────────────────────────────────────────────── */}
-      <section className="border-b py-20 sm:py-28" style={{ borderColor: "#E5E3DA", backgroundColor: "#F8F8F6" }}>
-        <div className="container-shell">
-          <div className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden border-b py-20 sm:py-28" style={{ borderColor: "#E5E3DA", backgroundColor: "#F8F8F6" }}>
+        <div className="dot-fade absolute inset-0" />
+        <div className="container-shell relative grid items-center gap-12 lg:grid-cols-[1fr_.9fr]">
+          <div className="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
             <div
               className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium"
               style={{ backgroundColor: "#C6F24E", color: "#111113" }}
@@ -64,7 +66,7 @@ export default function AiCvMakerPage() {
             </h1>
 
             <p
-              className="mx-auto mt-6 max-w-xl text-lg leading-8"
+              className="mx-auto mt-6 max-w-xl text-lg leading-8 lg:mx-0"
               style={{ color: "#56564F" }}
             >
               CVmaken.nu gebruikt AI die speciaal getraind is voor Nederlandse cv&apos;s, niet de
@@ -72,7 +74,7 @@ export default function AiCvMakerPage() {
               en klaar voor de Nederlandse arbeidsmarkt.
             </p>
 
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
               <Link
                 href="/registreren"
                 className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-base font-semibold transition-opacity hover:opacity-90"
@@ -89,7 +91,7 @@ export default function AiCvMakerPage() {
               </Link>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm" style={{ color: "#56564F" }}>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm lg:justify-start" style={{ color: "#56564F" }}>
               {[
                 "Specifiek voor NL arbeidsmarkt",
                 "Geen ChatGPT",
@@ -102,6 +104,75 @@ export default function AiCvMakerPage() {
               ))}
             </div>
           </div>
+
+          {/* Visual: AI before/after panel */}
+          <div className="relative mx-auto w-full max-w-md">
+            {/* Floating AI badge */}
+            <div className="absolute -right-3 -top-4 z-10 hidden animate-float items-center gap-2 rounded-2xl border bg-white p-3 shadow-xl sm:flex" style={{ borderColor: "#E5E3DA" }}>
+              <span className="flex size-8 items-center justify-center rounded-full" style={{ backgroundColor: "#EDF7C6" }}>
+                <Sparkles className="size-4" style={{ color: "#111113" }} />
+              </span>
+              <span className="text-sm font-bold" style={{ color: "#111113" }}>Verbeter met AI</span>
+            </div>
+
+            <div className="rounded-[1.75rem] border bg-white p-6 shadow-[0_30px_80px_rgba(17,17,19,0.12)] sm:p-7" style={{ borderColor: "#E5E3DA" }}>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.14em]" style={{ color: "#9A9A92" }}>
+                <span className="size-2 rounded-full" style={{ backgroundColor: "#FB5B36" }} />
+                AI aan het werk
+              </div>
+
+              {/* Before */}
+              <div className="mt-5 rounded-xl border p-4" style={{ borderColor: "#E5E3DA", backgroundColor: "#F8F8F6" }}>
+                <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "#9A9A92" }}>Voor</div>
+                <p className="text-sm leading-6" style={{ color: "#9A9A92" }}>
+                  Verantwoordelijk voor social media en content.
+                </p>
+              </div>
+
+              {/* Arrow / sparkle */}
+              <div className="my-3 flex items-center justify-center gap-2">
+                <span className="h-px w-10" style={{ backgroundColor: "#E5E3DA" }} />
+                <span className="flex size-8 items-center justify-center rounded-full" style={{ backgroundColor: "#C6F24E" }}>
+                  <ArrowRight className="size-4 rotate-90" style={{ color: "#111113" }} />
+                </span>
+                <span className="h-px w-10" style={{ backgroundColor: "#E5E3DA" }} />
+              </div>
+
+              {/* After */}
+              <div className="rounded-xl border-2 p-4" style={{ borderColor: "#C6F24E", backgroundColor: "#F8FCE8" }}>
+                <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "#111113" }}>
+                  <Sparkles className="size-3" /> Na
+                </div>
+                <p className="text-sm font-medium leading-6" style={{ color: "#111113" }}>
+                  Vergrootte het Instagram-bereik met 40% in 6 maanden via een nieuwe contentstrategie.
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom badge */}
+            <div className="absolute -bottom-3 left-5 flex items-center gap-2 rounded-xl border bg-white px-3.5 py-2 text-xs font-semibold shadow-lg" style={{ borderColor: "#E5E3DA", color: "#111113" }}>
+              <Check className="size-4" style={{ color: "#C6F24E" }} />
+              Scherper in 1 klik
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Stat strip ────────────────────────────────────────────── */}
+      <section className="border-b py-10" style={{ borderColor: "#E5E3DA", backgroundColor: "#F8F8F6" }}>
+        <div className="container-shell grid gap-6 text-center sm:grid-cols-3">
+          {[
+            { value: 10, suffix: " min", label: "van leeg naar af cv" },
+            { value: 3, suffix: "", label: "ATS-geteste templates" },
+            { value: 98, suffix: "%", label: "ATS-leesbaar resultaat" },
+          ].map(({ value, suffix, label }, i) => (
+            <Reveal key={label} delay={i * 100}>
+              <div className="font-display text-3xl font-bold sm:text-4xl" style={{ color: "#111113" }}>
+                <NumberTicker value={value} suffix={suffix} />
+              </div>
+              <p className="mt-1 text-sm" style={{ color: "#56564F" }}>{label}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -257,9 +328,10 @@ export default function AiCvMakerPage() {
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {/* CVmaken.nu */}
             <Reveal delay={0} className="h-full">
+            <div className="beam-card h-full rounded-2xl">
             <div
-              className="h-full rounded-2xl border-2 p-8"
-              style={{ borderColor: "#C6F24E", backgroundColor: "#F2F1EC" }}
+              className="h-full rounded-2xl border p-8"
+              style={{ borderColor: "#E5E3DA", backgroundColor: "#F2F1EC" }}
             >
               <div className="mb-6 flex items-center gap-3">
                 <div
@@ -292,6 +364,7 @@ export default function AiCvMakerPage() {
                   </li>
                 ))}
               </ul>
+            </div>
             </div>
             </Reveal>
 

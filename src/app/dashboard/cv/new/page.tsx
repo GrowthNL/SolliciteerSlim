@@ -19,5 +19,5 @@ export default async function Page({
     return <CvEditor initialDoc={EXAMPLE_RESUME} />;
   }
 
-  return <NewCvStart />;
+  return <NewCvStart initialStep={start === "import" ? "import" : "choose"} />;
 }

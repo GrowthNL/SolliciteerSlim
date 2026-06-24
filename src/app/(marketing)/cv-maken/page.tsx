@@ -11,6 +11,7 @@ import {
   GraduationCap,
   Download,
   AlignLeft,
+  Sparkles,
 } from "lucide-react";
 import { Reveal } from "@/components/magic/reveal";
 import { NumberTicker } from "@/components/magic/number-ticker";
@@ -128,7 +129,8 @@ export default function CvMakenPage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[#E5E3DA] bg-[#F8F8F6] py-20 sm:py-28">
-        <div className="container-shell grid items-center gap-12 lg:grid-cols-[1fr_.75fr]">
+        <div className="grid-fade absolute inset-0" />
+        <div className="container-shell relative grid items-center gap-12 lg:grid-cols-[1fr_.85fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E3DA] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111113]">
               CV Maken
@@ -167,25 +169,114 @@ export default function CvMakenPage() {
             </div>
           </div>
 
-          {/* Mini CV preview */}
-          <div className="rounded-3xl border border-[#E5E3DA] bg-[#F8FCE8] p-7 sm:p-9">
-            <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
-              Wat je bereikt
-            </p>
-            <ul className="mt-6 space-y-5">
-              {[
-                "Een helder, leesbaar cv in jouw eigen stijl",
-                "AI-suggesties die je teksten scherper maken",
-                "Geoptimaliseerd voor ATS-systemen van recruiters",
-                "Direct beschikbaar als professionele PDF",
-              ].map((item) => (
-                <li key={item} className="flex gap-3 font-medium leading-6 text-[#111113]">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#111113]" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+          {/* Visual: stylized CV mockup + benefit card */}
+          <div className="space-y-6">
+            <div className="relative mx-auto w-full max-w-md">
+              {/* Floating AI badge */}
+              <div className="absolute -left-4 top-10 z-10 hidden animate-float rounded-2xl border border-[#E5E3DA] bg-white p-3.5 shadow-xl sm:block">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-9 items-center justify-center rounded-full bg-[#EDF7C6] text-[#111113]">
+                    <Sparkles className="size-4" />
+                  </span>
+                  <div>
+                    <div className="text-xs text-[#9A9A92]">AI verbetert</div>
+                    <div className="text-sm font-bold text-[#111113]">je teksten</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* CV document mockup */}
+              <div className="rotate-[1.5deg] rounded-[1.75rem] border border-[#E5E3DA] bg-white p-3 shadow-[0_30px_80px_rgba(17,17,19,0.14)]">
+                <div className="rounded-2xl bg-[#F2F1EC] p-6 sm:p-7">
+                  <div className="flex items-center gap-4 border-b border-[#DDDBD1] pb-5">
+                    <div className="size-12 rounded-full bg-[#111113]" />
+                    <div>
+                      <div className="h-3 w-32 rounded bg-[#111113]" />
+                      <div className="mt-2 inline-block rounded bg-[#C6F24E] px-1.5 py-0.5">
+                        <div className="h-1.5 w-20 rounded bg-[#111113]/70" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-5 grid grid-cols-[1fr_.5fr] gap-5">
+                    <div>
+                      <div className="h-2 w-20 rounded bg-[#111113]" />
+                      <div className="mt-3 space-y-2">
+                        <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                        <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                        <div className="h-1.5 w-5/6 rounded bg-[#DDDBD1]" />
+                      </div>
+                      <div className="mt-5 h-2 w-24 rounded bg-[#111113]" />
+                      <div className="mt-3 border-l-2 border-[#C6F24E] pl-3">
+                        <div className="h-2 w-20 rounded bg-[#2E2E2C]" />
+                        <div className="mt-2 h-1.5 rounded bg-[#DDDBD1]" />
+                        <div className="mt-1.5 h-1.5 w-4/5 rounded bg-[#DDDBD1]" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="h-2 w-12 rounded bg-[#111113]" />
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        <span className="h-5 w-12 rounded-full bg-[#EDF7C6]" />
+                        <span className="h-5 w-9 rounded-full bg-[#EDF7C6]" />
+                        <span className="h-5 w-14 rounded-full bg-[#EDF7C6]" />
+                        <span className="h-5 w-10 rounded-full bg-[#FFE3DA]" />
+                      </div>
+                      <div className="mt-5 h-2 w-10 rounded bg-[#111113]" />
+                      <div className="mt-2 space-y-1.5">
+                        <div className="h-1.5 rounded bg-[#DDDBD1]" />
+                        <div className="h-1.5 w-3/4 rounded bg-[#DDDBD1]" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom badge */}
+              <div className="absolute -bottom-3 right-5 flex items-center gap-2 rounded-xl border border-[#E5E3DA] bg-white px-3.5 py-2 text-xs font-semibold text-[#111113] shadow-lg">
+                <span className="size-2 rounded-full bg-[#FB5B36]" />
+                ATS-leesbaar
+              </div>
+            </div>
+
+            {/* Benefit card with animated border */}
+            <div className="beam-card rounded-3xl">
+              <div className="rounded-3xl border border-[#E5E3DA] bg-[#F8FCE8] p-7 sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[.14em] text-[#111113]">
+                  Wat je bereikt
+                </p>
+                <ul className="mt-6 space-y-4">
+                  {[
+                    "Een helder, leesbaar cv in jouw eigen stijl",
+                    "AI-suggesties die je teksten scherper maken",
+                    "Geoptimaliseerd voor ATS-systemen van recruiters",
+                    "Direct beschikbaar als professionele PDF",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3 font-medium leading-6 text-[#111113]">
+                      <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[#111113]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Stat strip */}
+      <section className="border-b border-[#E5E3DA] bg-white py-10">
+        <div className="container-shell grid gap-6 text-center sm:grid-cols-3">
+          {[
+            { value: 10, suffix: " min", label: "gemiddelde tijd tot een af cv" },
+            { value: 3, suffix: "", label: "professionele templates" },
+            { value: 98, suffix: "%", label: "ATS-leesbaar resultaat" },
+          ].map(({ value, suffix, label }, i) => (
+            <Reveal key={label} delay={i * 100}>
+              <div className="font-display text-3xl font-bold text-[#111113] sm:text-4xl">
+                <NumberTicker value={value} suffix={suffix} />
+              </div>
+              <p className="mt-1 text-sm text-[#56564F]">{label}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
