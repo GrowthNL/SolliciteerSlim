@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, Lightbulb } from "lucide-react";
 import { getAllExamples, getExampleBySlug, getRelatedExamples } from "@/features/cv-examples/examples";
+import { getEnrichment } from "@/features/cv-examples/enrichment";
 import { ModernPreview } from "@/features/templates/modern-preview";
 import { KlassiekPreview } from "@/features/templates/klassiek-preview";
 import { MinimaalPreview } from "@/features/templates/minimaal-preview";
@@ -48,6 +49,8 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
   if (!ex) notFound();
 
   const related = getRelatedExamples(slug);
+  const enrich = getEnrichment(slug);
+  const allFaq = [...ex.faq, ...(enrich.faq ?? [])];
   const url = `${BASE}/cv-voorbeelden/${ex.slug}`;
 
   const breadcrumbJsonLd = {
@@ -63,7 +66,7 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: ex.faq.map((f) => ({
+    mainEntity: allFaq.map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -108,6 +111,13 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
                 CV-voorbeeld {ex.profession}
               </h1>
               <p className="mt-5 text-lg leading-7 text-[#56564F]">{ex.intro}</p>
+              {enrich.salary && (
+                <div className="mt-5 inline-flex flex-col rounded-2xl border border-[#E5E3DA] bg-[#F8F8F6] px-5 py-3">
+                  <span className="font-mono-label text-[10px] text-[#9A9A92]">Salarisindicatie</span>
+                  <span className="text-lg font-black text-[#111113]">{enrich.salary.range}</span>
+                  <span className="mt-0.5 text-xs text-[#56564F]">{enrich.salary.note}</span>
+                </div>
+              )}
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/registreren" className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]">
                   Maak dit cv <ArrowRight className="size-4" />
@@ -166,12 +176,72 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
         </div>
       </section>
 
+      {/* Recruiter skills */}
+      {enrich.recruiterSkills && enrich.recruiterSkills.length > 0 && (
+        <section className="border-t border-[#E5E3DA] py-16">
+          <div className="container-shell max-w-3xl">
+            <h2 className="text-2xl font-black tracking-[-0.02em] text-[#111113]">
+              Vaardigheden die recruiters zoeken bij een {ex.profession.toLowerCase()}
+            </h2>
+            <p className="mt-3 text-[15px] leading-7 text-[#56564F]">
+              Verwerk de voor jou kloppende termen letterlijk in je cv. Veel werkgevers gebruiken een ATS dat hierop filtert.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {enrich.recruiterSkills.map((s) => (
+                <span key={s} className="rounded-full border border-[#E5E3DA] bg-white px-3 py-1.5 text-sm font-medium text-[#111113]">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Rich SEO sections */}
+      {enrich.sections && enrich.sections.length > 0 && (
+        <section className="border-t border-[#E5E3DA] py-16 sm:py-20">
+          <div className="container-shell max-w-3xl space-y-12">
+            {enrich.sections.map((sec) => (
+              <div key={sec.heading}>
+                <h2 className="text-2xl font-black tracking-[-0.02em] text-[#111113]">{sec.heading}</h2>
+                <div className="mt-4 space-y-4">
+                  {sec.body.map((para, i) => (
+                    <p key={i} className="text-[15px] leading-7 text-[#2E2E2C]">{para}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Profile examples */}
+      {enrich.profileExamples && enrich.profileExamples.length > 0 && (
+        <section className="border-t border-[#E5E3DA] bg-[#F8F8F6] py-16 sm:py-20">
+          <div className="container-shell max-w-3xl">
+            <h2 className="text-2xl font-black tracking-[-0.02em] text-[#111113]">
+              Voorbeeld profielteksten voor een {ex.profession.toLowerCase()}
+            </h2>
+            <p className="mt-3 text-[15px] leading-7 text-[#56564F]">
+              Gebruik een van deze profielteksten als basis en pas hem aan met jouw eigen cijfers en ervaring.
+            </p>
+            <div className="mt-6 space-y-4">
+              {enrich.profileExamples.map((p, i) => (
+                <div key={i} className="rounded-2xl border-l-[3px] border-[#C6F24E] bg-white p-5 text-[15px] italic leading-7 text-[#111113] shadow-sm">
+                  &ldquo;{p}&rdquo;
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section className="border-t border-[#E5E3DA] bg-[#F8F8F6] py-16 sm:py-20">
         <div className="container-shell max-w-3xl">
           <h2 className="text-2xl font-black tracking-[-0.02em] text-[#111113]">Veelgestelde vragen</h2>
           <div className="mt-6 divide-y divide-[#E5E3DA] border-y border-[#E5E3DA]">
-            {ex.faq.map(({ q, a }) => (
+            {allFaq.map(({ q, a }) => (
               <details key={q} className="group py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-[#111113]">
                   {q}
