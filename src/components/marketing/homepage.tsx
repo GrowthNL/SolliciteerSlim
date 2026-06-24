@@ -96,7 +96,7 @@ function ResumePreview() {
               <div className="mt-5 h-2 w-28 rounded bg-[#111113]" />
               <div className="mt-3 border-l-2 border-[#C6F24E] pl-3">
                 <div className="h-2 w-24 rounded bg-[#2E2E2C]" />
-                <div className="mt-1 text-[9px] text-[#9A9A92]">Coolblue · 2021–heden</div>
+                <div className="mt-1 text-[9px] text-[#9A9A92]">Coolblue · 2021-heden</div>
                 <div className="mt-1.5 h-1.5 rounded bg-[#DDDBD1]" />
                 <div className="mt-1 h-1.5 w-4/5 rounded bg-[#DDDBD1]" />
               </div>

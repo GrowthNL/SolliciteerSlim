@@ -222,7 +222,7 @@ export function MinimaalPreview({ doc }: { doc?: ResumeDocument }) {
                     <div style={{ fontSize: 13.5, fontWeight: 700, color: "#111113" }}>{job.jobTitle}</div>
                     <div style={{ fontSize: 11, color: "#9CA3AF" }}>
                       {job.startDate}
-                      {job.startDate && " – "}
+                      {job.startDate && " - "}
                       {job.isCurrent ? "heden" : job.endDate}
                     </div>
                   </div>
@@ -265,7 +265,7 @@ export function MinimaalPreview({ doc }: { doc?: ResumeDocument }) {
                     <div style={{ fontSize: 12, color: "#6B7280" }}>{edu.institution}</div>
                   </div>
                   <div style={{ fontSize: 11, color: "#9CA3AF" }}>
-                    {edu.startDate}–{edu.isCurrent ? "heden" : edu.endDate}
+                    {edu.startDate}-{edu.isCurrent ? "heden" : edu.endDate}
                   </div>
                 </div>
               ))}

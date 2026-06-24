@@ -104,7 +104,7 @@ export default function PrijzenPage() {
           <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1 text-sm font-semibold shadow-sm">
             <span className="rounded-full px-4 py-1.5 text-slate-500">Per maand</span>
             <span className="rounded-full bg-emerald-700 px-4 py-1.5 text-white">
-              Jaarlijks <span className="ml-1.5 rounded-full bg-emerald-600 px-1.5 py-0.5 text-xs">−25%</span>
+              Jaarlijks <span className="ml-1.5 rounded-full bg-emerald-600 px-1.5 py-0.5 text-xs">-25%</span>
             </span>
           </div>
         </div>

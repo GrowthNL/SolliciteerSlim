@@ -233,7 +233,7 @@ function ProfileSection({
           rows={6}
           value={doc.profileSummary}
           onChange={(e) => update({ ...doc, profileSummary: e.target.value })}
-          placeholder="Een korte krachtige introductie over wie je bent, wat je kunt en wat je zoekt. Houd het bij 3–5 zinnen."
+          placeholder="Een korte krachtige introductie over wie je bent, wat je kunt en wat je zoekt. Houd het bij 3-5 zinnen."
         />
       </div>
       {aiError && (

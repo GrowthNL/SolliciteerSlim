@@ -255,7 +255,7 @@ export function ModernPreview({ doc }: { doc?: ResumeDocument }) {
                       </div>
                       <div style={{ fontSize: 11, color: "#9CA3AF", whiteSpace: "nowrap", marginLeft: 8 }}>
                         {job.startDate}
-                        {job.startDate && " – "}
+                        {job.startDate && " - "}
                         {job.isCurrent ? "heden" : job.endDate}
                       </div>
                     </div>
@@ -312,7 +312,7 @@ export function ModernPreview({ doc }: { doc?: ResumeDocument }) {
                       <div style={{ fontSize: 12, color: "#6B7280" }}>{edu.institution}</div>
                     </div>
                     <div style={{ fontSize: 11, color: "#9CA3AF", whiteSpace: "nowrap", marginLeft: 8 }}>
-                      {[edu.startDate, edu.isCurrent ? "heden" : edu.endDate].filter(Boolean).join(" – ")}
+                      {[edu.startDate, edu.isCurrent ? "heden" : edu.endDate].filter(Boolean).join(" - ")}
                     </div>
                   </div>
                 ))}

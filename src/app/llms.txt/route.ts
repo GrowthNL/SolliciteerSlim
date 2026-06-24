@@ -2,7 +2,7 @@ import { getAllPosts } from "@/features/blog/posts";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cvmaken.nu";
 
-// Serves /llms.txt — a Markdown overview that helps LLMs and AI answer engines
+// Serves /llms.txt, a Markdown overview that helps LLMs and AI answer engines
 // understand and cite CVmaken.nu accurately (GEO / LLM optimization).
 export function GET() {
   const posts = getAllPosts();

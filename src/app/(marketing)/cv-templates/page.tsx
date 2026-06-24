@@ -50,7 +50,7 @@ const templates = [
 const atsPoints = [
   "Geen tabellen, tekstvakken of afbeeldingen die parsers breken",
   'Machine-leesbare sectienamen zoals "Werkervaring" en "Opleiding"',
-  "Datum-notaties die ATS-systemen herkennen (bijv. jan 2022 – heden)",
+  "Datum-notaties die ATS-systemen herkennen (bijv. jan 2022 - heden)",
   "Gestructureerde PDF-output die volgorde en inhoud behoud",
 ];
 

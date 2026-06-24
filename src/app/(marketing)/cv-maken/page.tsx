@@ -60,7 +60,7 @@ const steps = [
     icon: AlignLeft,
     title: "Profiel / samenvatting",
     description:
-      "Schrijf een krachtige samenvatting van 3–5 zinnen. Onze AI helpt je om dit scherper en overtuigender te formuleren.",
+      "Schrijf een krachtige samenvatting van 3-5 zinnen. Onze AI helpt je om dit scherper en overtuigender te formuleren.",
   },
   {
     number: 3,

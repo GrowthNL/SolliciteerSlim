@@ -220,14 +220,14 @@ export function KlassiekPreview({ doc }: { doc?: ResumeDocument }) {
                     </div>
                     {job.bullets.slice(0, 1).map((b, i) => (
                       <div key={i} style={{ fontSize: 11.5, color: "#4B5563", marginTop: 4, paddingLeft: 10, position: "relative" }}>
-                        <span style={{ position: "absolute", left: 1 }}>–</span>
+                        <span style={{ position: "absolute", left: 1 }}>-</span>
                         {b}
                       </div>
                     ))}
                   </div>
                   <div style={{ fontSize: 11, color: "#9CA3AF", textAlign: "right", whiteSpace: "nowrap" }}>
                     {job.startDate}
-                    {job.startDate && "–"}
+                    {job.startDate && "-"}
                     {job.isCurrent ? "heden" : job.endDate}
                   </div>
                 </div>
@@ -255,7 +255,7 @@ export function KlassiekPreview({ doc }: { doc?: ResumeDocument }) {
                     <div style={{ fontSize: 12, color: "#6B7280" }}>{edu.institution}</div>
                   </div>
                   <div style={{ fontSize: 11, color: "#9CA3AF", textAlign: "right" }}>
-                    {edu.startDate}–{edu.isCurrent ? "heden" : edu.endDate}
+                    {edu.startDate}-{edu.isCurrent ? "heden" : edu.endDate}
                   </div>
                 </div>
               ))}

@@ -94,7 +94,7 @@ export function CvTemplatePreview({ doc }: { doc: ResumeDocument }) {
                       </p>
                       <p className="text-slate-400">
                         {job.startDate}
-                        {job.startDate && (job.endDate || job.isCurrent) && " – "}
+                        {job.startDate && (job.endDate || job.isCurrent) && " - "}
                         {job.isCurrent ? "heden" : job.endDate}
                       </p>
                     </div>

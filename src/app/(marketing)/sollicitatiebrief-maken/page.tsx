@@ -34,7 +34,7 @@ const structure = [
     label: "Middenstuk",
     title: "Waarom ben jíj de juiste persoon?",
     description:
-      "Het middenstuk bestaat uit 2–3 alinea's. Koppel je concrete ervaring en resultaten aan de vereisten uit de vacature. Gebruik één sterk voorbeeld per alinea en onderbouw met cijfers waar mogelijk.",
+      "Het middenstuk bestaat uit 2-3 alinea's. Koppel je concrete ervaring en resultaten aan de vereisten uit de vacature. Gebruik één sterk voorbeeld per alinea en onderbouw met cijfers waar mogelijk.",
     tip: "Schrijf niet wat je hebt gedaan, maar wat het opleverde. 'Verhoogde klanttevredenheid van 7,2 naar 8,6' is sterker dan 'verantwoordelijk voor klantenservice'.",
   },
   {
@@ -89,7 +89,7 @@ const exampleSentences = [
   {
     context: "Gat in het cv uitleggen",
     sentence:
-      "In de periode van [maand–maand] heb ik bewust geïnvesteerd in [cursus/project/zorgtaak] en ben ik sterker teruggekomen met concrete vaardigheden die ik nu wil inzetten.",
+      "In de periode van [maand-maand] heb ik bewust geïnvesteerd in [cursus/project/zorgtaak] en ben ik sterker teruggekomen met concrete vaardigheden die ik nu wil inzetten.",
   },
   {
     context: "Open sollicitatie zonder vacature",

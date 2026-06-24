@@ -68,7 +68,7 @@ export function MinimaalPdf({ doc }: { doc: ResumeDocument }) {
                 <Text style={s.entryTitle}>{job.jobTitle}</Text>
                 <Text style={s.entryMeta}>{[job.company, job.location].filter(Boolean).join(" · ")}</Text>
                 <Text style={s.entryDate}>
-                  {[job.startDate, job.isCurrent ? "heden" : job.endDate].filter(Boolean).join(" – ")}
+                  {[job.startDate, job.isCurrent ? "heden" : job.endDate].filter(Boolean).join(" - ")}
                 </Text>
                 {job.bullets.filter(Boolean).map((b, i) => (
                   <Text key={i} style={s.bullet}>• {b}</Text>
@@ -86,7 +86,7 @@ export function MinimaalPdf({ doc }: { doc: ResumeDocument }) {
                 <Text style={s.entryTitle}>{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(", ")}</Text>
                 <Text style={s.entryMeta}>{edu.institution}{edu.location ? ` · ${edu.location}` : ""}</Text>
                 <Text style={s.entryDate}>
-                  {[edu.startDate, edu.isCurrent ? "heden" : edu.endDate].filter(Boolean).join(" – ")}
+                  {[edu.startDate, edu.isCurrent ? "heden" : edu.endDate].filter(Boolean).join(" - ")}
                 </Text>
                 {edu.description ? <Text style={s.bullet}>{edu.description}</Text> : null}
               </View>

@@ -71,7 +71,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-3">5. Jouw rechten</h2>
           <p className="text-slate-600 leading-7">
-            Op grond van de AVG (artikelen 15–22) heb je de volgende rechten:
+            Op grond van de AVG (artikelen 15-22) heb je de volgende rechten:
           </p>
           <ul className="list-disc list-inside space-y-1 text-slate-600 mt-3">
             <li><strong>Inzage</strong>: je kunt opvragen welke gegevens we van je verwerken</li>
