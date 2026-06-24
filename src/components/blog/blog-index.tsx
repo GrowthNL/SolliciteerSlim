@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Clock, Search, X } from "lucide-react";
 import type { BlogPost } from "@/features/blog/types";
 import { CategoryBadge } from "./category-badge";
+import { BlogCover } from "./blog-cover";
 
 function ArticleMeta({ date, readTime }: { date: string; readTime: string }) {
   return (
@@ -117,8 +118,12 @@ export function BlogIndex({ posts }: { posts: BlogPost[] }) {
           {filtered.map((article) => (
             <article
               key={article.slug}
-              className="flex flex-col rounded-2xl border border-[#E5E3DA] bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-[#C6F24E] hover:shadow-lg hover:shadow-[#111113]/5"
+              className="flex flex-col overflow-hidden rounded-2xl border border-[#E5E3DA] bg-white transition-all hover:-translate-y-0.5 hover:border-[#C6F24E] hover:shadow-lg hover:shadow-[#111113]/5"
             >
+              <Link href={`/blog/${article.slug}`} aria-label={article.title}>
+                <BlogCover category={article.categories[0]} title={article.title} className="h-36" />
+              </Link>
+              <div className="flex flex-1 flex-col p-6">
               <div className="flex flex-wrap gap-1.5">
                 {article.categories.map((cat) => (
                   <CategoryBadge key={cat} category={cat} />
@@ -140,6 +145,7 @@ export function BlogIndex({ posts }: { posts: BlogPost[] }) {
                 >
                   Lees meer <ArrowRight className="size-3.5" />
                 </Link>
+              </div>
               </div>
             </article>
           ))}
