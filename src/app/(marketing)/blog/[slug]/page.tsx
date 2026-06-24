@@ -138,9 +138,9 @@ export default async function BlogArticlePage({
             </div>
           </header>
 
-          {/* Featured cover */}
-          <div className="mx-auto mt-8 max-w-4xl">
-            <BlogCover category={post.categories[0]} title={post.title} size="hero" className="h-56 rounded-3xl sm:h-72" />
+          {/* Featured cover, aligned with the content + sidebar width below */}
+          <div className="mx-auto mt-8 max-w-5xl">
+            <BlogCover category={post.categories[0]} title={post.title} size="hero" className="h-60 rounded-3xl sm:h-80" />
           </div>
 
           {/* Two-column: content + sidebar */}

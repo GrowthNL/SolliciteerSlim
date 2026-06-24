@@ -151,44 +151,14 @@ export default function SollicitatiebriefMakenPage() {
                 </div>
               </div>
 
-              {/* Letter / brief mockup */}
-              <div className="-rotate-[1.5deg] rounded-[1.75rem] border border-[#E5E3DA] bg-white p-3 shadow-[0_30px_80px_rgba(17,17,19,0.14)]">
-                <div className="rounded-2xl bg-white p-6 sm:p-7">
-                  <div className="flex items-start justify-between border-b border-[#E5E3DA] pb-4">
-                    <div>
-                      <div className="h-2.5 w-28 rounded bg-[#111113]" />
-                      <div className="mt-2 h-1.5 w-20 rounded bg-[#DDDBD1]" />
-                    </div>
-                    <span className="flex size-8 items-center justify-center rounded-lg bg-[#EDF7C6]">
-                      <FileText className="size-4 text-[#111113]" />
-                    </span>
-                  </div>
-                  <div className="mt-5 space-y-2.5">
-                    <div className="h-1.5 w-24 rounded bg-[#111113]" />
-                    <div className="h-1.5 rounded bg-[#DDDBD1]" />
-                    <div className="h-1.5 rounded bg-[#DDDBD1]" />
-                    <div className="h-1.5 w-11/12 rounded bg-[#DDDBD1]" />
-                  </div>
-                  {/* AI-sharpened paragraph */}
-                  <div className="mt-5 rounded-lg border-l-2 border-[#C6F24E] bg-[#F8FCE8] py-3 pl-3 pr-2">
-                    <div className="flex items-center gap-1.5">
-                      <Sparkles className="size-3 text-[#111113]" />
-                      <div className="h-1.5 w-16 rounded bg-[#111113]" />
-                    </div>
-                    <div className="mt-2 space-y-1.5">
-                      <div className="h-1.5 rounded bg-[#C6F24E]/60" />
-                      <div className="h-1.5 w-5/6 rounded bg-[#C6F24E]/60" />
-                    </div>
-                  </div>
-                  <div className="mt-5 space-y-2.5">
-                    <div className="h-1.5 rounded bg-[#DDDBD1]" />
-                    <div className="h-1.5 w-3/4 rounded bg-[#DDDBD1]" />
-                  </div>
-                  <div className="mt-6 flex items-center gap-2">
-                    <div className="h-1.5 w-16 rounded bg-[#111113]" />
-                    <div className="ml-auto h-6 w-20 rounded-md bg-[#111113]" />
-                  </div>
-                </div>
+              {/* Realistic photo */}
+              <div className="overflow-hidden rounded-[1.75rem] border border-[#E5E3DA] shadow-[0_30px_80px_rgba(17,17,19,0.18)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/heroes/sollicitatiebrief-maken.jpg"
+                  alt="Iemand schrijft een sollicitatiebrief aan een bureau"
+                  className="aspect-[4/3] w-full object-cover"
+                />
               </div>
 
               {/* Bottom badge */}

@@ -185,49 +185,14 @@ export default function CvMakenPage() {
                 </div>
               </div>
 
-              {/* CV document mockup */}
-              <div className="rotate-[1.5deg] rounded-[1.75rem] border border-[#E5E3DA] bg-white p-3 shadow-[0_30px_80px_rgba(17,17,19,0.14)]">
-                <div className="rounded-2xl bg-[#F2F1EC] p-6 sm:p-7">
-                  <div className="flex items-center gap-4 border-b border-[#DDDBD1] pb-5">
-                    <div className="size-12 rounded-full bg-[#111113]" />
-                    <div>
-                      <div className="h-3 w-32 rounded bg-[#111113]" />
-                      <div className="mt-2 inline-block rounded bg-[#C6F24E] px-1.5 py-0.5">
-                        <div className="h-1.5 w-20 rounded bg-[#111113]/70" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-5 grid grid-cols-[1fr_.5fr] gap-5">
-                    <div>
-                      <div className="h-2 w-20 rounded bg-[#111113]" />
-                      <div className="mt-3 space-y-2">
-                        <div className="h-1.5 rounded bg-[#DDDBD1]" />
-                        <div className="h-1.5 rounded bg-[#DDDBD1]" />
-                        <div className="h-1.5 w-5/6 rounded bg-[#DDDBD1]" />
-                      </div>
-                      <div className="mt-5 h-2 w-24 rounded bg-[#111113]" />
-                      <div className="mt-3 border-l-2 border-[#C6F24E] pl-3">
-                        <div className="h-2 w-20 rounded bg-[#2E2E2C]" />
-                        <div className="mt-2 h-1.5 rounded bg-[#DDDBD1]" />
-                        <div className="mt-1.5 h-1.5 w-4/5 rounded bg-[#DDDBD1]" />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="h-2 w-12 rounded bg-[#111113]" />
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        <span className="h-5 w-12 rounded-full bg-[#EDF7C6]" />
-                        <span className="h-5 w-9 rounded-full bg-[#EDF7C6]" />
-                        <span className="h-5 w-14 rounded-full bg-[#EDF7C6]" />
-                        <span className="h-5 w-10 rounded-full bg-[#FFE3DA]" />
-                      </div>
-                      <div className="mt-5 h-2 w-10 rounded bg-[#111113]" />
-                      <div className="mt-2 space-y-1.5">
-                        <div className="h-1.5 rounded bg-[#DDDBD1]" />
-                        <div className="h-1.5 w-3/4 rounded bg-[#DDDBD1]" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              {/* Realistic photo */}
+              <div className="overflow-hidden rounded-[1.75rem] border border-[#E5E3DA] shadow-[0_30px_80px_rgba(17,17,19,0.18)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/heroes/cv-maken.jpg"
+                  alt="Iemand maakt een professioneel cv op een laptop"
+                  className="aspect-[4/3] w-full object-cover"
+                />
               </div>
 
               {/* Bottom badge */}
