@@ -7,15 +7,25 @@ import { getEnrichment } from "@/features/cv-examples/enrichment";
 import { ModernPreview } from "@/features/templates/modern-preview";
 import { KlassiekPreview } from "@/features/templates/klassiek-preview";
 import { MinimaalPreview } from "@/features/templates/minimaal-preview";
+import { ClassicSidebarPreview } from "@/features/templates/classic-sidebar-preview";
+import { ModernLinksPreview } from "@/features/templates/modern-links-preview";
+import { HeaderBandPreview } from "@/features/templates/header-band-preview";
+import { SchoonPreview } from "@/features/templates/schoon-preview";
+import { SerifPreview } from "@/features/templates/serif-preview";
 import { JsonLd } from "@/components/seo/json-ld";
 import type { ResumeDocument } from "@/features/resumes/model";
 import type { CvExample } from "@/features/cv-examples/types";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cvmaken.nu";
 
-function Preview({ template, doc }: { template: CvExample["template"]; doc: ResumeDocument }) {
+function Preview({ template, doc, accentColor }: { template: CvExample["template"]; doc: ResumeDocument; accentColor?: string }) {
   if (template === "klassiek") return <KlassiekPreview doc={doc} />;
   if (template === "minimaal") return <MinimaalPreview doc={doc} />;
+  if (template === "classic-sidebar") return <ClassicSidebarPreview doc={doc} accentColor={accentColor} />;
+  if (template === "modern-links") return <ModernLinksPreview doc={doc} accentColor={accentColor} />;
+  if (template === "header-band") return <HeaderBandPreview doc={doc} accentColor={accentColor} />;
+  if (template === "schoon") return <SchoonPreview doc={doc} accentColor={accentColor} />;
+  if (template === "serif") return <SerifPreview doc={doc} accentColor={accentColor} />;
   return <ModernPreview doc={doc} />;
 }
 
@@ -119,7 +129,7 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
                 </div>
               )}
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Link href="/registreren" className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]">
+                <Link href={`/dashboard/cv/new?example=${ex.slug}`} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#111113] px-6 py-3.5 text-sm font-bold text-[#F2F1EC] transition-colors hover:bg-[#2E2E2C]">
                   Maak dit cv <ArrowRight className="size-4" />
                 </Link>
                 <Link href="/cv-templates" className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#E5E3DA] bg-white px-6 py-3.5 text-sm font-semibold text-[#111113] transition-colors hover:bg-[#F2F1EC]">
@@ -130,7 +140,7 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
 
             {/* The rendered example CV */}
             <div className="overflow-hidden rounded-2xl border-2 border-[#E5E3DA] shadow-2xl shadow-[#111113]/10">
-              <Preview template={ex.template} doc={ex.doc} />
+              <Preview template={ex.template} doc={ex.doc} accentColor={ex.accentColor} />
             </div>
           </div>
         </div>
@@ -264,7 +274,7 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
                 <Link key={r.slug} href={`/cv-voorbeelden/${r.slug}`} className="group flex flex-col">
                   <div className="h-[220px] overflow-hidden rounded-2xl border border-[#E5E3DA] bg-white transition-all group-hover:-translate-y-1 group-hover:border-[#C6F24E] group-hover:shadow-xl">
                     <div className="pointer-events-none">
-                      <Preview template={r.template} doc={r.doc} />
+                      <Preview template={r.template} doc={r.doc} accentColor={r.accentColor} />
                     </div>
                   </div>
                   <div className="mt-3 px-1">
@@ -287,7 +297,7 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
           <p className="mx-auto mt-4 max-w-lg text-[#9A9A92]">
             Begin met dit voorbeeld als basis, vul je eigen ervaring in en download een ATS-proof PDF.
           </p>
-          <Link href="/registreren" className="mt-7 inline-flex items-center gap-2 rounded-lg bg-[#C6F24E] px-7 py-3.5 text-[15px] font-black text-[#111113] transition-colors hover:bg-[#DCF58A]">
+          <Link href={`/dashboard/cv/new?example=${ex.slug}`} className="mt-7 inline-flex items-center gap-2 rounded-lg bg-[#C6F24E] px-7 py-3.5 text-[15px] font-black text-[#111113] transition-colors hover:bg-[#DCF58A]">
             Gratis starten <ArrowRight className="size-4" />
           </Link>
           <div className="mt-8">

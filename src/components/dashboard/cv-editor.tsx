@@ -22,6 +22,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ModernPreview } from "@/features/templates/modern-preview";
 import { KlassiekPreview } from "@/features/templates/klassiek-preview";
 import { MinimaalPreview } from "@/features/templates/minimaal-preview";
+import { ClassicSidebarPreview } from "@/features/templates/classic-sidebar-preview";
+import { ModernLinksPreview } from "@/features/templates/modern-links-preview";
+import { HeaderBandPreview } from "@/features/templates/header-band-preview";
+import { SchoonPreview } from "@/features/templates/schoon-preview";
+import { SerifPreview } from "@/features/templates/serif-preview";
 import { PdfDownloadButton } from "@/components/dashboard/pdf-download-button";
 import { TEMPLATES, type TemplateId } from "@/features/templates/index";
 import { saveResume } from "@/app/actions/resumes";
@@ -893,16 +898,19 @@ function SaveStatus({ status }: { status: "idle" | "saving" | "saved" | "error" 
 interface CvEditorProps {
   initialId?: string;
   initialDoc?: ResumeDocument;
+  initialTemplate?: TemplateId;
+  initialAccentColor?: string;
   plan?: Plan;
 }
 
-export function CvEditor({ initialId, initialDoc, plan = "free" }: CvEditorProps) {
+export function CvEditor({ initialId, initialDoc, initialTemplate, initialAccentColor, plan = "free" }: CvEditorProps) {
   const [resumeId, setResumeId] = useState<string | null>(initialId ?? null);
   const [doc, setDoc] = useState<ResumeDocument>(initialDoc ?? createEmptyResumeDocument());
   const [activeSection, setActiveSection] = useState<SectionKey>("personal");
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [isDirty, setIsDirty] = useState(false);
-  const [templateId, setTemplateId] = useState<TemplateId>("modern");
+  const [templateId, setTemplateId] = useState<TemplateId>(initialTemplate ?? "modern");
+  const [accentColor, setAccentColor] = useState<string>(initialAccentColor ?? "#111113");
   const [, startTransition] = useTransition();
   const router = useRouter();
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1063,7 +1071,7 @@ export function CvEditor({ initialId, initialDoc, plan = "free" }: CvEditorProps
         <div id="cv-preview-panel" className="hidden xl:block">
           <div className="mb-3">
             <p className="mb-2 text-sm font-semibold text-slate-700">Live voorbeeld</p>
-            <div className="flex gap-1.5">
+            <div className="flex flex-wrap gap-1.5">
               {TEMPLATES.map((t) => (
                 <button
                   key={t.id}
@@ -1079,10 +1087,30 @@ export function CvEditor({ initialId, initialDoc, plan = "free" }: CvEditorProps
                 </button>
               ))}
             </div>
+            {["classic-sidebar", "modern-links", "header-band", "schoon", "serif"].includes(templateId) && (
+              <div className="mt-2 flex items-center gap-1.5">
+                <span className="text-[10px] text-slate-500">Kleur:</span>
+                {["#111113","#1b5e7a","#1f3a5f","#16335c","#7a2e3f","#6d5ae6","#1f8a6d","#c9802b","#d9694e","#3a4a7a"].map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => setAccentColor(c)}
+                    title={c}
+                    style={{ backgroundColor: c }}
+                    className={`size-4 rounded-full transition-transform hover:scale-125 ${accentColor === c ? "ring-2 ring-offset-1 ring-slate-400" : ""}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
           {templateId === "modern" && <ModernPreview doc={doc} />}
           {templateId === "klassiek" && <KlassiekPreview doc={doc} />}
           {templateId === "minimaal" && <MinimaalPreview doc={doc} />}
+          {templateId === "classic-sidebar" && <ClassicSidebarPreview doc={doc} accentColor={accentColor} />}
+          {templateId === "modern-links" && <ModernLinksPreview doc={doc} accentColor={accentColor} />}
+          {templateId === "header-band" && <HeaderBandPreview doc={doc} accentColor={accentColor} />}
+          {templateId === "schoon" && <SchoonPreview doc={doc} accentColor={accentColor} />}
+          {templateId === "serif" && <SerifPreview doc={doc} accentColor={accentColor} />}
           <div className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 p-3 text-xs leading-5 text-emerald-900/70">
             <Sparkles className="mr-1 inline size-3.5" />
             Gebruik &ldquo;Verbeter met AI&rdquo; in het Profiel-onderdeel om je samenvatting te versterken.

@@ -8,6 +8,7 @@ export type CvExample = {
   profession: string;
   category: string;
   template: TemplateId;
+  accentColor?: string;
   metaTitle: string;
   metaDescription: string;
   intro: string;

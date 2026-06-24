@@ -7,11 +7,21 @@ import type { CvExample } from "@/features/cv-examples/types";
 import { ModernPreview } from "@/features/templates/modern-preview";
 import { KlassiekPreview } from "@/features/templates/klassiek-preview";
 import { MinimaalPreview } from "@/features/templates/minimaal-preview";
+import { ClassicSidebarPreview } from "@/features/templates/classic-sidebar-preview";
+import { ModernLinksPreview } from "@/features/templates/modern-links-preview";
+import { HeaderBandPreview } from "@/features/templates/header-band-preview";
+import { SchoonPreview } from "@/features/templates/schoon-preview";
+import { SerifPreview } from "@/features/templates/serif-preview";
 import type { ResumeDocument } from "@/features/resumes/model";
 
-function Preview({ template, doc }: { template: CvExample["template"]; doc: ResumeDocument }) {
+function Preview({ template, doc, accentColor }: { template: CvExample["template"]; doc: ResumeDocument; accentColor?: string }) {
   if (template === "klassiek") return <KlassiekPreview doc={doc} />;
   if (template === "minimaal") return <MinimaalPreview doc={doc} />;
+  if (template === "classic-sidebar") return <ClassicSidebarPreview doc={doc} accentColor={accentColor} />;
+  if (template === "modern-links") return <ModernLinksPreview doc={doc} accentColor={accentColor} />;
+  if (template === "header-band") return <HeaderBandPreview doc={doc} accentColor={accentColor} />;
+  if (template === "schoon") return <SchoonPreview doc={doc} accentColor={accentColor} />;
+  if (template === "serif") return <SerifPreview doc={doc} accentColor={accentColor} />;
   return <ModernPreview doc={doc} />;
 }
 
@@ -98,7 +108,7 @@ export function CvExampleGallery({ examples }: { examples: CvExample[] }) {
               {/* Preview thumbnail */}
               <div className="relative overflow-hidden rounded-2xl border border-[#E5E3DA] bg-white transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#C6F24E] group-hover:shadow-2xl group-hover:shadow-[#111113]/10">
                 <div className="pointer-events-none h-[300px] overflow-hidden">
-                  <Preview template={ex.template} doc={ex.doc} />
+                  <Preview template={ex.template} doc={ex.doc} accentColor={ex.accentColor} />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-[#111113]/70 to-transparent pb-4 pt-10 opacity-0 transition-opacity group-hover:opacity-100">
                   <span className="inline-flex items-center gap-1.5 rounded-lg bg-[#C6F24E] px-4 py-2 text-xs font-black text-[#111113]">
