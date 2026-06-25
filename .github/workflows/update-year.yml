@@ -1,0 +1,40 @@
+name: Update year in enrichment content
+
+on:
+  schedule:
+    # Run on January 1st at 06:00 UTC
+    - cron: "0 6 1 1 *"
+  workflow_dispatch:
+
+jobs:
+  update-year:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update year references
+        id: update
+        run: |
+          PREV_YEAR=$(date -d "last year" +%Y)
+          CURR_YEAR=$(date +%Y)
+          FILE="src/features/cv-examples/enrichment.ts"
+
+          COUNT=$(grep -c "$PREV_YEAR" "$FILE" || true)
+          if [ "$COUNT" -gt 0 ]; then
+            sed -i "s/$PREV_YEAR/$CURR_YEAR/g" "$FILE"
+            echo "replaced=$COUNT" >> "$GITHUB_OUTPUT"
+          else
+            echo "replaced=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push
+        if: steps.update.outputs.replaced != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/features/cv-examples/enrichment.ts
+          git commit -m "chore: update year references to $(date +%Y) in CV enrichment content"
+          git push
