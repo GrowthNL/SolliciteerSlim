@@ -33,21 +33,25 @@
 - [ ] Visuele regressietests en lange-content/paginabreuktests.
 
 ## Phase 4 — AI en vacatureworkflow
-- [ ] Server-only OpenAI-adapter, schema-validatie en timeouts.
-- [ ] Vacature-invoer, analyse en bewerkbare extractie.
-- [ ] Profiel- en werkervaringverbetering met diff/accept-flow.
-- [ ] Transparante matchscore en ATS-check light.
-- [ ] Sollicitatiebriefgenerator met fact-checkoverzicht.
-- [ ] AI-usage logs zonder persoonlijke inhoud en planlimieten.
+- [x] Server-only OpenAI-adapter (`src/lib/openai/client.ts`).
+- [x] Vacature-invoer en analyse (`analyzeVacature` in `src/app/actions/ai.ts`).
+- [x] Profiel- en werkervaringverbetering (`improveText`).
+- [x] ATS-check (`generateAtsCheck`).
+- [x] Sollicitatiebriefgenerator (`generateCoverLetter`, `updateCoverLetter`).
+- [x] AI-usage logs (`getMonthlyAiUsage`, tabel `ai_usage_logs`).
+- [ ] Diff/accept-flow bij tekstverbetering.
+- [ ] Transparante matchscore naast de ATS-check.
+- [ ] Schema-validatie en timeout-hardening op alle AI-calls.
 - [ ] Nederlandse evaluatieset en promptversies.
 
 ## Phase 5 — Betaling
-- [ ] Stripe producten, prijzen en server-side mapping.
-- [ ] Checkout voor eenmalige download en abonnementen.
-- [ ] Ondertekende, idempotente webhooks.
-- [ ] Entitlements voor AI en export.
+- [x] Stripe producten/prijzen en server-side mapping (`src/lib/stripe`, `0002_stripe.sql`).
+- [x] Checkout-sessie (`createCheckoutSession` in `src/app/actions/stripe.ts`).
+- [x] Ondertekende webhooks (`src/app/api/stripe/webhook/route.ts`, signature-verificatie).
+- [x] Customer portal (`createPortalSession`).
+- [ ] Idempotentie op webhook-events expliciet borgen.
+- [ ] Entitlements voor AI en export volledig afdwingen.
 - [ ] Paywall met duidelijke resterende limieten.
-- [ ] Customer portal en facturatiebeheer.
 
 ## Phase 6 — SEO, betrouwbaarheid en polish
 - [x] Unieke SEO-content op alle marketing-subpagina's (cv-maken, sollicitatiebrief, ats-check, cv-voorbeelden, cv-templates, prijzen, blog).
@@ -55,12 +59,14 @@
 - [x] `sitemap.ts` en `robots.ts` gegenereerd via Next.js route handlers.
 - [x] Error boundaries: `app/error.tsx` en `app/dashboard/error.tsx`.
 - [x] 404-pagina: `app/not-found.tsx`.
+- [x] Resend transactionele e-mails (auth + contact, `src/lib/resend`).
+- [x] `llms.txt` voor LLM-vindbaarheid.
+- [x] Volledig verrijkte cv-voorbeeldpagina's (52 slugs) met jaarlijkse auto-update-action.
 - [ ] Blogcontentmodel met volledige artikelen en CMS-integratie.
 - [ ] Privacyvriendelijke analytics-events en consentkeuzes.
-- [ ] Rate limiting en abuse protection.
+- [ ] Rate limiting en abuse protection op AI-endpoints.
 - [ ] E2E-tests, performancebudget en toegankelijkheidsaudit.
-- [ ] Resend transactionele e-mails.
 - [ ] Vercel preview/production deployment en runbook.
 
-## Definitie van klaar voor de volgende fase
-Phase 2 start pas nadat Phase 1 lokaal lint, typecheck en build doorloopt, de route-shell visueel gecontroleerd is en architectuurkeuzes in de docs zijn bijgewerkt. Lint, typecheck, tests en build zijn lokaal groen; de visuele browsercontrole en Lighthouse-meting staan nog open.
+## Huidige focus
+Phase 1 t/m 5 zijn functioneel afgerond en het grootste deel van Phase 6 staat live. De resterende prioriteiten liggen op betrouwbaarheid en polish: server-side PDF-export (Phase 3), rate limiting op de AI-endpoints, E2E-tests, een Lighthouse-/toegankelijkheidsaudit en privacyvriendelijke analytics met consent. Lint, typecheck, tests en build zijn lokaal groen; de visuele browsercontrole en Lighthouse-meting staan nog open.

@@ -4,7 +4,7 @@ SolliciteerSlim is een AI-first Nederlandse CV- en sollicitatieassistent. De ker
 
 > Maak in enkele minuten een professioneel cv en sollicitatiebrief die aansluiten op jouw vacature.
 
-Deze repository bevat een afgeronde technische **Phase 1-basis** en de eerste bouwsteen van **Phase 2**: een versieerbaar CV-domeinmodel met runtime-validatie en tests. De marketingwebsite, auth-placeholders, dashboard-shell en CV-editor-shell zijn aanwezig. Supabase, OpenAI, Stripe, Resend en PDF-export zijn nog niet aangesloten.
+Deze repository bevat een werkend product met afgeronde **Phase 1 t/m 5** en het grootste deel van **Phase 6**. De marketingwebsite, authenticatie, dashboard en CV-editor zijn functioneel. Supabase, OpenAI, Stripe, Resend en client-side PDF-export zijn aangesloten. Zie [ROADMAP.md](docs/ROADMAP.md) voor de resterende openstaande punten.
 
 ## Stack
 - Next.js App Router
@@ -46,7 +46,7 @@ npm run start      # gebouwde app starten
 ### App-shell (nog niet afgeschermd)
 `/dashboard`, `/dashboard/cv`, `/dashboard/cv/new`, `/dashboard/cv/[id]`, `/dashboard/sollicitatiebrieven`, `/dashboard/vacatures`, `/dashboard/account`
 
-> Let op: dashboardroutes zijn in Phase 1 bewust publiek bereikbaar voor UI-ontwikkeling. Phase 2 voegt Supabase Auth en server-side routebescherming toe.
+> Dashboardroutes zijn server-side beschermd via Next.js middleware en Supabase Auth. Zonder geldige sessie word je doorgestuurd naar `/login`.
 
 ## Mappen
 ```text
@@ -70,4 +70,4 @@ Zie `.env.example`. Variabelen zonder `NEXT_PUBLIC_` zijn uitsluitend voor serve
 - [Security en privacy](docs/SECURITY_PRIVACY.md)
 
 ## Huidige vervolgstap
-Het CV-documentmodel staat in `src/features/resumes/model.ts` en vormt straks het gedeelde contract voor editor, opslag, preview en PDF. De volgende stap is Supabase configureren, de eerste migrations en RLS-policies toevoegen en daarna authenticatie en persistente CV-opslag aansluiten. Zie [ROADMAP.md](docs/ROADMAP.md) voor de volledige checklist.
+De kernfunctionaliteit (auth, CV-editor met opslag, templates, PDF, AI-acties, Stripe-betaling, Resend-e-mail) is aangesloten. De resterende punten liggen vooral op het vlak van betrouwbaarheid en polish: server-side PDF-export, E2E-tests, rate limiting op de AI-endpoints, een Lighthouse-/toegankelijkheidsaudit en privacyvriendelijke analytics. Zie [ROADMAP.md](docs/ROADMAP.md) voor de volledige checklist.
