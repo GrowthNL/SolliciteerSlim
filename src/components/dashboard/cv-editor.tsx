@@ -908,6 +908,7 @@ export function CvEditor({ initialId, initialDoc, initialTemplate, initialAccent
   const [doc, setDoc] = useState<ResumeDocument>(initialDoc ?? createEmptyResumeDocument());
   const [activeSection, setActiveSection] = useState<SectionKey>("personal");
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [isDirty, setIsDirty] = useState(false);
   const [templateId, setTemplateId] = useState<TemplateId>(initialTemplate ?? "modern");
   const [accentColor, setAccentColor] = useState<string>(initialAccentColor ?? "#111113");
@@ -930,12 +931,14 @@ export function CvEditor({ initialId, initialDoc, initialTemplate, initialAccent
         const result = await saveResume(resumeId, doc);
         if ("error" in result) {
           setSaveStatus("error");
+          setSaveError(result.error);
         } else {
           if (!resumeId) {
             setResumeId(result.id);
             router.replace(`/dashboard/cv/${result.id}`);
           }
           setSaveStatus("saved");
+          setSaveError(null);
           setIsDirty(false);
         }
       });
@@ -977,6 +980,13 @@ export function CvEditor({ initialId, initialDoc, initialTemplate, initialAccent
           />
         </div>
       </div>
+
+      {saveStatus === "error" && saveError && (
+        <div className="mt-4 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+          <span className="font-semibold">Niet opgeslagen:</span>
+          <span>{saveError}</span>
+        </div>
+      )}
 
       {/* Three-column layout */}
       <div className="mt-7 grid gap-5 xl:grid-cols-[220px_1fr_380px]">

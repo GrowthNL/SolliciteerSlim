@@ -1,8 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { type ResumeDocument, validateResumeDocument } from "@/features/resumes/model";
+import { canCreateResume, PLAN_LIMITS, getPlanLabel, type Plan } from "@/lib/entitlements";
 
 export type ResumeRow = {
   id: string;
@@ -16,6 +18,25 @@ function buildTitle(doc: ResumeDocument): string {
     .filter(Boolean)
     .join(" ");
   return name ? `CV ${name}` : "Naamloos cv";
+}
+
+/** Enforces the per-plan resume limit before creating a new resume. */
+async function assertCanCreateResume(
+  supabase: SupabaseClient,
+  userId: string,
+): Promise<{ error: string } | null> {
+  const [{ data: profile }, { count }] = await Promise.all([
+    supabase.from("users").select("plan").eq("id", userId).single(),
+    supabase.from("resumes").select("*", { count: "exact", head: true }).eq("user_id", userId),
+  ]);
+  const plan = (profile?.plan ?? "free") as Plan;
+  if (!canCreateResume(plan, count ?? 0)) {
+    const max = PLAN_LIMITS[plan].maxResumes;
+    return {
+      error: `Je hebt het maximum van ${max} cv${max === 1 ? "" : "'s"} voor je ${getPlanLabel(plan)}-abonnement bereikt. Upgrade via je account voor meer.`,
+    };
+  }
+  return null;
 }
 
 export async function saveResume(
@@ -45,6 +66,9 @@ export async function saveResume(
     revalidatePath("/dashboard");
     return { id };
   }
+
+  const limitError = await assertCanCreateResume(supabase, user.id);
+  if (limitError) return limitError;
 
   const { data, error } = await supabase
     .from("resumes")
@@ -125,6 +149,9 @@ export async function duplicateResume(id: string): Promise<{ id: string } | { er
     .single();
 
   if (!source) return { error: "CV niet gevonden." };
+
+  const limitError = await assertCanCreateResume(supabase, user.id);
+  if (limitError) return limitError;
 
   const { data, error } = await supabase
     .from("resumes")
