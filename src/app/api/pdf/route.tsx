@@ -9,6 +9,8 @@ import { MinimaalPdf } from "@/features/templates/minimaal-pdf";
 
 // @react-pdf/renderer needs the Node runtime (not edge).
 export const runtime = "nodejs";
+// PDF rendering can take a few seconds for long CVs; allow headroom.
+export const maxDuration = 30;
 
 type TemplateOption = "modern" | "klassiek" | "minimaal";
 

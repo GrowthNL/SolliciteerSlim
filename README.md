@@ -68,6 +68,7 @@ Zie `.env.example`. Variabelen zonder `NEXT_PUBLIC_` zijn uitsluitend voor serve
 - [AI actions en promptregels](docs/AI_PROMPTS.md)
 - [Roadmap en TODO](docs/ROADMAP.md)
 - [Security en privacy](docs/SECURITY_PRIVACY.md)
+- [Deployment runbook](docs/DEPLOYMENT.md)
 
 ## Huidige vervolgstap
 De kernfunctionaliteit (auth, CV-editor met opslag, templates, PDF, AI-acties, Stripe-betaling, Resend-e-mail) is aangesloten. De resterende punten liggen vooral op het vlak van betrouwbaarheid en polish: server-side PDF-export, E2E-tests, rate limiting op de AI-endpoints, een Lighthouse-/toegankelijkheidsaudit en privacyvriendelijke analytics. Zie [ROADMAP.md](docs/ROADMAP.md) voor de volledige checklist.
