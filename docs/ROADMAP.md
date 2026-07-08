@@ -28,7 +28,7 @@
 - [x] Templatekeuze-switcher in de editor (Modern / Klassiek / Minimaal).
 - [x] PDF-renderer: `@react-pdf/renderer` gekozen; Modern template volledig als PDF geïmplementeerd.
 - [x] Client-side PDF-download (dynamische import, geen server nodig).
-- [ ] Server-side PDF-export via API-route (voor beveiligde download na auth).
+- [x] Server-side PDF-export via API-route (`/api/pdf`, met server-side `canDownloadPdf`-check).
 - [ ] Kleuraccenten en typografieopties per template.
 - [ ] Visuele regressietests en lange-content/paginabreuktests.
 
@@ -49,9 +49,9 @@
 - [x] Checkout-sessie (`createCheckoutSession` in `src/app/actions/stripe.ts`).
 - [x] Ondertekende webhooks (`src/app/api/stripe/webhook/route.ts`, signature-verificatie).
 - [x] Customer portal (`createPortalSession`).
+- [x] Entitlements server-side afdwingen: AI-gebruik, cv-limiet (`assertCanCreateResume`) en PDF-download (`/api/pdf`).
 - [ ] Idempotentie op webhook-events expliciet borgen.
-- [ ] Entitlements voor AI en export volledig afdwingen.
-- [ ] Paywall met duidelijke resterende limieten.
+- [ ] Paywall-UI met duidelijke resterende limieten (server-side afdwinging staat).
 
 ## Phase 6 — SEO, betrouwbaarheid en polish
 - [x] Unieke SEO-content op alle marketing-subpagina's (cv-maken, sollicitatiebrief, ats-check, cv-voorbeelden, cv-templates, prijzen, blog).
@@ -64,7 +64,7 @@
 - [x] Volledig verrijkte cv-voorbeeldpagina's (52 slugs) met jaarlijkse auto-update-action.
 - [ ] Blogcontentmodel met volledige artikelen en CMS-integratie.
 - [ ] Privacyvriendelijke analytics-events en consentkeuzes.
-- [ ] Rate limiting en abuse protection op AI-endpoints.
+- [x] Rate limiting en abuse protection op AI-endpoints (`src/lib/ai/usage.ts`: per-minuut + maandlimiet, alle AI- en import-calls).
 - [ ] E2E-tests, performancebudget en toegankelijkheidsaudit.
 - [ ] Vercel preview/production deployment en runbook.
 
