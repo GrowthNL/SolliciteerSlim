@@ -42,6 +42,20 @@ export async function POST(request: NextRequest) {
 
   const db = serviceClient();
 
+  // Idempotency: reserve the event id before processing. A duplicate delivery
+  // hits the primary-key constraint and is skipped, so side effects (e.g. the
+  // confirmation email) never run twice.
+  const { error: reserveError } = await db
+    .from("stripe_events")
+    .insert({ id: event.id, type: event.type });
+  if (reserveError) {
+    if (reserveError.code === "23505") {
+      return NextResponse.json({ received: true, duplicate: true });
+    }
+    console.error("Webhook idempotency reservation failed:", reserveError);
+    return NextResponse.json({ error: "Idempotency check failed" }, { status: 500 });
+  }
+
   try {
     switch (event.type) {
       case "checkout.session.completed": {
@@ -110,6 +124,8 @@ export async function POST(request: NextRequest) {
     }
   } catch (err) {
     console.error("Webhook handler error:", err);
+    // Roll back the reservation so Stripe's retry can reprocess this event.
+    await db.from("stripe_events").delete().eq("id", event.id);
     return NextResponse.json({ error: "Handler failed" }, { status: 500 });
   }
 
