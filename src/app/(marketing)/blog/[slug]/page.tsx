@@ -75,7 +75,7 @@ export default async function BlogArticlePage({
       "@type": "Organization",
       name: "CVmaken.nu",
       url: BASE,
-      logo: { "@type": "ImageObject", url: `${BASE}/logo-dark.svg` },
+      logo: { "@type": "ImageObject", url: `${BASE}/logo-light.svg` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,

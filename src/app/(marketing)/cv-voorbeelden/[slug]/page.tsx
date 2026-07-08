@@ -91,7 +91,7 @@ export default async function CvExamplePage({ params }: { params: Promise<{ slug
     inLanguage: "nl-NL",
     keywords: ex.keywords.join(", "),
     author: { "@type": "Organization", name: "CVmaken.nu", url: BASE },
-    publisher: { "@type": "Organization", name: "CVmaken.nu", url: BASE, logo: { "@type": "ImageObject", url: `${BASE}/logo-dark.svg` } },
+    publisher: { "@type": "Organization", name: "CVmaken.nu", url: BASE, logo: { "@type": "ImageObject", url: `${BASE}/logo-light.svg` } },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
   };

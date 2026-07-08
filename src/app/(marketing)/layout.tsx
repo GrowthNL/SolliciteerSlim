@@ -10,7 +10,7 @@ const orgJsonLd = {
   "@type": "Organization",
   name: "CVmaken.nu",
   url: BASE,
-  logo: `${BASE}/logo-dark.svg`,
+  logo: `${BASE}/logo-light.svg`,
   description:
     "Nederlandse AI-cv-bouwer waarmee je een professioneel, ATS-proof cv en sollicitatiebrief maakt.",
   sameAs: [],
