@@ -51,7 +51,7 @@
 - [x] Customer portal (`createPortalSession`).
 - [x] Entitlements server-side afdwingen: AI-gebruik, cv-limiet (`assertCanCreateResume`) en PDF-download (`/api/pdf`).
 - [ ] Idempotentie op webhook-events expliciet borgen.
-- [ ] Paywall-UI met duidelijke resterende limieten (server-side afdwinging staat).
+- [x] Paywall-UI met resterende limieten (Gebruik-kaart op accountpagina: cv's, AI-credits, PDF-toegang).
 
 ## Phase 6 — SEO, betrouwbaarheid en polish
 - [x] Unieke SEO-content op alle marketing-subpagina's (cv-maken, sollicitatiebrief, ats-check, cv-voorbeelden, cv-templates, prijzen, blog).

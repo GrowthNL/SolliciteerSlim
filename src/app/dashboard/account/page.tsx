@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 import { getPlanLabel, getPlanColor, type Plan } from "@/lib/entitlements";
+import { getMonthlyAiUsage } from "@/lib/ai/usage";
 import { ProfileForm } from "./profile-form";
 import { PortalButton } from "./portal-button";
+import { PlanUsage } from "./plan-usage";
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ upgraded?: string }> }) {
   const supabase = await createClient();
@@ -21,6 +23,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ u
   const hasSubscription = !!profile?.stripe_customer_id;
   const params = await searchParams;
   const justUpgraded = params.upgraded === "1";
+
+  const [{ count: resumeCount }, aiUsedThisMonth] = await Promise.all([
+    supabase.from("resumes").select("*", { count: "exact", head: true }).eq("user_id", user!.id),
+    getMonthlyAiUsage(user!.id),
+  ]);
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -75,6 +82,8 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ u
           )}
         </CardContent>
       </Card>
+
+      <PlanUsage plan={plan} resumeCount={resumeCount ?? 0} aiUsedThisMonth={aiUsedThisMonth} />
 
       <ProfileForm defaultName={profile?.full_name ?? ""} />
     </div>
