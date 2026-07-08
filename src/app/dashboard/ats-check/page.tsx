@@ -5,6 +5,7 @@ import { ScanSearch, CheckCircle, XCircle, AlertCircle, ChevronDown } from "luci
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateAtsCheck, getJobPosts, type AtsCheckResult, type JobPostRow } from "@/app/actions/ai";
+import { AiCredits } from "@/components/dashboard/ai-credits";
 import { getResumes } from "@/app/actions/resumes";
 import type { ResumeDocument } from "@/features/resumes/model";
 
@@ -47,6 +48,7 @@ export default function AtsCheckPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, startTransition] = useTransition();
   const [dataLoading, startDataLoad] = useTransition();
+  const [creditSignal, setCreditSignal] = useState(0);
 
   // Load data on first render
   useEffect(() => {
@@ -71,6 +73,7 @@ export default function AtsCheckPage() {
         setError(res.error);
       } else {
         setResult(res.data);
+        setCreditSignal((n) => n + 1);
       }
     });
   };
@@ -144,6 +147,9 @@ export default function AtsCheckPage() {
             <ScanSearch className="size-4" />
             {loading ? "ATS-check uitvoeren…" : "Start ATS-check"}
           </Button>
+          <div className="mt-3 flex justify-center">
+            <AiCredits refreshSignal={creditSignal} />
+          </div>
         </CardContent>
       </Card>
 

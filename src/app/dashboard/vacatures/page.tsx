@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { analyzeVacature, getJobPosts, type VacatureAnalysis, type JobPostRow } from "@/app/actions/ai";
+import { AiCredits } from "@/components/dashboard/ai-credits";
 
 export default function Page() {
   const [company, setCompany] = useState("");
@@ -18,6 +19,7 @@ export default function Page() {
   const [jobPosts, setJobPosts] = useState<JobPostRow[]>([]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [creditSignal, setCreditSignal] = useState(0);
 
   useEffect(() => {
     getJobPosts().then(setJobPosts);
@@ -39,6 +41,7 @@ export default function Page() {
         setError(result.error);
       } else {
         setAnalysis(result.data);
+        setCreditSignal((n) => n + 1);
         // Refresh list
         const updated = await getJobPosts();
         setJobPosts(updated);
@@ -105,9 +108,12 @@ export default function Page() {
                 {error}
               </p>
             )}
-            <Button type="submit" disabled={isPending} className="w-full sm:w-auto">
-              {isPending ? "Even geduld…" : "Analyseer vacature"}
-            </Button>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <Button type="submit" disabled={isPending} className="w-full sm:w-auto">
+                {isPending ? "Even geduld…" : "Analyseer vacature"}
+              </Button>
+              <AiCredits refreshSignal={creditSignal} />
+            </div>
           </form>
         </CardContent>
       </Card>

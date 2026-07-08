@@ -14,6 +14,7 @@ import {
   type JobPostRow,
 } from "@/app/actions/ai";
 import { getResumes, type ResumeRow } from "@/app/actions/resumes";
+import { AiCredits } from "@/components/dashboard/ai-credits";
 
 type Tone = "professioneel" | "enthousiast" | "informeel";
 
@@ -41,6 +42,7 @@ export default function Page() {
 
   const [isGenerating, startGenerating] = useTransition();
   const [isSaving, startSaving] = useTransition();
+  const [creditSignal, setCreditSignal] = useState(0);
 
   useEffect(() => {
     Promise.all([getResumes(), getJobPosts(), getCoverLetters()]).then(
@@ -105,6 +107,7 @@ export default function Page() {
       } else {
         setGeneratedContent(result.data.content);
         setGeneratedLetterId(result.data.cover_letter_id);
+        setCreditSignal((n) => n + 1);
         // Refresh list
         const updated = await getCoverLetters();
         setCoverLetters(updated);
@@ -228,9 +231,12 @@ export default function Page() {
               </p>
             )}
 
-            <Button type="submit" disabled={isGenerating} className="w-full sm:w-auto">
-              {isGenerating ? "Even geduld…" : "Genereer sollicitatiebrief"}
-            </Button>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <Button type="submit" disabled={isGenerating} className="w-full sm:w-auto">
+                {isGenerating ? "Even geduld…" : "Genereer sollicitatiebrief"}
+              </Button>
+              <AiCredits refreshSignal={creditSignal} />
+            </div>
           </form>
         </CardContent>
       </Card>

@@ -3,8 +3,34 @@
 import { createClient } from "@/lib/supabase/server";
 import { openai, DEFAULT_MODEL } from "@/lib/openai/client";
 import { z } from "zod";
-import { type Plan } from "@/lib/entitlements";
-import { guardAiUsage, logUsage } from "@/lib/ai/usage";
+import { PLAN_LIMITS, type Plan } from "@/lib/entitlements";
+import { guardAiUsage, logUsage, getMonthlyAiUsage } from "@/lib/ai/usage";
+
+// ─── AI credit status (for in-context usage display) ─────────────────────────
+
+export type AiCreditStatus = {
+  plan: Plan;
+  canUseAi: boolean;
+  used: number;
+  limit: number;
+  remaining: number;
+};
+
+export async function getAiCreditStatus(): Promise<AiCreditStatus | null> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data: profile } = await supabase.from("users").select("plan").eq("id", user.id).single();
+  const plan = (profile?.plan ?? "free") as Plan;
+  const limit = PLAN_LIMITS[plan].aiCallsPerMonth as number;
+  const canUseAi = PLAN_LIMITS[plan].canUseAi;
+  const used = canUseAi ? await getMonthlyAiUsage(user.id) : 0;
+
+  return { plan, canUseAi, used, limit, remaining: Math.max(0, limit - used) };
+}
 
 // ─── Zod schemas ──────────────────────────────────────────────────────────────
 

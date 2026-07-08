@@ -31,6 +31,7 @@ import { PdfDownloadButton } from "@/components/dashboard/pdf-download-button";
 import { TEMPLATES, type TemplateId } from "@/features/templates/index";
 import { saveResume } from "@/app/actions/resumes";
 import { improveText, type ImproveTextResult } from "@/app/actions/ai";
+import { AiCredits } from "@/components/dashboard/ai-credits";
 import { type Plan } from "@/lib/entitlements";
 import {
   createEmptyResumeDocument,
@@ -187,6 +188,7 @@ function ProfileSection({
   const [suggestion, setSuggestion] = useState<ImproveTextResult | null>(null);
   const [aiError, setAiError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [creditSignal, setCreditSignal] = useState(0);
 
   function handleImprove() {
     if (!doc.profileSummary.trim()) return;
@@ -198,6 +200,7 @@ function ProfileSection({
       } else {
         setSuggestion(result.data);
         setShowModal(true);
+        setCreditSignal((n) => n + 1);
       }
     });
   }
@@ -233,6 +236,9 @@ function ProfileSection({
             )}
             {isPending ? "Even geduld…" : "Verbeter met AI"}
           </button>
+        </div>
+        <div className="mb-2">
+          <AiCredits refreshSignal={creditSignal} />
         </div>
         <Textarea
           rows={6}
