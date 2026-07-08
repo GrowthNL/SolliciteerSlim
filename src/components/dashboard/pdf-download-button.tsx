@@ -24,6 +24,7 @@ const templateLabels: Record<TemplateOption, string> = {
 export function PdfDownloadButton({ doc, plan, filename = "cv.pdf" }: PdfDownloadButtonProps) {
   const [loading, setLoading] = useState(false);
   const [template, setTemplate] = useState<TemplateOption>("modern");
+  const [error, setError] = useState<string | null>(null);
 
   if (!canDownloadPdf(plan)) {
     return (
@@ -38,35 +39,35 @@ export function PdfDownloadButton({ doc, plan, filename = "cv.pdf" }: PdfDownloa
 
   const handleDownload = async () => {
     setLoading(true);
+    setError(null);
     try {
-      const [{ pdf }, templateModule] = await Promise.all([
-        import("@react-pdf/renderer"),
-        template === "klassiek"
-          ? import("@/features/templates/klassiek-pdf")
-          : template === "minimaal"
-          ? import("@/features/templates/minimaal-pdf")
-          : import("@/features/templates/modern-pdf"),
-      ]);
+      const res = await fetch("/api/pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ doc, template, filename }),
+      });
 
-      let blob: Blob;
-      if (template === "klassiek") {
-        const { KlassiekPdf } = templateModule as typeof import("@/features/templates/klassiek-pdf");
-        blob = await pdf(<KlassiekPdf doc={doc} />).toBlob();
-      } else if (template === "minimaal") {
-        const { MinimaalPdf } = templateModule as typeof import("@/features/templates/minimaal-pdf");
-        blob = await pdf(<MinimaalPdf doc={doc} />).toBlob();
-      } else {
-        const { ModernPdf } = templateModule as typeof import("@/features/templates/modern-pdf");
-        blob = await pdf(<ModernPdf doc={doc} />).toBlob();
+      if (!res.ok) {
+        let message = "PDF genereren mislukt. Probeer het opnieuw.";
+        try {
+          const data = await res.json();
+          if (data?.error) message = data.error;
+        } catch {
+          // response was not JSON; keep the default message
+        }
+        setError(message);
+        return;
       }
+
+      const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = filename;
       a.click();
       URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error("PDF genereren mislukt:", err);
+    } catch {
+      setError("PDF genereren mislukt. Controleer je verbinding en probeer het opnieuw.");
     } finally {
       setLoading(false);
     }
@@ -96,6 +97,7 @@ export function PdfDownloadButton({ doc, plan, filename = "cv.pdf" }: PdfDownloa
         <Download className="size-4" />
         {loading ? "PDF maken…" : "Download PDF"}
       </Button>
+      {error && <p className="text-xs text-red-700">{error}</p>}
     </div>
   );
 }
