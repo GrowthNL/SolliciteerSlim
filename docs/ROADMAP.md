@@ -39,7 +39,7 @@
 - [x] ATS-check (`generateAtsCheck`).
 - [x] Sollicitatiebriefgenerator (`generateCoverLetter`, `updateCoverLetter`).
 - [x] AI-usage logs (`getMonthlyAiUsage`, tabel `ai_usage_logs`).
-- [ ] Diff/accept-flow bij tekstverbetering.
+- [x] Diff/accept-flow bij tekstverbetering (woord-diff met accepteren/negeren, `src/lib/text-diff.ts`).
 - [ ] Transparante matchscore naast de ATS-check.
 - [x] Schema-validatie (Zod) en timeout-hardening op alle AI-calls (30s timeout + 1 retry op de gedeelde client).
 - [ ] Nederlandse evaluatieset en promptversies.
