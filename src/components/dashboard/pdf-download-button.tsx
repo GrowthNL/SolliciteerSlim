@@ -79,9 +79,11 @@ export function PdfDownloadButton({ doc, plan, filename = "cv.pdf" }: PdfDownloa
         <span className="text-xs text-slate-500 font-medium">Template</span>
         <div className="flex gap-2 flex-wrap mt-1">
           {(Object.keys(templateLabels) as TemplateOption[]).map((t) => (
-            <span
+            <button
               key={t}
+              type="button"
               onClick={() => setTemplate(t)}
+              aria-pressed={template === t}
               className={
                 template === t
                   ? "px-3 py-1 rounded-full text-xs cursor-pointer bg-emerald-100 text-emerald-800 font-semibold"
@@ -89,7 +91,7 @@ export function PdfDownloadButton({ doc, plan, filename = "cv.pdf" }: PdfDownloa
               }
             >
               {templateLabels[t]}
-            </span>
+            </button>
           ))}
         </div>
       </div>

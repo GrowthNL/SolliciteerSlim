@@ -54,7 +54,9 @@ export function NewCvModal({ onClose, initialStep = "choose" }: Props) {
       <div className="relative w-full max-w-lg rounded-3xl border border-[#E5E3DA] bg-white p-8 shadow-2xl">
         {onClose && (
           <button
+            type="button"
             onClick={onClose}
+            aria-label="Sluiten"
             className="absolute right-5 top-5 flex size-8 items-center justify-center rounded-full text-[#9A9A92] transition-colors hover:bg-[#F2F1EC] hover:text-[#111113]"
           >
             <X className="size-4" />

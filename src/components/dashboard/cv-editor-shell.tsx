@@ -11,7 +11,7 @@ export function CvEditorShell({ title = "Naamloos cv" }: { title?: string }) {
     <div className="mx-auto max-w-7xl">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Button asChild variant="ghost" size="icon"><Link href="/dashboard/cv"><ArrowLeft className="size-5" /></Link></Button>
+          <Button asChild variant="ghost" size="icon" aria-label="Terug naar cv-overzicht"><Link href="/dashboard/cv"><ArrowLeft className="size-5" /></Link></Button>
           <div><h1 className="font-display text-2xl font-bold text-slate-950">{title}</h1><p className="text-xs text-slate-500">Concept • Phase 1 preview</p></div>
         </div>
         <div className="flex gap-2"><Button variant="secondary"><Eye className="size-4" />Preview</Button><Button disabled><Save className="size-4" />Opslaan</Button></div>

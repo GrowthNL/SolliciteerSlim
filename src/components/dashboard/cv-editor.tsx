@@ -447,6 +447,7 @@ function WorkSection({
                   <button
                     type="button"
                     onClick={() => removeBullet(job.id, i)}
+                    aria-label="Regel verwijderen"
                     className="shrink-0 rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600"
                   >
                     <X className="size-3.5" />
@@ -656,6 +657,7 @@ function SkillsSection({
               <button
                 type="button"
                 onClick={() => removeSkill(skill)}
+                aria-label={`Vaardigheid ${skill} verwijderen`}
                 className="text-emerald-600 hover:text-emerald-900"
               >
                 <X className="size-3" />
@@ -779,6 +781,7 @@ function NamedItemList({
           <button
             type="button"
             onClick={() => remove(item.id)}
+            aria-label="Item verwijderen"
             className="mt-1.5 rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600"
           >
             <X className="size-4" />
@@ -856,6 +859,7 @@ function OtherSection({
               {interest}
               <button
                 type="button"
+                aria-label={`Interesse ${interest} verwijderen`}
                 onClick={() =>
                   update({ ...doc, interests: doc.interests.filter((i) => i !== interest) })
                 }
@@ -965,7 +969,7 @@ export function CvEditor({ initialId, initialDoc, initialTemplate, initialAccent
       {/* Top bar */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Button asChild variant="ghost" size="icon">
+          <Button asChild variant="ghost" size="icon" aria-label="Terug naar cv-overzicht">
             <Link href="/dashboard/cv">
               <ArrowLeft className="size-5" />
             </Link>
