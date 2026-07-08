@@ -32,6 +32,7 @@ import { TEMPLATES, type TemplateId } from "@/features/templates/index";
 import { saveResume } from "@/app/actions/resumes";
 import { improveText, type ImproveTextResult } from "@/app/actions/ai";
 import { AiCredits } from "@/components/dashboard/ai-credits";
+import { wordDiff } from "@/lib/text-diff";
 import { type Plan } from "@/lib/entitlements";
 import {
   createEmptyResumeDocument,
@@ -188,6 +189,7 @@ function ProfileSection({
   const [suggestion, setSuggestion] = useState<ImproveTextResult | null>(null);
   const [aiError, setAiError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [showDiff, setShowDiff] = useState(true);
   const [creditSignal, setCreditSignal] = useState(0);
 
   function handleImprove() {
@@ -260,17 +262,49 @@ function ProfileSection({
       {showModal && suggestion && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
-            <div className="mb-4 flex items-center gap-2">
-              <Sparkles className="size-5 text-emerald-600" />
-              <h3 className="font-display text-lg font-bold text-slate-950">
-                AI-suggestie
-              </h3>
+            <div className="mb-4 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Sparkles className="size-5 text-emerald-600" />
+                <h3 className="font-display text-lg font-bold text-slate-950">
+                  AI-suggestie
+                </h3>
+              </div>
+              <div className="flex rounded-lg border border-slate-200 p-0.5 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setShowDiff(true)}
+                  aria-pressed={showDiff}
+                  className={`rounded-md px-2.5 py-1 font-medium ${showDiff ? "bg-slate-900 text-white" : "text-slate-600"}`}
+                >
+                  Wijzigingen
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowDiff(false)}
+                  aria-pressed={!showDiff}
+                  className={`rounded-md px-2.5 py-1 font-medium ${!showDiff ? "bg-slate-900 text-white" : "text-slate-600"}`}
+                >
+                  Nieuwe tekst
+                </button>
+              </div>
             </div>
 
-            <div className="mb-4 rounded-xl bg-emerald-50 p-4">
-              <p className="text-sm leading-relaxed text-slate-800">
-                {suggestion.improved}
-              </p>
+            <div className="mb-4 rounded-xl bg-slate-50 p-4">
+              {showDiff ? (
+                <p className="text-sm leading-relaxed text-slate-800">
+                  {wordDiff(doc.profileSummary, suggestion.improved).map((seg, i) =>
+                    seg.type === "added" ? (
+                      <span key={i} className="rounded bg-emerald-100 text-emerald-900">{seg.value}</span>
+                    ) : seg.type === "removed" ? (
+                      <span key={i} className="rounded bg-red-100 text-red-700 line-through">{seg.value}</span>
+                    ) : (
+                      <span key={i}>{seg.value}</span>
+                    ),
+                  )}
+                </p>
+              ) : (
+                <p className="text-sm leading-relaxed text-slate-800">{suggestion.improved}</p>
+              )}
             </div>
 
             {suggestion.changes.length > 0 && (
