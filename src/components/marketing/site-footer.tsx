@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoDark } from "@/components/shared/logo";
+import { CookiePreferencesButton } from "@/components/consent/cookie-preferences-button";
 
 const groups = [
   { title: "Product", links: [["CV maken", "/cv-maken"], ["AI CV Maker", "/ai-cv-maker"], ["Sollicitatiebrief", "/sollicitatiebrief-maken"], ["ATS-check", "/ats-check"], ["Prijzen", "/prijzen"]] },
@@ -34,8 +35,9 @@ export function SiteFooter() {
           ))}
         </div>
       </div>
-      <div className="container-shell mt-12 border-t border-white/10 pt-6 text-xs text-[#9A9A92]">
-        © 2026 CVmaken.nu. Gemaakt voor Nederlandse sollicitaties.
+      <div className="container-shell mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-[#9A9A92] sm:flex-row sm:items-center sm:justify-between">
+        <span>© 2026 CVmaken.nu. Gemaakt voor Nederlandse sollicitaties.</span>
+        <CookiePreferencesButton />
       </div>
     </footer>
   );

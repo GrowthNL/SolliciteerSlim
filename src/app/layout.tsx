@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Schibsted_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { CookieConsent } from "@/components/consent/cookie-consent";
+import { Analytics } from "@/components/consent/analytics";
 
 const schibsted = Schibsted_Grotesk({
   subsets: ["latin"],
@@ -54,7 +56,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="nl" className={`${schibsted.variable} ${ibmPlexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <CookieConsent />
+        <Analytics />
+      </body>
     </html>
   );
 }
