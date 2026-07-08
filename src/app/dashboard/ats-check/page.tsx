@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useEffect, useMemo } from "react";
 import { ScanSearch, CheckCircle, XCircle, AlertCircle, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateAtsCheck, getJobPosts, type AtsCheckResult, type JobPostRow } from "@/app/actions/ai";
 import { AiCredits } from "@/components/dashboard/ai-credits";
+import { MatchScoreCard } from "@/components/dashboard/match-score-card";
+import { computeMatchScore } from "@/lib/match-score";
 import { getResumes } from "@/app/actions/resumes";
 import type { ResumeDocument } from "@/features/resumes/model";
 
@@ -58,6 +60,15 @@ export default function AtsCheckPage() {
       setJobPosts(j);
     });
   }, []);
+
+  // Transparent, deterministic keyword match — computed instantly, no AI call.
+  const matchScore = useMemo(() => {
+    if (!selectedCv || !selectedJob || !resumes || !jobPosts) return null;
+    const cv = resumes.find((r) => r.id === selectedCv);
+    const job = jobPosts.find((j) => j.id === selectedJob);
+    if (!cv || !job?.extracted_keywords_json) return null;
+    return computeMatchScore(serializeCvToText(cv.data_json), job.extracted_keywords_json);
+  }, [selectedCv, selectedJob, resumes, jobPosts]);
 
   const handleCheck = () => {
     if (!selectedCv || !selectedJob) return;
@@ -152,6 +163,8 @@ export default function AtsCheckPage() {
           </div>
         </CardContent>
       </Card>
+
+      {matchScore && <MatchScoreCard match={matchScore} />}
 
       {result && (
         <div className="mt-8 space-y-5">
