@@ -6,6 +6,7 @@ import { validateResumeDocument } from "@/features/resumes/model";
 import { ModernPdf } from "@/features/templates/modern-pdf";
 import { KlassiekPdf } from "@/features/templates/klassiek-pdf";
 import { MinimaalPdf } from "@/features/templates/minimaal-pdf";
+import { resolveAccent, normalizeFont } from "@/features/templates/pdf-style";
 
 // @react-pdf/renderer needs the Node runtime (not edge).
 export const runtime = "nodejs";
@@ -51,7 +52,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Ongeldige aanvraag." }, { status: 400 });
   }
 
-  const payload = (body ?? {}) as { doc?: unknown; template?: unknown; filename?: unknown };
+  const payload = (body ?? {}) as {
+    doc?: unknown;
+    template?: unknown;
+    filename?: unknown;
+    accent?: unknown;
+    font?: unknown;
+  };
   const validation = validateResumeDocument(payload.doc);
   if (!validation.success) {
     return NextResponse.json({ error: "Ongeldig cv-document." }, { status: 400 });
@@ -59,13 +66,15 @@ export async function POST(req: NextRequest) {
 
   const doc = validation.data;
   const template = pickTemplate(payload.template);
+  const accent = resolveAccent(typeof payload.accent === "string" ? payload.accent : undefined);
+  const font = normalizeFont(payload.font);
   const element =
     template === "klassiek" ? (
-      <KlassiekPdf doc={doc} />
+      <KlassiekPdf doc={doc} accent={accent} font={font} />
     ) : template === "minimaal" ? (
-      <MinimaalPdf doc={doc} />
+      <MinimaalPdf doc={doc} accent={accent} font={font} />
     ) : (
-      <ModernPdf doc={doc} />
+      <ModernPdf doc={doc} accent={accent} font={font} />
     );
 
   let buffer: Buffer;

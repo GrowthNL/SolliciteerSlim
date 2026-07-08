@@ -2,37 +2,41 @@
 // Uses @react-pdf/renderer components (not HTML/CSS)
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { ResumeDocument } from "@/features/resumes/model";
+import { resolveAccent, resolveFont, type PdfFont } from "./pdf-style";
 
-const s = StyleSheet.create({
-  page: { padding: 40, fontFamily: "Helvetica", fontSize: 9.5, color: "#1e293b", lineHeight: 1.4 },
-  header: { borderBottomWidth: 1, borderBottomColor: "#000000", paddingBottom: 10, marginBottom: 14 },
-  name: { fontSize: 18, fontFamily: "Helvetica-Bold", color: "#000000" },
-  jobTitle: { fontSize: 9, color: "#334155", marginTop: 3 },
-  contactRow: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 5 },
-  contactItem: { fontSize: 7.5, color: "#1e293b" },
-  section: { marginBottom: 12 },
-  sectionTitle: {
-    fontSize: 7,
-    fontFamily: "Helvetica-Bold",
-    color: "#1e293b",
-    borderLeftWidth: 2,
-    borderLeftColor: "#334155",
-    paddingLeft: 6,
-    marginBottom: 6,
-  },
-  entryTitle: { fontSize: 9.5, fontFamily: "Helvetica-Bold", color: "#000000" },
-  entryMeta: { fontSize: 8, color: "#334155" },
-  entryDate: { fontSize: 7.5, color: "#475569", marginTop: 1 },
-  bullet: { fontSize: 8.5, color: "#1e293b", marginLeft: 6, marginTop: 2 },
-  summary: { fontSize: 8.5, color: "#1e293b", lineHeight: 1.5 },
-  skillItem: { fontSize: 8.5, color: "#1e293b", marginBottom: 2 },
-});
-
-function SectionTitle({ children }: { children: string }) {
-  return <Text style={s.sectionTitle}>{children.toUpperCase()}</Text>;
+function createStyles(accent: string, font: { regular: string; bold: string }) {
+  return StyleSheet.create({
+    page: { padding: 40, fontFamily: font.regular, fontSize: 9.5, color: "#1e293b", lineHeight: 1.4 },
+    header: { borderBottomWidth: 1, borderBottomColor: "#000000", paddingBottom: 10, marginBottom: 14 },
+    name: { fontSize: 18, fontFamily: font.bold, color: "#000000" },
+    jobTitle: { fontSize: 9, color: "#334155", marginTop: 3 },
+    contactRow: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 5 },
+    contactItem: { fontSize: 7.5, color: "#1e293b" },
+    section: { marginBottom: 12 },
+    sectionTitle: {
+      fontSize: 7,
+      fontFamily: font.bold,
+      color: "#1e293b",
+      borderLeftWidth: 2,
+      borderLeftColor: accent,
+      paddingLeft: 6,
+      marginBottom: 6,
+    },
+    entryTitle: { fontSize: 9.5, fontFamily: font.bold, color: "#000000" },
+    entryMeta: { fontSize: 8, color: "#334155" },
+    entryDate: { fontSize: 7.5, color: "#475569", marginTop: 1 },
+    bullet: { fontSize: 8.5, color: "#1e293b", marginLeft: 6, marginTop: 2 },
+    summary: { fontSize: 8.5, color: "#1e293b", lineHeight: 1.5 },
+    skillItem: { fontSize: 8.5, color: "#1e293b", marginBottom: 2 },
+    langName: { fontSize: 8.5, color: "#1e293b", marginBottom: 2, fontFamily: font.bold },
+  });
 }
 
-export function KlassiekPdf({ doc }: { doc: ResumeDocument }) {
+export function KlassiekPdf({ doc, accent, font }: { doc: ResumeDocument; accent?: string; font?: PdfFont }) {
+  const s = createStyles(resolveAccent(accent), resolveFont(font));
+  const SectionTitle = ({ children }: { children: string }) => (
+    <Text style={s.sectionTitle}>{children.toUpperCase()}</Text>
+  );
   const { personalDetails: p } = doc;
   const fullName = [p.firstName, p.lastName].filter(Boolean).join(" ") || "Naam";
   const contacts = [p.email, p.phone, p.city, p.linkedinUrl, p.websiteUrl].filter(Boolean);
@@ -107,7 +111,7 @@ export function KlassiekPdf({ doc }: { doc: ResumeDocument }) {
             <SectionTitle>Talen</SectionTitle>
             {doc.languages.map((lang) => (
               <View key={lang.id} style={{ marginBottom: 4 }}>
-                <Text style={{ ...s.skillItem, fontFamily: "Helvetica-Bold" }}>{lang.name}</Text>
+                <Text style={s.langName}>{lang.name}</Text>
                 {lang.level ? <Text style={{ ...s.skillItem, color: "#64748b", fontSize: 8 }}>{lang.level}</Text> : null}
               </View>
             ))}
