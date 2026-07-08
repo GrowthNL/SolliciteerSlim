@@ -1,89 +1,10 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { openai, DEFAULT_MODEL } from "@/lib/openai/client";
 import { z } from "zod";
-import { PLAN_LIMITS, type Plan } from "@/lib/entitlements";
-
-// ─── Service role client for logging ─────────────────────────────────────────
-
-function getServiceClient() {
-  return createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  );
-}
-
-// ─── Usage logging ────────────────────────────────────────────────────────────
-
-async function logUsage(
-  userId: string,
-  actionType: string,
-  inputTokens: number,
-  outputTokens: number,
-) {
-  const costEstimate =
-    (inputTokens / 1_000_000) * 0.15 + (outputTokens / 1_000_000) * 0.6;
-  const serviceClient = getServiceClient();
-  await serviceClient.from("ai_usage_logs").insert({
-    user_id: userId,
-    action_type: actionType,
-    input_tokens: inputTokens,
-    output_tokens: outputTokens,
-    cost_estimate: costEstimate,
-  });
-}
-
-// ─── Monthly usage guard + per-minute rate limit ─────────────────────────────
-
-export async function getMonthlyAiUsage(userId: string): Promise<number> {
-  const supabase = await createClient();
-  const start = new Date();
-  start.setDate(1);
-  start.setHours(0, 0, 0, 0);
-
-  const { count } = await supabase
-    .from("ai_usage_logs")
-    .select("*", { count: "exact", head: true })
-    .eq("user_id", userId)
-    .gte("created_at", start.toISOString());
-
-  return count ?? 0;
-}
-
-async function checkMinuteRateLimit(userId: string): Promise<boolean> {
-  const supabase = await createClient();
-  const since = new Date(Date.now() - 60_000).toISOString();
-  const { count } = await supabase
-    .from("ai_usage_logs")
-    .select("*", { count: "exact", head: true })
-    .eq("user_id", userId)
-    .gte("created_at", since);
-  return (count ?? 0) < 5;
-}
-
-async function guardAiUsage(
-  userId: string,
-  plan: Plan,
-): Promise<{ error: string } | null> {
-  if (!PLAN_LIMITS[plan].canUseAi) {
-    return { error: "AI-functies zijn beschikbaar vanaf het Pro-abonnement. Upgrade via je account." };
-  }
-  const limit = PLAN_LIMITS[plan].aiCallsPerMonth as number;
-  if (limit <= 0) return null;
-  const [used, withinRateLimit] = await Promise.all([
-    getMonthlyAiUsage(userId),
-    checkMinuteRateLimit(userId),
-  ]);
-  if (!withinRateLimit) {
-    return { error: "Je verstuurt te snel aanvragen. Wacht even en probeer het opnieuw." };
-  }
-  if (used >= limit) {
-    return { error: `Je hebt je ${limit} AI-credits voor deze maand gebruikt. Volgende maand worden ze vernieuwd.` };
-  }
-  return null;
-}
+import { type Plan } from "@/lib/entitlements";
+import { guardAiUsage, logUsage } from "@/lib/ai/usage";
 
 // ─── Zod schemas ──────────────────────────────────────────────────────────────
 
@@ -128,6 +49,10 @@ export async function analyzeVacature(
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) return { error: "Niet ingelogd." };
+
+  const { data: userProfile } = await supabase.from("users").select("plan").eq("id", user.id).single();
+  const guard = await guardAiUsage(user.id, (userProfile?.plan ?? "free") as Plan);
+  if (guard) return guard;
 
   const systemPrompt = `Je bent een vacature-analist die helpt Nederlandse werkzoekenden bij het analyseren van vacatureteksten.
 Analyseer de gegeven vacaturetekst en retourneer uitsluitend een JSON-object met de volgende velden:

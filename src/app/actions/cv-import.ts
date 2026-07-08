@@ -3,6 +3,8 @@
 import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
 import { createEmptyResumeDocument, validateResumeDocument, type ResumeDocument } from "@/features/resumes/model";
+import { guardCvImport, logUsage, CV_IMPORT_ACTION } from "@/lib/ai/usage";
+import { type Plan } from "@/lib/entitlements";
 import { saveResume } from "./resumes";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY ?? "" });
@@ -80,6 +82,10 @@ export async function importCvFromText(
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Niet ingelogd." };
 
+  const { data: userProfile } = await supabase.from("users").select("plan").eq("id", user.id).single();
+  const guard = await guardCvImport(user.id, (userProfile?.plan ?? "free") as Plan);
+  if (guard) return guard;
+
   let completion;
   try {
     completion = await openai.chat.completions.create({
@@ -114,6 +120,13 @@ export async function importCvFromText(
   } catch {
     return { error: "AI-respons ongeldig. Probeer het opnieuw." };
   }
+
+  await logUsage(
+    user.id,
+    CV_IMPORT_ACTION,
+    completion.usage?.prompt_tokens ?? 0,
+    completion.usage?.completion_tokens ?? 0,
+  ).catch(() => {});
 
   const result = await saveResume(null, parsed);
   if ("error" in result) return { error: result.error };
