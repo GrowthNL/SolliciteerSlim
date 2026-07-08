@@ -1,7 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { openai, DEFAULT_MODEL } from "@/lib/openai/client";
+import { openai, DEFAULT_MODEL, aiErrorMessage } from "@/lib/openai/client";
 import { z } from "zod";
 import { PLAN_LIMITS, type Plan } from "@/lib/entitlements";
 import { guardAiUsage, logUsage, getMonthlyAiUsage } from "@/lib/ai/usage";
@@ -104,8 +104,8 @@ Retourneer alleen valide JSON, geen extra tekst.`;
         },
       ],
     });
-  } catch {
-    return { error: "OpenAI-verzoek mislukt. Probeer het opnieuw." };
+  } catch (err) {
+    return { error: aiErrorMessage(err) };
   }
 
   const raw = completion.choices[0]?.message?.content ?? "";
@@ -185,8 +185,8 @@ Retourneer alleen valide JSON, geen extra tekst.`;
         },
       ],
     });
-  } catch {
-    return { error: "OpenAI-verzoek mislukt. Probeer het opnieuw." };
+  } catch (err) {
+    return { error: aiErrorMessage(err) };
   }
 
   const raw = completion.choices[0]?.message?.content ?? "";
@@ -263,8 +263,8 @@ Retourneer alleen valide JSON, geen extra tekst.`;
         },
       ],
     });
-  } catch {
-    return { error: "OpenAI-verzoek mislukt. Probeer het opnieuw." };
+  } catch (err) {
+    return { error: aiErrorMessage(err) };
   }
 
   const raw = completion.choices[0]?.message?.content ?? "";
@@ -359,8 +359,8 @@ ${cvSummary}`,
         },
       ],
     });
-  } catch {
-    return { error: "OpenAI-verzoek mislukt. Probeer het opnieuw." };
+  } catch (err) {
+    return { error: aiErrorMessage(err) };
   }
 
   const raw = completion.choices[0]?.message?.content ?? "";

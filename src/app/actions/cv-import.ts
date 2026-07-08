@@ -1,13 +1,11 @@
 "use server";
 
-import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
 import { createEmptyResumeDocument, validateResumeDocument, type ResumeDocument } from "@/features/resumes/model";
+import { openai, DEFAULT_MODEL, aiErrorMessage } from "@/lib/openai/client";
 import { guardCvImport, logUsage, CV_IMPORT_ACTION } from "@/lib/ai/usage";
 import { type Plan } from "@/lib/entitlements";
 import { saveResume } from "./resumes";
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY ?? "" });
 
 const PARSE_PROMPT = `Je bent een cv-parser voor de Nederlandse arbeidsmarkt.
 Analyseer de gegeven cv-tekst en extraheer alle gegevens in het volgende JSON-formaat.
@@ -89,7 +87,7 @@ export async function importCvFromText(
   let completion;
   try {
     completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: DEFAULT_MODEL,
       temperature: 0.1,
       max_tokens: 3000,
       response_format: { type: "json_object" },
@@ -98,8 +96,8 @@ export async function importCvFromText(
         { role: "user", content: `CV-tekst:\n\n${text.slice(0, 8000)}` },
       ],
     });
-  } catch {
-    return { error: "AI-verzoek mislukt. Probeer het opnieuw." };
+  } catch (err) {
+    return { error: aiErrorMessage(err) };
   }
 
   const raw = completion.choices[0]?.message?.content ?? "{}";

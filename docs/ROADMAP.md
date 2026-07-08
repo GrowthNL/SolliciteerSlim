@@ -41,7 +41,7 @@
 - [x] AI-usage logs (`getMonthlyAiUsage`, tabel `ai_usage_logs`).
 - [ ] Diff/accept-flow bij tekstverbetering.
 - [ ] Transparante matchscore naast de ATS-check.
-- [ ] Schema-validatie en timeout-hardening op alle AI-calls.
+- [x] Schema-validatie (Zod) en timeout-hardening op alle AI-calls (30s timeout + 1 retry op de gedeelde client).
 - [ ] Nederlandse evaluatieset en promptversies.
 
 ## Phase 5 — Betaling
@@ -67,7 +67,6 @@
 - [x] Toegankelijkheid: keyboard-toegankelijke controls en aria-labels op icon-knoppen.
 - [x] Rate limiting en abuse protection op AI-endpoints (`src/lib/ai/usage.ts`: per-minuut + maandlimiet, alle AI- en import-calls).
 - [x] Vercel deploy-config (`vercel.json`) en deployment-runbook (`docs/DEPLOYMENT.md`).
-- [ ] Blogcontentmodel met volledige artikelen en CMS-integratie.
 - [ ] E2E-tests en performancebudget (Lighthouse-meting in CI).
 
 ## Huidige focus
